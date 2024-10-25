@@ -1,0 +1,50 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2022-08-25 15:00:20.524605",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "icon": "accounting",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Taxes and Charges",
+ "links": [],
+ "modified": "2022-08-25 15:02:58.446906",
+ "modified_by": "Administrator",
+ "module": "Indonesia Taxes and Charges",
+ "name": "Taxes and Charges",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 1,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "Tax Invoice Number",
+   "link_to": "Tax Invoice Number",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Tax Invoice Number Importer",
+   "link_to": "Tax Invoice Number Importer",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Tax Invoice Exporter",
+   "link_to": "Tax Invoice Exporter",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Taxes and Charges Settings",
+   "link_to": "ITC Settings",
+   "type": "DocType"
+  }
+ ]
+}

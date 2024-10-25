@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "creation": "2022-08-15 11:18:43.962475",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tax_prefix_code",
+  "column_break_2",
+  "sales_taxes_and_charges_template"
+ ],
+ "fields": [
+  {
+   "fieldname": "tax_prefix_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tax Prefix Code"
+  },
+  {
+   "fieldname": "sales_taxes_and_charges_template",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-08-19 15:36:29.925806",
+ "modified_by": "Administrator",
+ "module": "Indonesia Taxes and Charges",
+ "name": "Tax Prefix Code",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

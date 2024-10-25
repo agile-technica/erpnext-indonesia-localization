@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include indonesia_taxes_and_charges *.css
+recursive-include indonesia_taxes_and_charges *.csv
+recursive-include indonesia_taxes_and_charges *.html
+recursive-include indonesia_taxes_and_charges *.ico
+recursive-include indonesia_taxes_and_charges *.js
+recursive-include indonesia_taxes_and_charges *.json
+recursive-include indonesia_taxes_and_charges *.md
+recursive-include indonesia_taxes_and_charges *.png
+recursive-include indonesia_taxes_and_charges *.py
+recursive-include indonesia_taxes_and_charges *.svg
+recursive-include indonesia_taxes_and_charges *.txt
+recursive-exclude indonesia_taxes_and_charges *.pyc

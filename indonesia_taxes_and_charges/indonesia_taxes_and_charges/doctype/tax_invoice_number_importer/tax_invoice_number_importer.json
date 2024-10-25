@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "creation": "2022-08-15 12:33:45.234125",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "section_break_2",
+  "from_tax_invoice_number",
+  "column_break_4",
+  "from_tax_invoice_number_formatted",
+  "section_break_6",
+  "to_tax_invoice_number",
+  "column_break_8",
+  "to_tax_invoice_number_formatted",
+  "section_break_10",
+  "tax_invoice_number_total",
+  "create_tax_invoice_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "from_tax_invoice_number",
+   "fieldtype": "Data",
+   "label": "From Tax Invoice Number"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_tax_invoice_number_formatted",
+   "fieldtype": "Data",
+   "label": "From Tax Invoice Number (Formatted)"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "to_tax_invoice_number",
+   "fieldtype": "Data",
+   "label": "To Tax Invoice Number"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to_tax_invoice_number_formatted",
+   "fieldtype": "Data",
+   "label": "To Tax Invoice Number (Formatted)"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tax_invoice_number_total",
+   "fieldtype": "Int",
+   "label": "Tax Invoice Number Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "create_tax_invoice_number",
+   "fieldtype": "Button",
+   "label": "Create Tax Invoice Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-08-16 10:26:21.050506",
+ "modified_by": "Administrator",
+ "module": "Indonesia Taxes and Charges",
+ "name": "Tax Invoice Number Importer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
