@@ -42,6 +42,11 @@ app_license = "agpl-3.0"
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 
+doctype_js = {
+	"Sales Invoice": "public/js/sales_invoice.js",
+	"Customer Group": "public/js/customer_group.js"
+}
+
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -145,6 +150,15 @@ app_license = "agpl-3.0"
 # 	}
 # }
 
+doc_events = {
+	"Sales Invoice": {
+		"before_cancel": [
+			"erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_tin_status_before_cancel_si",
+			"erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_si_had_tin_before"
+		]
+	}
+}
+
 # Scheduled Tasks
 # ---------------
 
@@ -234,6 +248,41 @@ app_license = "agpl-3.0"
 # auth_hooks = [
 # 	"erpnext_indonesia_localization.auth.validate"
 # ]
+
+fixtures = [
+	{
+		"dt": "Custom Field",
+		"filters": [
+			[
+				"name", "in",
+				[
+					"Customer Group-customer_tax_code",
+					"Customer Group-kode_pajak",
+					"Sales Invoice-custom_tax_invoice_number",
+					"Customer-company_address_tax_id",
+					"Customer-company_name_tax_id",
+					"Customer-customer_pkp",
+					"Sales Invoice-custom_si_had_tin_before",
+					"Sales Invoice-tax_additional_description",
+					"Sales Invoice-tax_additional_reference",
+					"Sales Invoice-linking_sales_invoice_to_tax_invoice_number"
+
+				]
+			]
+		]
+	},
+	{
+		"dt": "Property Setter",
+		"filters": [
+			[
+				"name", "in",
+				[
+					"Sales Invoice-tax_id-fetch_from"
+				]
+			]
+		]
+	}
+]
 
 # Automatically update python controller files with type annotations for this app.
 # export_python_type_annotations = True
