@@ -52,7 +52,7 @@ class TaxInvoiceNumberImporter(Document):
 				)
 
 	def validate_tax_invoice_number_fields(self):
-		itc_settings = frappe.get_single("ITC Settings")
+		indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 
 		if not self.from_tax_invoice_number or not self.from_tax_invoice_number_formatted \
 				or not self.to_tax_invoice_number or not self.to_tax_invoice_number_formatted:
@@ -60,9 +60,9 @@ class TaxInvoiceNumberImporter(Document):
 
 			frappe.throw(error_msg)
 
-		if len(self.from_tax_invoice_number) != itc_settings.tin_length or len(
-				self.to_tax_invoice_number) != itc_settings.tin_length:
-			frappe.throw(_("Tax Invoice Number cannot be less than ") + str(itc_settings.tin_length) + _(
+		if len(self.from_tax_invoice_number) != indonesia_localization_settings.tin_length or len(
+				self.to_tax_invoice_number) != indonesia_localization_settings.tin_length:
+			frappe.throw(_("Tax Invoice Number cannot be less than ") + str(indonesia_localization_settings.tin_length) + _(
 				" digits"))
 
 		if self.from_tax_invoice_number > self.to_tax_invoice_number:

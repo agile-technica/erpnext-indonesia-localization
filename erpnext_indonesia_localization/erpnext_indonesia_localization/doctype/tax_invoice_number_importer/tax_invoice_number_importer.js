@@ -37,7 +37,7 @@ function get_tax_invoice_number_length() {
     frappe.call({
         method: "frappe.client.get",
         args: {
-            doctype: "ITC Settings",
+            doctype: "Indonesia Localization Settings",
         },
         async: false,
         callback(r) {

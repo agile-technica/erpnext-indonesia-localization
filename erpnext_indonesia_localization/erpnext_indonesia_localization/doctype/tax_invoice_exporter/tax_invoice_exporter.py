@@ -40,12 +40,7 @@ class TaxInvoiceExporter(Document):
 		self.validate_used_tin()
 
 	def on_submit(self):
-		itc_settings = frappe.get_single("ITC Settings")
-		if itc_settings.enable_button_to_link_tin_to_si:
-			if not self.linking_tin_to_si_status:
-				frappe.throw("Please link the Sales Invoices to TIN using 'Link TIN to SI' button below")
-		else:
-			self.update_tin_with_si("on_submit")
+		self.update_tin_with_si("on_submit")
 
 	def on_cancel(self):
 		self.update_tin_with_si("before_cancel")
@@ -73,15 +68,15 @@ class TaxInvoiceExporter(Document):
 
 	@frappe.whitelist()
 	def update_tin_with_si(self, event_trigger):
-		itc_settings = frappe.get_single("ITC Settings")
+		indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 
 		if "submit" in event_trigger:
 			list_of_tin = []
 			last_entry_si_row = self.sales_invoices[-1]
 
 			queue_name = "long"
-			if itc_settings.worker_for_link_tax_invoice_number_background_job:
-				queue_name = itc_settings.worker_for_link_tax_invoice_number_background_job
+			if indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job:
+				queue_name = indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job
 
 			for tie_si in self.sales_invoices:
 				si_doc = frappe.get_doc("Sales Invoice", tie_si.sales_invoice)
@@ -102,7 +97,7 @@ class TaxInvoiceExporter(Document):
 
 						enqueue(
 							job_name=(f"Updating Tax Invoice Number on {self.name}"),
-							queue=itc_settings.worker_for_renaming_tax_invoice_number if itc_settings.worker_for_renaming_tax_invoice_number else "short",
+							queue=indonesia_localization_settings.worker_for_renaming_tax_invoice_number if indonesia_localization_settings.worker_for_renaming_tax_invoice_number else "short",
 							is_async=True,
 							method=self.update_tin_doc,
 							tin_doc_name=tie_si.tax_invoice_number,
@@ -122,7 +117,7 @@ class TaxInvoiceExporter(Document):
 						prefix_code + "." + formatted_tin, update_modified=False
 					)
 				else:
-					if itc_settings.worker_for_link_tax_invoice_number_background_job:
+					if indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job:
 						frappe.db.set_value(
 							'Sales Invoice', si_doc.name, 'linking_sales_invoice_to_tax_invoice_number',
 							1, update_modified=False
@@ -139,11 +134,11 @@ class TaxInvoiceExporter(Document):
 					)
 
 		else:
-			itc_settings = frappe.get_single("ITC Settings")
+			indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 
 			queue_name = "short"
-			if itc_settings.worker_for_link_tax_invoice_number_background_job:
-				queue_name = itc_settings.worker_for_link_tax_invoice_number_background_job
+			if indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job:
+				queue_name = indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job
 
 			enqueue(
 				job_name=f"update_tin_with_si | Removing TIN from TIE {self.name}",
@@ -299,19 +294,16 @@ class TaxInvoiceExporter(Document):
 			["taxes_and_charges", "is", "set"]
 		]
 
-		itc_settings_doc = frappe.get_single("ITC Settings")
+		indonesia_localization_settings_doc = frappe.get_single("Indonesia Localization Settings")
 
-		if itc_settings_doc.exclude_opening_entry:
+		if indonesia_localization_settings_doc.exclude_opening_entry:
 			filters.append(["is_opening", "=", "No"])
-
-		if self.exclude_claim:
-			filters.append(["is_debit_note_for_claim", "=", 0])
 
 		if self.branch and frappe.db.exists("Branch", self.branch):
 			filters.append(["branch", "=", self.branch])
 			fields.append("branch")
 
-		if itc_settings_doc.exclude_sales_invoice_type_return:
+		if indonesia_localization_settings_doc.exclude_sales_invoice_type_return:
 			filters.append(["is_return", "=", 0])
 
 		return frappe.get_list("Sales Invoice", filters=filters, fields=fields)
@@ -359,25 +351,9 @@ class TaxInvoiceExporter(Document):
 			frappe.throw(_("No Sales Invoice can be processed"))
 
 		if len(available_tin) >= len(si_without_tin):
-			itc_settings = frappe.get_single("ITC Settings")
+			generated_si = self.generate_si_detail(is_single_tax_invoice_number, si_without_tin, available_tin)
 
-			if itc_settings.enable_auto_draft_when_get_sales_invoices:
-				queue_name = "long" if not itc_settings.worker_for_get_elligible_sales_invoice else itc_settings.worker_for_get_elligible_sales_invoice
-
-				enqueue(
-					job_name=f"fill_sales_invoices for TIE {self.name}",
-					queue=queue_name,
-					is_async=True,
-					method=self.generate_si_detail,
-					is_single_tax_invoice_number=is_single_tax_invoice_number,
-					si_without_tin=si_without_tin,
-					available_tin=available_tin,
-					is_auto_draft_enabled=True
-				)
-			else:
-				generated_si = self.generate_si_detail(is_single_tax_invoice_number, si_without_tin, available_tin)
-
-				return generated_si
+			return generated_si
 		else:
 			frappe.throw(_("Insufficient Tax Invoice Number"))
 
@@ -473,11 +449,11 @@ class TaxInvoiceExporter(Document):
 
 	@frappe.whitelist()
 	def enqueue_export_as_csv(self):
-		itc_settings = frappe.get_single("ITC Settings")
+		indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 
 		queue_name = "short"
-		if itc_settings.worker_for_link_tax_invoice_number_background_job:
-			queue_name = itc_settings.worker_for_link_tax_invoice_number_background_job
+		if indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job:
+			queue_name = indonesia_localization_settings.worker_for_link_tax_invoice_number_background_job
 
 		enqueue(
 			job_name=f"enqueue_export_as_csv | Exporting TIE {self.name} to CSV",
@@ -520,7 +496,7 @@ class TaxInvoiceExporter(Document):
 			frappe.throw(error)
 
 	def process_csv_row_non_pkp(self, writer):
-		itc_settings = frappe.get_single("ITC Settings")
+		indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 		customer_tax = []
 
 		for invoice_row in self.sales_invoices:
@@ -550,18 +526,15 @@ class TaxInvoiceExporter(Document):
 						si_doc.posting_date.day, si_doc.posting_date.month, si_doc.posting_date.year
 					)
 
-					if itc_settings.invoice_name_in_efaktur_template:
-						invoice_name = si_doc.as_dict()[itc_settings.invoice_name_in_efaktur_template]
-					elif itc_settings.include_delivery_note_id_as_a_reference:
-						invoice_name, total, total_taxes_and_charges = self.generate_invoice_name_for_cust_non_pkp(
-							customer=invoice_row.customer)
+					if indonesia_localization_settings.invoice_name_in_efaktur_template:
+						invoice_name = si_doc.as_dict()[indonesia_localization_settings.invoice_name_in_efaktur_template]
 					else:
 						invoice_name = si_doc.name
 
 					name_tax_id = cust_doc.customer_name
 					name_tax_invoice_number = None
 
-					if itc_settings.no_faktur_format == 0:
+					if indonesia_localization_settings.no_faktur_format == 0:
 						name_tax_invoice_number = tin_doc.tax_invoice_number.replace(".", "")[-13:]
 					else:
 						name_tax_invoice_number = tin_doc.tax_invoice_number[-13:-10] + '.' + tin_doc.tax_invoice_number[-10:-8] + '.' + tin_doc.tax_invoice_number[-8:]
@@ -637,7 +610,7 @@ class TaxInvoiceExporter(Document):
 		return invoice_name, total, total_taxes_and_charges
 
 	def process_csv_row(self, si_row, writer):
-		itc_settings = frappe.get_single("ITC Settings")
+		indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 		si_doc = frappe.get_doc("Sales Invoice", si_row.sales_invoice)
 		tin_doc = frappe.get_doc("Tax Invoice Number", si_row.tax_invoice_number)
 		cust_doc = frappe.get_doc("Customer", si_doc.customer)
@@ -683,16 +656,14 @@ class TaxInvoiceExporter(Document):
 				floor(floor(item.base_net_amount) * tax_rate) - total_taxes_and_charges_diff, 0, 0
 			])
 
-		if itc_settings.invoice_name_in_efaktur_template:
-			invoice_name = si_doc.as_dict()[itc_settings.invoice_name_in_efaktur_template]
-		elif itc_settings.include_delivery_note_id_as_a_reference:
-			invoice_name = self.check_delivery_note_reference(si_doc)
+		if indonesia_localization_settings.invoice_name_in_efaktur_template:
+			invoice_name = si_doc.as_dict()[indonesia_localization_settings.invoice_name_in_efaktur_template]
 		else:
 			invoice_name = si_doc.name
 
 		name_tax_invoice_number = None
 
-		if itc_settings.no_faktur_format == 0:
+		if indonesia_localization_settings.no_faktur_format == 0:
 			name_tax_invoice_number = tin_doc.tax_invoice_number.replace(".", "")[-13:]
 		else:
 			name_tax_invoice_number = tin_doc.tax_invoice_number[-13:-10] + '.' + tin_doc.tax_invoice_number[-10:-8] + '.' + tin_doc.tax_invoice_number[-8:]
@@ -711,16 +682,3 @@ class TaxInvoiceExporter(Document):
 		])
 
 		writer.writerows(si_item_row)
-
-	@staticmethod
-	def check_delivery_note_reference(sales_invoice):
-		invoice_name = sales_invoice.name
-		tax_additional_reference = ""
-		if sales_invoice.tax_additional_reference:
-			tax_additional_reference = f" Dokumen Referensi {sales_invoice.tax_additional_reference}"
-
-		for si_item in sales_invoice.items:
-			if si_item.delivery_note:
-				invoice_name = f"{si_item.delivery_note}/{sales_invoice.name}{tax_additional_reference}"
-
-		return invoice_name

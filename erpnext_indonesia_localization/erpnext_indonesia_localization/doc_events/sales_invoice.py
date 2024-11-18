@@ -8,16 +8,16 @@ from ...utils.data import get_tax_prefix_code
 @frappe.whitelist()
 def procedure_to_create_vom(name, doctype):
 	doc = frappe.get_doc(doctype, name)
-	itc_settings = frappe.get_single('ITC Settings')
-	NOFA_SOURCE = itc_settings.tax_invoice_number_source.upper()
+	indonesia_localization_settings = frappe.get_single('Indonesia Localization Settings')
+	NOFA_SOURCE = indonesia_localization_settings.tax_invoice_number_source.upper()
 	PAJAKIO_NOFA = 'PAJAK.IO'
 	INHOUSE_NOFA = 'TAX INVOICE NUMBER DOCTYPE'
 
 	title = 'Error Registering Tax Invoice Number'
-	message = "Please check ITC Settings configurations"
+	message = "Please check Indonesia Localization Settings configurations"
 
 	if NOFA_SOURCE == PAJAKIO_NOFA:
-		success_status, message = create_vat_output_metadata(doc, itc_settings)
+		success_status, message = create_vat_output_metadata(doc, indonesia_localization_settings)
 		if success_status:
 			title = 'VAT Output Metadata Created'
 		else:
@@ -26,7 +26,7 @@ def procedure_to_create_vom(name, doctype):
 		success_status, message = link_tax_invoice_number(doc)
 		if success_status:
 			title = 'Succesfully Registered Tax Invoice Number'
-			create_vat_output_metadata(doc, itc_settings)
+			create_vat_output_metadata(doc, indonesia_localization_settings)
 	return message, title
 
 
@@ -96,10 +96,10 @@ def check_mandatory_fields(metadata_doc):
 
 
 @frappe.whitelist()
-def create_vat_output_metadata(doc, itc_settings):
+def create_vat_output_metadata(doc, indonesia_localization_settings):
 	metadata_doc = frappe.new_doc('VAT Output Metadata')
 
-	NOFA_SOURCE = itc_settings.tax_invoice_number_source.upper()
+	NOFA_SOURCE = indonesia_localization_settings.tax_invoice_number_source.upper()
 	INHOUSE_NOFA = 'TAX INVOICE NUMBER DOCTYPE'
 	METADATA_DRAFT_STATUS = 'To Be Reviewed'
 	customer_details = frappe.get_doc("Customer", doc.customer)
@@ -116,7 +116,7 @@ def create_vat_output_metadata(doc, itc_settings):
 	if doc.nomor_faktur and NOFA_SOURCE == INHOUSE_NOFA:
 		metadata_doc.nofa = doc.nomor_faktur
 
-	metadata_doc.autouploaddjp = itc_settings.autouploaddjp
+	metadata_doc.autouploaddjp = indonesia_localization_settings.autouploaddjp
 	metadata_doc.noinvoice = doc.name
 
 	if doc.kdjenistransaksi:
@@ -176,7 +176,7 @@ def create_vat_output_metadata(doc, itc_settings):
 
 	metadata_doc.save()
 
-	if itc_settings.auto_call_pajakios_api:
+	if indonesia_localization_settings.auto_call_pajakios_api:
 		create_vat_output(metadata_doc)
 	message = "Successfully Registered Tax Invoice Number"
 

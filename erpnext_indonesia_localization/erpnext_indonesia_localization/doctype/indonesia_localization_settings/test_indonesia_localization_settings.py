@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestITCSettings(unittest.TestCase):
+class TestIndonesiaLocalizationSettings(unittest.TestCase):
 	pass

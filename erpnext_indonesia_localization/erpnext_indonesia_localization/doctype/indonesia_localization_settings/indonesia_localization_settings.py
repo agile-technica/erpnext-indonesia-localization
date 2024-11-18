@@ -4,5 +4,5 @@
 # import frappe
 from frappe.model.document import Document
 
-class ITCSettings(Document):
+class IndonesiaLocalizationSettings(Document):
 	pass

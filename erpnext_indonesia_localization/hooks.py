@@ -265,8 +265,8 @@ fixtures = [
 					"Sales Invoice-custom_si_had_tin_before",
 					"Sales Invoice-tax_additional_description",
 					"Sales Invoice-tax_additional_reference",
-					"Sales Invoice-linking_sales_invoice_to_tax_invoice_number"
-
+					"Sales Invoice-linking_sales_invoice_to_tax_invoice_number",
+					"Customer-custom_nik",
 				]
 			]
 		]

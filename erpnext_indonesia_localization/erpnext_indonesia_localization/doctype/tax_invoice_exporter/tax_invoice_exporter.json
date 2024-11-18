@@ -9,7 +9,6 @@
   "naming_series",
   "company",
   "customer_type",
-  "exclude_claim",
   "assign_tax_invoice_number_to_multiple_invoices",
   "column_break_2",
   "start_sales_invoice_posting_date",
@@ -119,12 +118,6 @@
   },
   {
    "default": "0",
-   "fieldname": "exclude_claim",
-   "fieldtype": "Check",
-   "label": "Exclude Claim"
-  },
-  {
-   "default": "0",
    "fieldname": "is_loading_filling_si",
    "fieldtype": "Check",
    "hidden": 1,
@@ -147,7 +140,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 1,
- "modified": "2024-10-08 11:44:33.649854",
+ "modified": "2024-11-18 16:46:51.668779",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "Tax Invoice Exporter",

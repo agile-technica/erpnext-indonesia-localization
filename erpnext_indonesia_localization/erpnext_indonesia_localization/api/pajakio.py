@@ -8,11 +8,11 @@ def create_vat_output(doc):
 	frappe.utils.logger.set_log_level("DEBUG")
 	logger = frappe.logger("pajak_io", with_more_info=True, allow_site=True, file_count=10)
 
-	itc_settings = frappe.get_single("ITC Settings")
-	key = bytes(itc_settings.get_password('pajakio_api_key'), 'utf-8')
+	indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
+	key = bytes(indonesia_localization_settings.get_password('pajakio_api_key'), 'utf-8')
 	pajakio_api_key = base64.b64encode(key)
 
-	url_create_vat = itc_settings.url_create_vat
+	url_create_vat = indonesia_localization_settings.url_create_vat
 	api_header = {
 		"accept": "application/json",
 		"content-type": "application/json",
@@ -72,12 +72,12 @@ def create_vat_output(doc):
 @frappe.whitelist()
 def create_vat_output_js(name):
 	doc = frappe.get_doc("VAT Output Metadata", name)
-	itc_settings = frappe.get_single("ITC Settings")
+	indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
 
 	class AllowedTo:
-		create_vat = itc_settings.create_vat_output
-		check_detail = itc_settings.get_details_vat_output
-		create_pdf = itc_settings.get_pdf_vat_output
+		create_vat = indonesia_localization_settings.create_vat_output
+		check_detail = indonesia_localization_settings.get_details_vat_output
+		create_pdf = indonesia_localization_settings.get_pdf_vat_output
 
 	class RequestStatus:
 		uploaded_but_not_processed = doc.transactionid and (doc.status == "To Be Reviewed" or doc.status == "Draft")
@@ -93,14 +93,14 @@ def create_vat_output_js(name):
 	elif AllowedTo.create_vat:
 		message = create_vat(doc, AllowedTo)
 	else:
-		message = "Create VAT is turned off in ITC Settings"
+		message = "Create VAT is turned off in Indonesia Localization Settings"
 
 	return message
 
 
 def proceed_to_get_pdf(doc, allowed_to):
 	if not allowed_to.create_pdf:
-		return "Get VAT Output PDF is turned off in ITC Settings"
+		return "Get VAT Output PDF is turned off in Indonesia Localization Settings"
 
 	response_msg = get_pdf_vat_output(doc)
 	doc.vat_output_pdf_response = response_msg['message']
@@ -126,7 +126,7 @@ def proceed_to_get_pdf(doc, allowed_to):
 
 def proceed_to_get_vat_output_details(doc, allowed_to):
 	if not allowed_to.check_detail:
-		return "Get VAT Output Details is turned off in ITC Settings"
+		return "Get VAT Output Details is turned off in Indonesia Localization Settings"
 
 	response_msg = get_vat_output_detail(doc)
 	try:
@@ -196,10 +196,10 @@ def create_vat(doc, allowed_to):
 
 @frappe.whitelist()
 def get_vat_output_detail(doc):
-	itc_settings = frappe.get_single("ITC Settings")
-	key = bytes(itc_settings.get_password('pajakio_api_key'), 'utf-8')
+	indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
+	key = bytes(indonesia_localization_settings.get_password('pajakio_api_key'), 'utf-8')
 	pajakio_api_key = base64.b64encode(key)
-	url_get_vat = itc_settings.url_get_vat + doc.transactionid
+	url_get_vat = indonesia_localization_settings.url_get_vat + doc.transactionid
 
 	api_header = {
 		"accept": "application/json",
@@ -216,10 +216,10 @@ def get_vat_output_detail(doc):
 
 
 def get_pdf_vat_output(doc):
-	itc_settings = frappe.get_single("ITC Settings")
-	key = bytes(itc_settings.get_password('pajakio_api_key'), 'utf-8')
+	indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
+	key = bytes(indonesia_localization_settings.get_password('pajakio_api_key'), 'utf-8')
 	pajakio_api_key = base64.b64encode(key)
-	url_get_vat = itc_settings.url_get_pdf_vat
+	url_get_vat = indonesia_localization_settings.url_get_pdf_vat
 	payload = [{"transactionId": doc.transactionid}]
 	api_header = {
 		"accept": "application/json",
@@ -238,10 +238,10 @@ def get_pdf_vat_output(doc):
 def upload_vat_output(doc):
 	doc = frappe.get_doc("VAT Output Metadata", doc)
 
-	itc_settings = frappe.get_single("ITC Settings")
-	key = bytes(itc_settings.get_password('pajakio_api_key'), 'utf-8')
+	indonesia_localization_settings = frappe.get_single("Indonesia Localization Settings")
+	key = bytes(indonesia_localization_settings.get_password('pajakio_api_key'), 'utf-8')
 	pajakio_api_key = base64.b64encode(key)
-	url_upload_vat = itc_settings.url_upload_vat
+	url_upload_vat = indonesia_localization_settings.url_upload_vat
 	payload = {"transactionId": doc.transactionid}
 	api_header = {
 		"accept": "application/json",

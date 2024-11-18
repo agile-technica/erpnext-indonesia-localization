@@ -8,7 +8,6 @@
   "tin_length",
   "invoice_name_in_efaktur_template",
   "use_amended_from_as_tin_revision_flag",
-  "include_delivery_note_id_as_a_reference",
   "tin_revision_if_only_si_had_tin_before",
   "exclude_opening_entry",
   "exclude_sales_invoice_type_return",
@@ -17,15 +16,11 @@
   "min_grand_total_for_wapu",
   "column_break_2",
   "minimum_tin_threshold",
-  "enable_button_to_link_tin_to_si",
-  "enable_auto_draft_when_get_sales_invoices",
   "section_break_4",
   "tax_prefix_codes",
-  "pph23_rate",
   "worker_settings_tab",
   "worker_for_link_tax_invoice_number_background_job",
   "worker_for_renaming_tax_invoice_number",
-  "worker_for_get_elligible_sales_invoice",
   "pajakio_settings_tab",
   "pajakio_api_settings_section",
   "pajakio_api_key",
@@ -188,12 +183,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "e.g: 0.02",
-   "fieldname": "pph23_rate",
-   "fieldtype": "Data",
-   "label": "PPh23 Rate"
-  },
-  {
    "default": "0",
    "fieldname": "use_amended_from_as_tin_revision_flag",
    "fieldtype": "Check",
@@ -204,13 +193,6 @@
    "fieldname": "invoice_name_in_efaktur_template",
    "fieldtype": "Data",
    "label": "Invoice Name In eFaktur Template"
-  },
-  {
-   "default": "0",
-   "description": "If enabled, the linked Delivery Note ID will be written in the .csv files",
-   "fieldname": "include_delivery_note_id_as_a_reference",
-   "fieldtype": "Check",
-   "label": "Include Delivery Note ID as a Reference"
   },
   {
    "fieldname": "url_upload_vat",
@@ -263,36 +245,19 @@
    "label": "Worker Settings"
   },
   {
-   "fieldname": "worker_for_get_elligible_sales_invoice",
-   "fieldtype": "Data",
-   "label": "Worker for Get Elligible Sales Invoice"
-  },
-  {
    "default": "0",
    "fieldname": "exclude_sales_invoice_type_return",
    "fieldtype": "Check",
    "label": "Exclude Sales Invoice type Return"
-  },
-  {
-   "default": "0",
-   "fieldname": "enable_button_to_link_tin_to_si",
-   "fieldtype": "Check",
-   "label": "Enable Button to Link TIN to SI"
-  },
-  {
-   "default": "0",
-   "fieldname": "enable_auto_draft_when_get_sales_invoices",
-   "fieldtype": "Check",
-   "label": "Enable Auto Draft when Get Sales Invoices"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-10-04 10:57:10.758476",
+ "modified": "2024-11-18 17:03:45.322898",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
- "name": "ITC Settings",
+ "name": "Indonesia Localization Settings",
  "owner": "Administrator",
  "permissions": [
   {

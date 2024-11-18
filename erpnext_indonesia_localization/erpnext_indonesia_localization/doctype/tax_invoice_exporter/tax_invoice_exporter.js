@@ -18,17 +18,6 @@ frappe.ui.form.on('Tax Invoice Exporter', {
         frm.refresh_field("sales_invoices")
         frm.trigger("customer_type")
     },
-    onload: function(frm) {
-        frappe.db.get_value('ITC Settings', 'ITC Settings', 'enable_button_to_link_tin_to_si')
-            .then(r => {
-                if(r.message.enable_button_to_link_tin_to_si == 1) {
-                    frm.set_df_property('link_tin_to_si', 'hidden', 0);
-                }
-                else{
-                    frm.set_df_property('link_tin_to_si', 'hidden', 1);
-                }
-            })
-    },
     on_submit: function(frm) {
         frm.refresh_field("sales_invoices")
     },
@@ -127,7 +116,7 @@ function clear_si_table(frm) {
 
 function validate_tin_availability(frm) {
     if (frm.doc.company && frm.doc.docstatus == 0) {
-        frappe.db.get_value('ITC Settings', 'ITC Settings', 'minimum_tin_threshold')
+        frappe.db.get_value('Indonesia Localization Settings', 'Indonesia Localization Settings', 'minimum_tin_threshold')
             .then(r => {
                 frappe.db.get_list('Tax Invoice Number', {
                     fields: ['name', 'status'],
