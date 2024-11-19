@@ -6,7 +6,6 @@ frappe.ui.form.on('Tax Invoice Number Importer', {
         frm.disable_save();
     },
     create_tax_invoice_number: function (frm) {
-        console.log(frm.doc);
         frappe.call({
             doc: frm.doc,
             method: 'insert_tax_invoice_number',
