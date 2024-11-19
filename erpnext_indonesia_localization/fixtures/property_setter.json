@@ -1,0 +1,18 @@
+[
+ {
+  "default_value": null,
+  "doc_type": "Sales Invoice",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "tax_id",
+  "is_system_generated": 0,
+  "modified": "2022-08-23 15:35:32.982742",
+  "module": null,
+  "name": "Sales Invoice-tax_id-fetch_from",
+  "property": "fetch_from",
+  "property_type": "Small Text",
+  "row_name": null,
+  "value": "customer.tax_id"
+ }
+]

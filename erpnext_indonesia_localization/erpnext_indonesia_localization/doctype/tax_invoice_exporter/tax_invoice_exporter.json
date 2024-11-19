@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2022-08-16 10:16:03.317150",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "company",
+  "customer_type",
+  "assign_tax_invoice_number_to_multiple_invoices",
+  "column_break_2",
+  "start_sales_invoice_posting_date",
+  "end_sales_invoice_posting_date",
+  "linking_tin_to_si_status",
+  "branch",
+  "section_break_4",
+  "get_sales_invoices",
+  "link_tin_to_si",
+  "sales_invoices",
+  "export_as_csv",
+  "more_information_section",
+  "amended_from",
+  "is_loading_filling_si"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "Loading time may take longer depending on the number of sales invoice fetched. Please kindly wait",
+   "fieldname": "sales_invoices",
+   "fieldtype": "Table",
+   "label": "Sales Invoices",
+   "options": "Tax Invoice Exporter Item",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.docstatus === 1",
+   "fieldname": "export_as_csv",
+   "fieldtype": "Button",
+   "label": "Export as CSV"
+  },
+  {
+   "fieldname": "more_information_section",
+   "fieldtype": "Section Break",
+   "label": "More Information"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Tax Invoice Exporter",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "ACC-TIN-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.docstatus === 0",
+   "fieldname": "get_sales_invoices",
+   "fieldtype": "Button",
+   "label": "Get Sales Invoices"
+  },
+  {
+   "fieldname": "customer_type",
+   "fieldtype": "Select",
+   "label": "Customer Type",
+   "options": "\nAll\nPKP\nNon PKP",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_sales_invoice_posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Sales Invoice Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_sales_invoice_posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Sales Invoice Posting Date",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "If enabled, 1 Tax Invoice Number will be assigned to multiple invoices per Customer",
+   "fieldname": "assign_tax_invoice_number_to_multiple_invoices",
+   "fieldtype": "Check",
+   "label": "Assign\u00a01 Tax Invoice Number to Multiple Invoices"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_loading_filling_si",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is Loading Filling SI"
+  },
+  {
+   "fieldname": "linking_tin_to_si_status",
+   "fieldtype": "Data",
+   "label": "Link TIN to SI status",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.sales_invoices && doc.sales_invoices.length > 0;",
+   "fieldname": "link_tin_to_si",
+   "fieldtype": "Button",
+   "label": "Link TIN to SI"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "max_attachments": 1,
+ "modified": "2024-11-18 16:46:51.668779",
+ "modified_by": "Administrator",
+ "module": "Erpnext Indonesia Localization",
+ "name": "Tax Invoice Exporter",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
