@@ -509,18 +509,10 @@ class TaxInvoiceExporter(Document):
 					prefix_code = get_tax_prefix_code(si_doc)
 					tin_doc = frappe.get_doc("Tax Invoice Number", invoice_row.tax_invoice_number)
 					cust_doc = frappe.get_doc("Customer", invoice_row.customer)
-					cust_doc_address = frappe.get_doc("Address", f"{cust_doc.name}-Shipping")
 
 					self.validate_customer_tax_detail(cust_doc)
 
-					customer_address = getattr(cust_doc, 'company_address_tax_id', None) or \
-									   getattr(cust_doc, 'primary_address', None) or \
-									   getattr(cust_doc_address, 'address_line1', None)
-
-					if customer_address is None:
-						frappe.throw(_("Please set Company Address as per Tax ID field for ") + cust_doc.name)
-					elif '<br>' in customer_address:
-						customer_address = customer_address.replace("\n", "").replace('<br>', ',').rstrip(',')
+					customer_address = cust_doc.company_address_tax_id.replace("\n", "").replace('<br>', ',').rstrip(',')
 
 					formatted_posting_date = '{0}/{1}/{2}'.format(
 						si_doc.posting_date.day, si_doc.posting_date.month, si_doc.posting_date.year
