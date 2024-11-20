@@ -512,9 +512,7 @@ class TaxInvoiceExporter(Document):
 
 					self.validate_customer_tax_detail(cust_doc)
 
-					customer_address = cstr(cust_doc.company_address_tax_id)
-
-					customer_address = customer_address.replace("\n", "").replace('<br>', ',').rstrip(',')
+					customer_address = cust_doc.company_address_tax_id.replace("\n", "").replace('<br>', ',').rstrip(',')
 
 					formatted_posting_date = '{0}/{1}/{2}'.format(
 						si_doc.posting_date.day, si_doc.posting_date.month, si_doc.posting_date.year
