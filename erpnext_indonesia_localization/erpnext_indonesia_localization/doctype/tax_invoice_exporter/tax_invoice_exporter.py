@@ -512,12 +512,14 @@ class TaxInvoiceExporter(Document):
 
 					self.validate_customer_tax_detail(cust_doc)
 
+					customer_address = None
 					if cust_doc.company_address_tax_id:
 						customer_address = cstr(cust_doc.company_address_tax_id)
-					elif '<br>' in customer_address:
-						customer_address = customer_address.replace("\n", "").replace('<br>', ',').rstrip(',')
 					else:
 						frappe.throw(_("Please set Company Address as per Tax ID field for ") + cust_doc.name)
+
+					if '<br>' in customer_address:
+						customer_address = customer_address.replace("\n", "").replace('<br>', ',').rstrip(',')
 
 					formatted_posting_date = '{0}/{1}/{2}'.format(
 						si_doc.posting_date.day, si_doc.posting_date.month, si_doc.posting_date.year
