@@ -281,6 +281,18 @@ fixtures = [
 				]
 			]
 		]
+	},
+	{
+		"dt": "Role",
+		"filters": [
+			[
+				"name", "in",
+				[
+					"Pajak Admin",
+					"Pajak User"
+				]
+			]
+		]
 	}
 ]
 

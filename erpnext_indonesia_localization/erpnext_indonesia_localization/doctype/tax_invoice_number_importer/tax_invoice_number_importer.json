@@ -81,7 +81,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-20 14:25:08.677714",
+ "modified": "2024-11-21 17:56:39.575552",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "Tax Invoice Number Importer",
@@ -94,6 +94,26 @@
    "print": 1,
    "read": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Pajak Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Pajak User",
    "share": 1,
    "write": 1
   }
