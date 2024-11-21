@@ -255,7 +255,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-21 17:24:50.296835",
+ "modified": "2024-11-21 17:54:47.084594",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "Indonesia Localization Settings",
@@ -268,6 +268,16 @@
    "print": 1,
    "read": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Pajak Admin",
    "share": 1,
    "write": 1
   }
