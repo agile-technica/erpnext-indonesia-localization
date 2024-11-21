@@ -163,6 +163,7 @@
   {
    "fieldname": "pajakio_settings_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Pajak.io Settings"
   },
   {
@@ -254,7 +255,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-18 17:03:45.322898",
+ "modified": "2024-11-21 17:24:50.296835",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "Indonesia Localization Settings",
