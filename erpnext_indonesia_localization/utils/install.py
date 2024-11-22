@@ -10,33 +10,32 @@ def create_sales_taxes_and_charges_templates():
 	:return:
 	"""
 
-	global_defaults = frappe.get_single("Global Defaults")
-	default_company = global_defaults.default_company
-	company_doc = frappe.get_doc("Company", default_company)
+	default_company = frappe.db.get_single_value("Global Defaults", "default_company")
+	company = frappe.get_value("Company", default_company, ["name", "abbr"], as_dict=True)
 
-	data_json = [
+	tax_tamplate_json = [
 		{
-			"company": default_company,
+			"company": company.name,
 			"title": "PPN Penjualan 12%",
 			"disabled": 0,
 			"is_default": 0,
-			"name": f"PPN Penjualan 12% - {company_doc.abbr}",
+			"name": f"PPN Penjualan 12% - {company.abbr}",
 			"tax_category": None,
 			"taxes": [
 				{
 					"account_currency": "IDR",
-					"account_head": f"2141.000 - Hutang Pajak - {company_doc.abbr}",
+					"account_head": f"2141.000 - Hutang Pajak - {company.abbr}",
 					"base_tax_amount": 0.0,
 					"base_tax_amount_after_discount_amount": 0.0,
 					"base_total": 0.0,
 					"charge_type": "On Net Total",
-					"cost_center": f"Main - {company_doc.abbr}",
+					"cost_center": f"Main - {company.abbr}",
 					"description": "Hutang Pajak",
 					"dont_recompute_tax": 0,
 					"included_in_paid_amount": 0,
 					"included_in_print_rate": 0,
 					"item_wise_tax_detail": None,
-					"parent": f"PPN Penjualan 12% - {company_doc.abbr}",
+					"parent": f"PPN Penjualan 12% - {company.abbr}",
 					"parentfield": "taxes",
 					"parenttype": "Sales Taxes and Charges Template",
 					"rate": 12.0,
@@ -48,27 +47,27 @@ def create_sales_taxes_and_charges_templates():
 			]
 		},
 		{
-			"company": default_company,
+			"company": company.name,
 			"title": "PPN Penjualan 11%",
 			"disabled": 0,
 			"is_default": 0,
-			"name": f"PPN Penjualan 11% - {company_doc.abbr}",
+			"name": f"PPN Penjualan 11% - {company.abbr}",
 			"tax_category": None,
 			"taxes": [
 				{
 					"account_currency": "IDR",
-					"account_head": f"2141.000 - Hutang Pajak - {company_doc.abbr}",
+					"account_head": f"2141.000 - Hutang Pajak - {company.abbr}",
 					"base_tax_amount": 0.0,
 					"base_tax_amount_after_discount_amount": 0.0,
 					"base_total": 0.0,
 					"charge_type": "On Net Total",
-					"cost_center": f"Main - {company_doc.abbr}",
+					"cost_center": f"Main - {company.abbr}",
 					"description": "Hutang Pajak",
 					"dont_recompute_tax": 0,
 					"included_in_paid_amount": 0,
 					"included_in_print_rate": 0,
 					"item_wise_tax_detail": None,
-					"parent": f"PPN Penjualan 12% - {company_doc.abbr}",
+					"parent": f"PPN Penjualan 12% - {company.abbr}",
 					"parentfield": "taxes",
 					"parenttype": "Sales Taxes and Charges Template",
 					"rate": 11.0,
@@ -81,7 +80,7 @@ def create_sales_taxes_and_charges_templates():
 		}
 	]
 
-	for item in data_json:
+	for item in tax_tamplate_json:
 		if not frappe.db.exists("Sales Taxes and Charges Template", item['name']):
 			tax_template = frappe.get_doc({
 				'doctype': 'Sales Taxes and Charges Template',
@@ -97,8 +96,10 @@ def create_sales_taxes_and_charges_templates():
 				'owner': 'Administrator',
 				'modified_by': 'Administrator',
 			})
+
 			tax_template.insert()
 			frappe.db.commit()
+
 			print(f"Sales Taxes and Charges Template '{item['name']}' created successfully.")
 		else:
 			print(f"Sales Taxes and Charges Template '{item['name']}' already exists!!!")
