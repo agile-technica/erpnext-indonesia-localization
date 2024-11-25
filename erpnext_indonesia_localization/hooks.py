@@ -89,6 +89,7 @@ doctype_js = {
 
 # before_install = "erpnext_indonesia_localization.install.before_install"
 # after_install = "erpnext_indonesia_localization.install.after_install"
+after_install = "erpnext_indonesia_localization.utils.install.init_setup_eil"
 
 # Uninstallation
 # ------------
