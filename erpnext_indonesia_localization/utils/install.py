@@ -82,7 +82,7 @@ def create_sales_taxes_and_charges_templates():
 
 	for item in tax_tamplate_json:
 		if not frappe.db.exists("Sales Taxes and Charges Template", item['name']):
-			tax_template = frappe.get_doc({
+			frappe.get_doc({
 				'doctype': 'Sales Taxes and Charges Template',
 				'company': item['company'],
 				'disabled': item['disabled'],
@@ -92,13 +92,8 @@ def create_sales_taxes_and_charges_templates():
 				'taxes': item['taxes'],
 				'title': item['title'],
 				'creation': now(),
-				'modified': now(),
-				'owner': 'Administrator',
-				'modified_by': 'Administrator',
-			})
-
-			tax_template.insert()
-			frappe.db.commit()
+				'modified': now()
+			}).insert()
 
 			print(f"Sales Taxes and Charges Template '{item['name']}' created successfully.")
 		else:
