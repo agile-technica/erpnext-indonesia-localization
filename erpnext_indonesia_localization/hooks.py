@@ -44,7 +44,8 @@ app_license = "agpl-3.0"
 
 doctype_js = {
 	"Sales Invoice": "public/js/sales_invoice.js",
-	"Customer Group": "public/js/customer_group.js"
+	"Customer Group": "public/js/customer_group.js",
+	"Customer": "public/js/customer.js"
 }
 
 # include js in doctype views
