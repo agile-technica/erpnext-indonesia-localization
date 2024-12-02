@@ -354,15 +354,15 @@ class TaxInvoiceExporter(Document):
 		frappe.db.set_value(self.doctype, self.name, 'is_loading_filling_si', 1)
 
 		si_without_tin = self.get_si_without_tin()
-
-		print(si_without_tin)
 		available_tin = self.get_available_tin(limit=len(si_without_tin))
 
 		if not si_without_tin:
 			frappe.throw(_("No Sales Invoice can be processed"))
 
 		if len(available_tin) >= len(si_without_tin):
-			return self.generate_si_detail(is_single_tax_invoice_number, si_without_tin, available_tin)
+			generated_si = self.generate_si_detail(is_single_tax_invoice_number, si_without_tin, available_tin)
+
+			return generated_si
 		else:
 			frappe.throw(_("Insufficient Tax Invoice Number"))
 
