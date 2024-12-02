@@ -25,17 +25,6 @@ from frappe.utils import floor, ceil, flt, cstr
 
 
 class TaxInvoiceExporter(Document):
-	def validate(self):
-		for si in self.sales_invoices:
-			if frappe.db.sql("""
-				SELECT name
-				FROM `tabTax Invoice Exporter Item`
-				WHERE sales_invoice = %s
-				AND parent != %s
-				AND docstatus != 2
-			""", (si.sales_invoice, self.name)):
-				frappe.throw(si.sales_invoice + _(" already has Tax Invoice Number"))
-
 	def before_submit(self):
 		self.validate_used_tin()
 
@@ -46,22 +35,31 @@ class TaxInvoiceExporter(Document):
 		self.update_tin_with_si("before_cancel")
 
 	def validate_used_tin(self):
-		used_tin = ""
-		for invoice_row in self.sales_invoices:
-			tin_exporter_invoice = frappe.get_all("Tax Invoice Exporter Item", filters={
-				"tax_invoice_number": invoice_row.tax_invoice_number,
-				"parent": ["!=", self.name],
-				"is_invoice_cancelled": 0,
-				"docstatus": ["!=", 2]
-			}, fields=["tax_invoice_number"], parent_doctype="Tax Invoice Exporter")
+		"""
+		Will validate Tax Invoice Number that is used in another draft Tax Invoice Exporter
+		"""
 
-			for tin_exporter_row in tin_exporter_invoice:
-				if tin_exporter_row.tax_invoice_number not in used_tin:
-					used_tin += tin_exporter_row.tax_invoice_number if used_tin == "" else (
-							", " + tin_exporter_row.tax_invoice_number)
+		tax_invoice_numbers = [invoice_row.tax_invoice_number for invoice_row in self.sales_invoices]
 
-		if used_tin:
-			error_msg = _(f"Tax Invoice Number {used_tin} is already used in other existing Tax Invoice Exporter. ")
+		if len(tax_invoice_numbers) > 1:
+			tin_operand = f"IN {repr(tuple(tax_invoice_numbers))}"
+		else:
+			tin_operand = f"= {repr(tax_invoice_numbers[0])}"
+
+		used_tax_invoice_numbers = frappe.db.sql(
+			f"""
+				SELECT `tax_invoice_number` FROM `tabTax Invoice Exporter Item` WHERE
+				`tabTax Invoice Exporter Item`.`tax_invoice_number` {tin_operand} AND
+				COALESCE(`tabTax Invoice Exporter Item`.`parent`, '') != {repr(self.name)} AND
+				`tabTax Invoice Exporter Item`.`is_invoice_cancelled` = 0.0 AND
+				COALESCE(`tabTax Invoice Exporter Item`.`docstatus`, 0) = 0.0
+				ORDER BY `tabTax Invoice Exporter Item`.`modified` DESC
+			""", pluck="tax_invoice_number"
+		)
+
+		if used_tax_invoice_numbers:
+			error_msg = _(
+				f"Tax Invoice Number {', '.join(used_tax_invoice_numbers)} is already used in other existing Tax Invoice Exporter. ")
 			error_msg += _("Please click the Get Sales Invoice button again to replace the number")
 
 			frappe.throw(error_msg)
@@ -345,15 +343,15 @@ class TaxInvoiceExporter(Document):
 		frappe.db.set_value(self.doctype, self.name, 'is_loading_filling_si', 1)
 
 		si_without_tin = self.get_si_without_tin()
+
+		print(si_without_tin)
 		available_tin = self.get_available_tin(limit=len(si_without_tin))
 
 		if not si_without_tin:
 			frappe.throw(_("No Sales Invoice can be processed"))
 
 		if len(available_tin) >= len(si_without_tin):
-			generated_si = self.generate_si_detail(is_single_tax_invoice_number, si_without_tin, available_tin)
-
-			return generated_si
+			return self.generate_si_detail(is_single_tax_invoice_number, si_without_tin, available_tin)
 		else:
 			frappe.throw(_("Insufficient Tax Invoice Number"))
 
