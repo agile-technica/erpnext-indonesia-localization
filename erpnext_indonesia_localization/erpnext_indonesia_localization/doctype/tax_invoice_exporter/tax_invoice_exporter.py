@@ -25,6 +25,17 @@ from frappe.utils import floor, ceil, flt, cstr
 
 
 class TaxInvoiceExporter(Document):
+	def validate(self):
+		for si in self.sales_invoices:
+			if frappe.db.sql("""
+				SELECT name
+				FROM `tabTax Invoice Exporter Item`
+				WHERE sales_invoice = %s
+				AND parent != %s
+				AND docstatus != 2
+			""", (si.sales_invoice, self.name)):
+				frappe.throw(si.sales_invoice + _(" already has Tax Invoice Number"))
+
 	def before_submit(self):
 		self.validate_used_tin()
 
