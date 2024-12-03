@@ -46,22 +46,31 @@ class TaxInvoiceExporter(Document):
 		self.update_tin_with_si("before_cancel")
 
 	def validate_used_tin(self):
-		used_tin = ""
-		for invoice_row in self.sales_invoices:
-			tin_exporter_invoice = frappe.get_all("Tax Invoice Exporter Item", filters={
-				"tax_invoice_number": invoice_row.tax_invoice_number,
-				"parent": ["!=", self.name],
-				"is_invoice_cancelled": 0,
-				"docstatus": ["!=", 2]
-			}, fields=["tax_invoice_number"], parent_doctype="Tax Invoice Exporter")
+		"""
+		Will validate Tax Invoice Number that is used in another draft Tax Invoice Exporter
+		"""
 
-			for tin_exporter_row in tin_exporter_invoice:
-				if tin_exporter_row.tax_invoice_number not in used_tin:
-					used_tin += tin_exporter_row.tax_invoice_number if used_tin == "" else (
-							", " + tin_exporter_row.tax_invoice_number)
+		tax_invoice_numbers = [invoice_row.tax_invoice_number for invoice_row in self.sales_invoices]
 
-		if used_tin:
-			error_msg = _(f"Tax Invoice Number {used_tin} is already used in other existing Tax Invoice Exporter. ")
+		if len(tax_invoice_numbers) > 1:
+			tin_operand = f"IN {repr(tuple(tax_invoice_numbers))}"
+		else:
+			tin_operand = f"= {repr(tax_invoice_numbers[0])}"
+
+		used_tax_invoice_numbers = frappe.db.sql(
+			f"""
+				SELECT `tax_invoice_number` FROM `tabTax Invoice Exporter Item` WHERE
+				`tabTax Invoice Exporter Item`.`tax_invoice_number` {tin_operand} AND
+				COALESCE(`tabTax Invoice Exporter Item`.`parent`, '') != {repr(self.name)} AND
+				`tabTax Invoice Exporter Item`.`is_invoice_cancelled` = 0.0 AND
+				COALESCE(`tabTax Invoice Exporter Item`.`docstatus`, 0) = 0.0
+				ORDER BY `tabTax Invoice Exporter Item`.`modified` DESC
+			""", pluck="tax_invoice_number"
+		)
+
+		if used_tax_invoice_numbers:
+			error_msg = _(
+				f"Tax Invoice Number {', '.join(used_tax_invoice_numbers)} is already used in other existing Tax Invoice Exporter. ")
 			error_msg += _("Please click the Get Sales Invoice button again to replace the number")
 
 			frappe.throw(error_msg)
