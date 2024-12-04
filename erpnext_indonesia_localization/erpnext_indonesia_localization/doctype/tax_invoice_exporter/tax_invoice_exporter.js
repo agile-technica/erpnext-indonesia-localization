@@ -60,24 +60,6 @@ frappe.ui.form.on('Tax Invoice Exporter', {
             }
         })
     },
-    link_tin_to_si: function (frm) {
-        frappe.msgprint("Starting Link Tax Invoice Number to Sales Invoice")
-
-        frappe.call({
-            doc: frm.doc,
-            method: 'update_tin_with_si',
-            args: {
-                "event_trigger": "submit"
-            },
-            callback: (r) => {
-                if (r.message) {
-                    if (r.message.error) {
-                        frappe.throw(__(r.message.error))
-                    }
-                }
-            }
-        })
-    },
     export_as_csv: function (frm) {
         frm.refresh_field("sales_invoices")
         frappe.call({
