@@ -1,0 +1,288 @@
+{
+ "actions": [],
+ "creation": "2022-08-15 11:34:53.039428",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tin_length",
+  "invoice_name_in_efaktur_template",
+  "use_amended_from_as_tin_revision_flag",
+  "tin_revision_if_only_si_had_tin_before",
+  "exclude_opening_entry",
+  "exclude_sales_invoice_type_return",
+  "no_faktur_format",
+  "use_min_grand_total_for_wapu",
+  "min_grand_total_for_wapu",
+  "column_break_2",
+  "minimum_tin_threshold",
+  "section_break_4",
+  "tax_prefix_codes",
+  "worker_settings_tab",
+  "worker_for_link_tax_invoice_number_background_job",
+  "worker_for_renaming_tax_invoice_number",
+  "pajakio_settings_tab",
+  "pajakio_api_settings_section",
+  "pajakio_api_key",
+  "url_create_vat",
+  "url_upload_vat",
+  "column_break_ccyjz",
+  "url_get_vat",
+  "url_get_pdf_vat",
+  "vat_output_metadata_global_settings",
+  "tax_invoice_number_source",
+  "column_break_7wtc9",
+  "autouploaddjp",
+  "pajakio_create_vat_output_global_settings",
+  "auto_create_vat_output_metadata",
+  "column_break_y4rhm",
+  "auto_call_pajakios_api",
+  "pajakio_apis_to_call_section",
+  "create_vat_output",
+  "column_break_h3kca",
+  "get_details_vat_output",
+  "column_break_ysvpz",
+  "get_pdf_vat_output"
+ ],
+ "fields": [
+  {
+   "fieldname": "tax_prefix_codes",
+   "fieldtype": "Table",
+   "label": "Tax Prefix Codes",
+   "options": "Tax Prefix Code"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "minimum_tin_threshold",
+   "fieldtype": "Int",
+   "label": "Minimum Tax Invoice Number Threshold"
+  },
+  {
+   "fieldname": "tin_length",
+   "fieldtype": "Int",
+   "label": "Tax Invoice Number Length"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "pajakio_api_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Pajak.io API Settings"
+  },
+  {
+   "fieldname": "pajakio_api_key",
+   "fieldtype": "Password",
+   "label": "Pajak.io API Key"
+  },
+  {
+   "fieldname": "url_create_vat",
+   "fieldtype": "Data",
+   "label": "URL Create VAT Output"
+  },
+  {
+   "fieldname": "column_break_ccyjz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "http://&lt;base-url&gt;/efaktur/penjualan/:&lt;transactionId&gt;",
+   "fieldname": "url_get_vat",
+   "fieldtype": "Data",
+   "label": "URL Get Detail VAT Output"
+  },
+  {
+   "fieldname": "url_get_pdf_vat",
+   "fieldtype": "Data",
+   "label": "URL Get PDF VAT Output"
+  },
+  {
+   "fieldname": "pajakio_create_vat_output_global_settings",
+   "fieldtype": "Section Break",
+   "label": "Pajak.io VAT Output Settings"
+  },
+  {
+   "default": "0",
+   "description": "Enable to automatically upload newly created VAT Output to DJP",
+   "fieldname": "autouploaddjp",
+   "fieldtype": "Check",
+   "label": "autoUploadDjp"
+  },
+  {
+   "fieldname": "column_break_y4rhm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tax_invoice_number_source",
+   "fieldtype": "Select",
+   "label": "Tax Invoice Number Source",
+   "options": "Pajak.io\nTax Invoice Number Doctype"
+  },
+  {
+   "default": "0",
+   "description": "When checked, system will automatically call Pajak.io's APIs once VAT Output Metadata has been created. Please refer to 'Pajak.io APIs to Call' section to configure which APIs to call",
+   "fieldname": "auto_call_pajakios_api",
+   "fieldtype": "Check",
+   "label": "Auto Call Pajak.io's APIs"
+  },
+  {
+   "default": "0",
+   "description": "When checked, system will automatically generate a VAT Output Metadata once a Sales Invoice has been approved",
+   "fieldname": "auto_create_vat_output_metadata",
+   "fieldtype": "Check",
+   "label": "Auto Create VAT Output Metadata"
+  },
+  {
+   "description": "Normally, the workflow of Pajak.io's APIs start from Create VAT Output > Get VAT Output Detail > Get PDF VAT Output. \nExcluding an API in the workflow, will also mean excluding all API calls after it.",
+   "fieldname": "pajakio_apis_to_call_section",
+   "fieldtype": "Section Break",
+   "label": "Pajak.io APIs to Call"
+  },
+  {
+   "default": "0",
+   "fieldname": "create_vat_output",
+   "fieldtype": "Check",
+   "label": "Create VAT Output"
+  },
+  {
+   "default": "0",
+   "fieldname": "get_details_vat_output",
+   "fieldtype": "Check",
+   "label": "Get Details VAT Output"
+  },
+  {
+   "default": "0",
+   "fieldname": "get_pdf_vat_output",
+   "fieldtype": "Check",
+   "label": "Get PDF VAT Output"
+  },
+  {
+   "fieldname": "pajakio_settings_tab",
+   "fieldtype": "Tab Break",
+   "hidden": 1,
+   "label": "Pajak.io Settings"
+  },
+  {
+   "fieldname": "column_break_h3kca",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ysvpz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vat_output_metadata_global_settings",
+   "fieldtype": "Section Break",
+   "label": "VAT Output Metadata Global Settings"
+  },
+  {
+   "fieldname": "column_break_7wtc9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_amended_from_as_tin_revision_flag",
+   "fieldtype": "Check",
+   "label": "Use Amended From as TIN Revision Flag"
+  },
+  {
+   "description": "Select specific field name in Sales Invoice as invoice number In Tax Invoice Exporter template",
+   "fieldname": "invoice_name_in_efaktur_template",
+   "fieldtype": "Data",
+   "label": "Invoice Name In eFaktur Template"
+  },
+  {
+   "fieldname": "url_upload_vat",
+   "fieldtype": "Data",
+   "label": "URL Upload VAT Output"
+  },
+  {
+   "default": "0",
+   "fieldname": "tin_revision_if_only_si_had_tin_before",
+   "fieldtype": "Check",
+   "label": "TIN Revision If Only SI Had TIN Before"
+  },
+  {
+   "default": "0",
+   "description": "Use \".\" as separator in csv NOMOR_FAKTUR",
+   "fieldname": "no_faktur_format",
+   "fieldtype": "Check",
+   "label": "No Faktur Format"
+  },
+  {
+   "default": "0",
+   "fieldname": "exclude_opening_entry",
+   "fieldtype": "Check",
+   "label": "Exclude Opening Entry"
+  },
+  {
+   "fieldname": "worker_for_link_tax_invoice_number_background_job",
+   "fieldtype": "Data",
+   "label": "Worker for Link Tax Invoice Number Background Job"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_min_grand_total_for_wapu",
+   "fieldtype": "Check",
+   "label": "Use Minimum Grand Total for WAPU"
+  },
+  {
+   "fieldname": "min_grand_total_for_wapu",
+   "fieldtype": "Currency",
+   "label": "Minimum Grand Total for WAPU"
+  },
+  {
+   "fieldname": "worker_for_renaming_tax_invoice_number",
+   "fieldtype": "Data",
+   "label": "Worker for Renaming Tax Invoice Number"
+  },
+  {
+   "fieldname": "worker_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Worker Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "exclude_sales_invoice_type_return",
+   "fieldtype": "Check",
+   "label": "Exclude Sales Invoice type Return"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-11-21 17:54:47.084594",
+ "modified_by": "Administrator",
+ "module": "Erpnext Indonesia Localization",
+ "name": "Indonesia Localization Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Pajak Admin",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
