@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-11 13:29:07.682704",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "kode",
+  "nama",
+  "jumlah",
+  "harga",
+  "diskon",
+  "dpp",
+  "ppn",
+  "tarifppnbm"
+ ],
+ "fields": [
+  {
+   "fieldname": "nama",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "nama"
+  },
+  {
+   "fieldname": "jumlah",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "jumlah"
+  },
+  {
+   "fieldname": "harga",
+   "fieldtype": "Data",
+   "label": "harga"
+  },
+  {
+   "fieldname": "diskon",
+   "fieldtype": "Data",
+   "label": "diskon"
+  },
+  {
+   "fieldname": "dpp",
+   "fieldtype": "Data",
+   "label": "dpp"
+  },
+  {
+   "fieldname": "ppn",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "ppn"
+  },
+  {
+   "fieldname": "tarifppnbm",
+   "fieldtype": "Data",
+   "label": "tarifPpnbm"
+  },
+  {
+   "fieldname": "kode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "kode"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-12-13 16:20:51.930625",
+ "modified_by": "Administrator",
+ "module": "Erpnext Indonesia Localization",
+ "name": "VOM barangjasa item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

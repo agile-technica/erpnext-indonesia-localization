@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2022, Agile Technica and contributors
+# For license information, please see license.txt
+
+from __future__ import unicode_literals
+
+HEADER_ROW_1 = [
+	'FK', 'KD_JENIS_TRANSAKSI', 'FG_PENGGANTI', 'NOMOR_FAKTUR', 'MASA_PAJAK', 'TAHUN_PAJAK',
+	'TANGGAL_FAKTUR', 'NPWP', 'NAMA', 'ALAMAT_LENGKAP', 'JUMLAH_DPP', 'JUMLAH_PPN', 'JUMLAH_PPNBM',
+	'ID_KETERANGAN_TAMBAHAN', 'FG_UANG_MUKA', 'UANG_MUKA_DPP', 'UANG_MUKA_PPN', 'UANG_MUKA_PPNBM',
+	'REFERENSI', 'KODE_DOKUMEN_PENDUKUNG'
+]
+
+HEADER_ROW_2 = [
+	'LT', 'NPWP', 'NAMA', 'JALAN', 'BLOK', 'NOMOR', 'RT', 'RW', 'KECAMATAN', 'KELURAHAN',
+	'KABUPATEN', 'PROPINSI', 'KODE_POS', 'NOMOR_TELEPON'
+]
+
+HEADER_ROW_3 = [
+	'OF', 'KODE_OBJEK', 'NAMA', 'HARGA_SATUAN', 'JUMLAH_BARANG', 'HARGA_TOTAL', 'DISKON', 'DPP',
+	'PPN', 'TARIF_PPNBM', 'PPNBM'
+]
