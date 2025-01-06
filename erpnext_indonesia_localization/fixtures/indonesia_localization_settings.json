@@ -23,14 +23,14 @@
     "parent": "Indonesia Localization Settings",
     "parentfield": "tax_prefix_codes",
     "parenttype": "Indonesia Localization Settings",
-    "sales_taxes_and_charges_template": "PPN Penjualan 11% - BJM",
+    "sales_taxes_and_charges_template": "PPN Penjualan 11%",
     "tax_prefix_code": "010"
    },
    {
     "parent": "Indonesia Localization Settings",
     "parentfield": "tax_prefix_codes",
     "parenttype": "Indonesia Localization Settings",
-    "sales_taxes_and_charges_template": "PPN Penjualan 12% - BJM",
+    "sales_taxes_and_charges_template": "PPN Penjualan 12%",
     "tax_prefix_code": "010"
    }
   ],
