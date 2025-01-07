@@ -13,7 +13,7 @@
   "invoice_name_in_efaktur_template": null,
   "min_grand_total_for_wapu": 0.0,
   "minimum_tin_threshold": 0,
-  "modified": "2024-12-11 11:00:01.832114",
+  "modified": "2025-01-06 15:20:08.133827",
   "name": "Indonesia Localization Settings",
   "no_faktur_format": 0,
   "pajakio_api_key": null,
@@ -23,14 +23,14 @@
     "parent": "Indonesia Localization Settings",
     "parentfield": "tax_prefix_codes",
     "parenttype": "Indonesia Localization Settings",
-    "sales_taxes_and_charges_template": "PPN Penjualan 11% - BJM",
+    "sales_taxes_and_charges_template": "PPN Penjualan 11%",
     "tax_prefix_code": "010"
    },
    {
     "parent": "Indonesia Localization Settings",
     "parentfield": "tax_prefix_codes",
     "parenttype": "Indonesia Localization Settings",
-    "sales_taxes_and_charges_template": "PPN Penjualan 12% - BJM",
+    "sales_taxes_and_charges_template": "PPN Penjualan 12%",
     "tax_prefix_code": "010"
    }
   ],
