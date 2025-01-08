@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-08 09:50:44.591480",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_d0gh",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_coretax_barangjasa_ref",
+  "group",
+  "code",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_d0gh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "CoreTax BarangJasa Ref"
+  },
+  {
+   "fieldname": "parent_coretax_barangjasa_ref",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent CoreTax BarangJasa Ref",
+   "options": "CoreTax BarangJasa Ref"
+  },
+  {
+   "fieldname": "group",
+   "fieldtype": "Data",
+   "label": "Group"
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "label": "Code"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2025-01-08 10:16:45.211564",
+ "modified_by": "Administrator",
+ "module": "Erpnext Indonesia Localization",
+ "name": "CoreTax BrgJasa Ref",
+ "nsm_parent_field": "parent_coretax_barangjasa_ref",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
