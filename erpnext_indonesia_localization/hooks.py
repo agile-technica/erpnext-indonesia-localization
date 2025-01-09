@@ -269,6 +269,7 @@ fixtures = [
 					"Sales Invoice-tax_additional_reference",
 					"Sales Invoice-linking_sales_invoice_to_tax_invoice_number",
 					"Customer-custom_nik",
+					"Country-custom_coretax_countryref"
 				]
 			]
 		]
