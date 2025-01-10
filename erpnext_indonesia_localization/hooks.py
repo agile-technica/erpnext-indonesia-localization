@@ -45,7 +45,8 @@ app_license = "agpl-3.0"
 doctype_js = {
 	"Sales Invoice": "public/js/sales_invoice.js",
 	"Customer Group": "public/js/customer_group.js",
-	"Customer": "public/js/customer.js"
+	"Customer": "public/js/customer.js",
+	"Item": "public/js/item.js",
 }
 
 # include js in doctype views
@@ -274,7 +275,10 @@ fixtures = [
 					"Customer-custom_buyeridtku",
 					"Customer-custom_passport_number",
 					"Customer-custom_customer_country_code",
-					"Customer-custom_customer_email_per_tax_id"
+					"Customer-custom_customer_email_per_tax_id",
+					"UOM Conversion Detail-custom_tax_uom_conversion_rate",
+					"UOM Conversion Detail-custom_tax_uom_description",
+					""
 				]
 			]
 		]
