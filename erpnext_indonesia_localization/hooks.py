@@ -278,7 +278,7 @@ fixtures = [
 					"Customer-custom_customer_email_per_tax_id",
 					"UOM Conversion Detail-custom_tax_uom_conversion_rate",
 					"UOM Conversion Detail-custom_tax_uom_description",
-					"UOM Conversion Detail-custom_tax_uom_code"
+					"UOM Conversion Detail-custom_tax_uom_code",
 				]
 			]
 		]
