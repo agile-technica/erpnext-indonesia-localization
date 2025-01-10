@@ -565,7 +565,7 @@
   "search_index": 0,
   "show_dashboard": 0,
   "sort_options": 0,
-  "translatable": 1,
+  "translatable": 0,
   "unique": 0,
   "width": null
  },
@@ -622,7 +622,7 @@
   "search_index": 0,
   "show_dashboard": 0,
   "sort_options": 0,
-  "translatable": 1,
+  "translatable": 0,
   "unique": 0,
   "width": null
  },
@@ -639,7 +639,7 @@
   "docstatus": 0,
   "doctype": "Custom Field",
   "dt": "Customer",
-  "fetch_from": "custom_country.code",
+  "fetch_from": "custom_country.custom_coretax_countryref",
   "fetch_if_empty": 0,
   "fieldname": "custom_customer_country_code",
   "fieldtype": "Data",
@@ -679,7 +679,7 @@
   "search_index": 0,
   "show_dashboard": 0,
   "sort_options": 0,
-  "translatable": 1,
+  "translatable": 0,
   "unique": 0,
   "width": null
  },
@@ -736,7 +736,7 @@
   "search_index": 0,
   "show_dashboard": 0,
   "sort_options": 0,
-  "translatable": 1,
+  "translatable": 0,
   "unique": 0,
   "width": null
  },
