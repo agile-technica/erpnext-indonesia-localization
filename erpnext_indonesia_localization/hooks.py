@@ -261,24 +261,50 @@ fixtures = [
 				[
 					"Customer Group-customer_tax_code",
 					"Customer Group-kode_pajak",
-					"Sales Invoice-custom_tax_invoice_number",
 					"Customer-company_address_tax_id",
 					"Customer-company_name_tax_id",
 					"Customer-customer_pkp",
+					"Customer-custom_nik",
+					"Customer-custom_country",
+					"Customer-custom_buyeridtku",
+					"Customer-custom_customer_country_code",
+					"Customer-custom_customer_email_per_tax_id",
+					"Customer-custom_coretax",
+					"Customer-custom_customer_id_type",
+					"Customer-custom_passport_number",
+					"Customer-custom_customer_email_as_per_tax_id",
+					"Customer-custom_customers_nitku",
+					"Customer-custom_tax_country_code",
+					"Sales Invoice-custom_tax_invoice_number",
 					"Sales Invoice-custom_si_had_tin_before",
 					"Sales Invoice-tax_additional_description",
 					"Sales Invoice-tax_additional_reference",
 					"Sales Invoice-linking_sales_invoice_to_tax_invoice_number",
-					"Customer-custom_nik",
-					"Country-custom_coretax_countryref",
-					"Customer-custom_country",
-					"Customer-custom_buyeridtku",
-					"Customer-custom_passport_number",
-					"Customer-custom_customer_country_code",
-					"Customer-custom_customer_email_per_tax_id",
+					"Sales Invoice-custom_coretax",
+					"Sales Invoice-custom_customer_pkp",
+					"Sales Invoice-custom_transaction_code",
+					"Sales Invoice-custom_tax_invoice_type",
+					"Sales Invoice-custom_tax_additional_info",
+					"Sales Invoice-custom_tax_facility_stamp",
+					"Sales Invoice-custom_tax_custom_document",
 					"UOM Conversion Detail-custom_tax_uom_conversion_rate",
 					"UOM Conversion Detail-custom_tax_uom_description",
-					"UOM Conversion Detail-custom_tax_uom_code"
+					"UOM Conversion Detail-custom_tax_uom_code",
+					"Country-custom_coretax",
+					"Country-custom_coretax_countryref",
+					"Branch-custom_branchs_nitku",
+					"Item-custom_coretax",
+					"Item-custom_barang_jasa_opt",
+					"Item-custom_barang_jasa_ref",
+					"Item-custom_unit_ref",
+					"Sales Taxes and Charges Template-custom_transaction_code",
+					"Sales Invoice Item-custom_coretax",
+					"Sales Invoice Item-custom_vat_amount",
+					"Sales Invoice Item-custom_other_tax_base_amount",
+					"Sales Invoice Item-custom_luxury_goods_tax_rate",
+					"Sales Invoice Item-custom_luxury_goods_tax_amount",
+					"UOM-custom_coretax",
+					"UOM-custom_coretax_unit_ref"
 				]
 			]
 		]
@@ -289,7 +315,16 @@ fixtures = [
 			[
 				"name", "in",
 				[
-					"Sales Invoice-tax_id-fetch_from"
+					"Sales Invoice-tax_id-fetch_from",
+					"Sales Invoice-main-field_order",
+					"Country-main-field_order",
+					"Branch-branch-unique",
+					"Branch-main-field_order",
+					"Item-main-field_order",
+					"UOM-main-field_order",
+					"Customer-main-field_order",
+					"Sales Taxes and Charges Template-main-field_order",
+					"Sales Invoice Item-main-field_order"
 				]
 			]
 		]
