@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CoreTax Importer Created on {creation}",
+ "creation": "2025-02-17 14:14:25.935503",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "import_file",
+  "start_import",
+  "importer_status",
+  "section_break_6iasj",
+  "coretax_invoice"
+ ],
+ "fields": [
+  {
+   "fieldname": "import_file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Import File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_import",
+   "fieldtype": "Button",
+   "label": "Start Import"
+  },
+  {
+   "fieldname": "importer_status",
+   "fieldtype": "Select",
+   "label": "Importer Status",
+   "options": "\nUpdate Failed\nIn Process\nSucceed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_6iasj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "coretax_invoice",
+   "fieldtype": "HTML",
+   "label": "CoreTax Invoice"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-24 15:00:55.263736",
+ "modified_by": "Administrator",
+ "module": "Erpnext Indonesia Localization",
+ "name": "CoreTax Importer",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "select": 1,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "import": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Accounts User",
+   "select": 1,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1
+  },
+  {
+   "role": "Sales User",
+   "select": 1,
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
