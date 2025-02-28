@@ -304,7 +304,12 @@ fixtures = [
 					"Sales Invoice Item-custom_luxury_goods_tax_rate",
 					"Sales Invoice Item-custom_luxury_goods_tax_amount",
 					"UOM-custom_coretax",
-					"UOM-custom_coretax_unit_ref"
+					"UOM-custom_coretax_unit_ref",
+					"Purchase Invoice-custom_invoice_received_date",
+					"Purchase Invoice-custom_tanggal_faktur_pajak",
+					"Purchase Invoice-custom_no_bukti_potong",
+					"Purchase Invoice-custom_nomor_faktur_pajak",
+					"Purchase Invoice-custom_kode_objek_pajak"
 				]
 			]
 		]
