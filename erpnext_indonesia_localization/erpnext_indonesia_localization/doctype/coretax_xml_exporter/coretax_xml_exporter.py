@@ -6,6 +6,7 @@ from datetime import datetime
 from frappe.model.document import Document
 from jinja2 import Environment, FileSystemLoader
 
+
 class CoretaxXMLExporter(Document):
 	def before_submit(self):
 		self.status = "In Process"
@@ -86,7 +87,7 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 			</tr>
 		"""
 
-	html += f"""</table>"""
+	html += """</table>"""
 
 	return html
 
@@ -217,7 +218,7 @@ def generated_xml_file(tax_data, company_doc, doc):
 	:param doc: Object
 	"""
 
-	env = Environment(loader = FileSystemLoader("/workspace/frappe-bench/apps/indonesia_taxes_and_charges/indonesia_taxes_and_charges/templates"))
+	env = Environment(loader=FileSystemLoader("/workspace/frappe-bench/apps/erpnext_indonesia_localization/erpnext_indonesia_localization/templates"))
 	template = env.get_template('tax_invoice_bulk.jinja')
 	output = template.render(customer_sales_invoice_docs=tax_data)
 	file_name = f"Exporter {company_doc.company_name} {doc.start_invoice_date} to {doc.end_invoice_date}.xml"
