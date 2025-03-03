@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TaxInvoiceBulk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="TaxInvoice.xsd">
+    <TIN>{{ customer_sales_invoice_docs["tin"] }}</TIN>
+    <ListOfTaxInvoice>{% for invoice in customer_sales_invoice_docs["sales_invoices"] %}
+        <TaxInvoice>
+            <TaxInvoiceDate>{{ invoice["posting_date"] }}</TaxInvoiceDate>
+            <TaxInvoiceOpt>{{ invoice["opt"] }}</TaxInvoiceOpt>
+            <TrxCode>{{ invoice["kode_transaksi"] }}</TrxCode>
+            <AddInfo>{{ invoice["additional_info"] }}</AddInfo>
+            <CustomDoc>{{ invoice["custom_document"] }}</CustomDoc>
+            <RefDesc>{{ invoice["name"] }}</RefDesc>
+            <FacilityStamp>{{ invoice["facility_stamp"] }}</FacilityStamp>
+            <SellerIDTKU>{{ invoice["seller_id_ntku"] }}</SellerIDTKU>
+            <BuyerTin>{{ invoice["buyer_tin"] }}</BuyerTin>
+            <BuyerDocument>{{ invoice["buyer_document"] }}</BuyerDocument>
+            <BuyerCountry>{{ invoice["buyer_country_code"] }}</BuyerCountry>
+            <BuyerDocumentNumber>{{ invoice["buyer_document_number"] }}</BuyerDocumentNumber>
+            <BuyerName>{{ invoice["customer_name"] }}</BuyerName>
+            <BuyerAdress>{{ invoice["customer_address"] }}</BuyerAdress>
+            <BuyerEmail>{{ invoice["customer_email_as_per_tax_id"] }}</BuyerEmail>
+            <BuyerIDTKU>{{ invoice["customers_nitku"] }}</BuyerIDTKU>
+            <ListOfGoodService>{% for item in invoice["items"] %}
+                <GoodService>
+                    <Opt>{{ item["opt"] }}</Opt>
+                    <Code>{{ item["code"] }}</Code>
+                    <Name>{{ item["name"] }}</Name>
+                    <Unit>{{ item["unit"] }}</Unit>
+                    <Price>{{ item["price"] }}</Price>
+                    <Qty>{{ item["qty"] }}</Qty>
+                    <TotalDiscount>{{ item["total_discount"] }}</TotalDiscount>
+                    <TaxBase>{{ item["tax_base"] }}</TaxBase>
+                    <OtherTaxBase>{{ item["other_tax_base"] }}</OtherTaxBase>
+                    <VATRate>{{ item["vatrate"] }}</VATRate>
+                    <VAT>{{ item["vat"] }}</VAT>
+                    <STLGRate>{{ item["stlg_rate"] }}</STLGRate>
+                    <STLG>{{ item["stlg"] }}</STLG>
+                </GoodService>{% endfor %}
+            </ListOfGoodService>
+        </TaxInvoice>{% endfor %}
+    </ListOfTaxInvoice>
+</TaxInvoiceBulk>
