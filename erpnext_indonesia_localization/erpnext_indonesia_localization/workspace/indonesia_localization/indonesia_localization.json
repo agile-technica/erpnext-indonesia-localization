@@ -46,7 +46,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Dafter Faktur Pajak",
+   "label": "Daftar Faktur Pajak",
    "link_count": 0,
    "link_to": "Tax Invoice Exporter",
    "link_type": "DocType",
