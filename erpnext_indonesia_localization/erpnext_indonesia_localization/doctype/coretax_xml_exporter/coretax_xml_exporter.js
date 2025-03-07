@@ -17,7 +17,7 @@ frappe.ui.form.on('Coretax XML Exporter', {
     get_sales_invoice: function(frm) {
         if (frm.doc.start_invoice_date && frm.doc.end_invoice_date && frm.doc.company) {
             frappe.call(
-                "erpnext_indonesia_localization.erpnext_indonesia_localization.doctype.coretax_xml_exporter.coretax_xml_exporter.get_preview_sales_invoice",
+                "indonesia_taxes_and_charges.indonesia_taxes_and_charges.doctype.coretax_xml_exporter.coretax_xml_exporter.get_preview_sales_invoice",
                 {
                     company: frm.doc.company,
                     start_invoice_date: frm.doc.start_invoice_date,
