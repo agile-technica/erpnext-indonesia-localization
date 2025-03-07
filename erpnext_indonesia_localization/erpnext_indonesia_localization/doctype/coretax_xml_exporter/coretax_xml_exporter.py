@@ -6,27 +6,60 @@ from datetime import datetime
 from frappe.model.document import Document
 from jinja2 import Environment, FileSystemLoader
 
-
 class CoretaxXMLExporter(Document):
 	def before_submit(self):
 		self.status = "In Process"
 		self.export_xml()
 
+	def before_cancel(self):
+		sales_invoices = frappe.get_all("Sales Invoice", {"coretax_xml_exporter": self.name}, pluck="name")
+
+		if len(sales_invoices) <= 500:
+			unlink_sales_invoices(self.name)
+
+		else:
+			frappe.enqueue(
+				method=unlink_sales_invoices,
+				queue="long",
+				doc_name=self.name
+			)
+
 	@frappe.whitelist()
 	def export_xml(self):
-		try:
-			export_xml(doc=self)
+		invoice_docs, company_doc = fetch_sales_invoices(doc=self)
+		if len(invoice_docs) <= 500:
+			result =  export_xml(invoice_docs, company_doc, doc=self)
+			if result == "Failed":
+				self.status = result
+				frappe.throw(msg="Exporting XML Failed")
+			else :
+				self.status = result
 
-			return "Succeed"
-		except Exception:
-			return "Failed"
+				return result
+
+		else:
+			frappe.enqueue(
+				method=export_xml,
+				queue="long",
+				invoice_docs=invoice_docs,
+				company_doc=company_doc,
+				doc=self
+			)
 
 
-def export_xml(doc):
-	invoice_docs, company_doc = fetch_sales_invoices(doc)
-	validate_no_sales_invoices(doc, invoice_docs)
-	tax_data = mapping_sales_invoices(invoice_docs, company_doc, doc)
-	generated_xml_file(tax_data, company_doc, doc)
+def export_xml(invoice_docs, company_doc, doc):
+	try:
+		tax_data = mapping_sales_invoices(invoice_docs, company_doc, doc)
+		generated_xml_file(tax_data, company_doc, doc)
+		frappe.set_value("Coretax XML Exporter", doc.name, "status", "Succeed")
+
+		return "Succeed"
+
+	except Exception:
+		frappe.set_value("Coretax XML Exporter", doc.name, "status", "Failed")
+		frappe.log_error(title=f"CoreTax XML Exporter Error on {doc.name}", message=frappe.get_traceback())
+
+		return "Failed"
 
 
 @frappe.whitelist()
@@ -37,6 +70,7 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 		"is_xml_generated": 0,
 		"company": company,
 		"posting_date": ["between", [start_invoice_date, end_invoice_date]],
+		"taxes_and_charges": ["!=", ""]
 	}
 
 	if frappe.get_meta("Sales Invoice").has_field("branch") and branch:
@@ -45,13 +79,15 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 	invoices = frappe.get_all(
 		"Sales Invoice",
 		filters=filters,
-		fields=["name", "posting_date", "customer", "grand_total", "total_taxes_and_charges"]
+		fields=["name", "posting_date", "customer", "grand_total", "total_taxes_and_charges"],
+		order_by='posting_date'
 	)
 
 	if not invoices:
 		return "<p>No sales invoices found for the selected date range</p>"
 
 	html = """
+		<h3>Preview</h3>
 		<table class="table table-bordered text-nowrap table-responsive">
 			<tr>
 				<th>No.</th>
@@ -87,7 +123,7 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 			</tr>
 		"""
 
-	html += """</table>"""
+	html += f"""</table>"""
 
 	return html
 
@@ -103,6 +139,7 @@ def fetch_sales_invoices(doc):
 		"is_xml_generated": 0,
 		"company": doc.company,
 		"posting_date": ["between", [doc.start_invoice_date, doc.end_invoice_date]],
+		"taxes_and_charges": ["!=", ""]
 	}
 
 	if doc.branch:
@@ -111,7 +148,8 @@ def fetch_sales_invoices(doc):
 	invoice_docs = frappe.get_all(
 		"Sales Invoice",
 		filters=filters,
-		fields=["name", "posting_date", "tax_invoice_type", "transaction_code", "tax_additional_info", "tax_custom_document", "tax_facility_stamp", "customer"]
+		fields=["name", "posting_date", "tax_invoice_type", "transaction_code", "tax_additional_info", "tax_custom_document", "tax_facility_stamp", "customer"],
+		order_by='posting_date'
 	)
 
 	company_doc = frappe.get_value("Company", doc.company, ["tax_id", "companys_nitku", "company_name"], as_dict=True)
@@ -140,7 +178,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 										  "customers_nitku"],
 										 as_dict=True)
 
-		tax_data["sales_invoices"].append({
+		invoice_entry = {
 			"posting_date": str(invoice["posting_date"]),
 			"opt": invoice["tax_invoice_type"],
 			"kode_transaksi": invoice["transaction_code"],
@@ -161,18 +199,12 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 																								 None] else customer_info.customer_email_as_per_tax_id,
 			"customers_nitku": customer_info.customers_nitku,
 			"items": []
-		})
+		}
 
-		frappe.db.set_value("Sales Invoice", invoice["name"], {
-			"is_xml_generated": 1,
-			"coretax_xml_exporter": doc.name
-		})
-
-	for sales_invoice in tax_data["sales_invoices"]:
 		si_items = frappe.db.get_all(
 			"Sales Invoice Item",
 			filters={
-				"parent": sales_invoice["name"],
+				"parent": invoice["name"],
 				"docstatus": 1
 			},
 			fields=["item_name", "item_code", "qty", "uom", "rate", "discount_amount", "net_amount",
@@ -185,11 +217,11 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 										 ["barang_jasa_opt", "barang_jasa_ref"],
 										 as_dict=True)
 			template_tax = frappe.get_value("Sales Taxes and Charges",
-											{"parent": sales_invoice["name"], "idx": 1},
+											{"parent": invoice["name"], "idx": 1},
 											["custom_use_temporary_rate", "rate", "custom_temporary_rate"],
 											as_dict=True)
 
-			sales_invoice["items"].append({
+			invoice_entry["items"].append({
 				"opt": item_info.barang_jasa_opt,
 				"code": item_info.barang_jasa_ref,
 				"name": item["item_name"],
@@ -208,6 +240,13 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 					item["luxury_goods_tax_amount"])
 			})
 
+			tax_data["sales_invoices"].append(invoice_entry)
+
+			frappe.db.set_value("Sales Invoice", invoice["name"], {
+				"is_xml_generated": 1,
+				"coretax_xml_exporter": doc.name
+			})
+
 	return tax_data
 
 
@@ -218,7 +257,7 @@ def generated_xml_file(tax_data, company_doc, doc):
 	:param doc: Object
 	"""
 
-	env = Environment(loader=FileSystemLoader("/workspace/frappe-bench/apps/erpnext_indonesia_localization/erpnext_indonesia_localization/templates"))
+	env = Environment(loader = FileSystemLoader("/workspace/frappe-bench/apps/indonesia_taxes_and_charges/indonesia_taxes_and_charges/templates"))
 	template = env.get_template('tax_invoice_bulk.jinja')
 	output = template.render(customer_sales_invoice_docs=tax_data)
 	file_name = f"Exporter {company_doc.company_name} {doc.start_invoice_date} to {doc.end_invoice_date}.xml"
@@ -235,13 +274,17 @@ def generated_xml_file(tax_data, company_doc, doc):
 		"attached_to_name": doc.name,
 	})
 
-	file_doc.save()
+	file_doc.save(True)
 
 
-def validate_no_sales_invoices(doc, invoice_docs):
+def unlink_sales_invoices(doc_name):
 	"""
-	:param doc: Object
-	:param invoice_docs:  List of Dictionary
+	:param doc_name: String
 	"""
-	if not invoice_docs:
-		frappe.msgprint(f"The company has no sales invoices from {datetime.strptime(doc.start_invoice_date, '%Y-%m-%d')}, to {datetime.strptime(doc.end_invoice_date, '%Y-%m-%d')}.")
+
+	frappe.set_value("Sales Invoice", {"coretax_xml_exporter": doc_name}, {
+		"is_xml_generated": 0,
+		"coretax_xml_exporter": ""
+	})
+
+	frappe.delete_doc("File", frappe.get_value("File", {"attached_to_doctype": "Coretax XML Exporter", "attached_to_name": doc_name}, "name"))
