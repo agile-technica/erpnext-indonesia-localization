@@ -173,7 +173,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 	for invoice in invoice_docs:
 		customer_info = frappe.get_value("Customer",
 										 invoice["customer"],
-										 ["customer_name", "customer_id_type", "passport_number", "tax_id",
+										 ["customer_name", "customer_id_type", "customer_id_number", "tax_id",
 										  "tax_country_code", "company_address_tax_id", "customer_email_as_per_tax_id",
 										  "customers_nitku"],
 										 as_dict=True)
@@ -191,7 +191,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			"buyer_document": "" if customer_info.customer_id_type in ["", None] else customer_info.customer_id_type,
 			"buyer_country_code": customer_info.tax_country_code,
 			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN",
-																			  None] else customer_info.passport_number,
+																			  None] else customer_info.customer_id_number,
 			"customer_name": customer_info.customer_name,
 			"customer_address": "" if customer_info.company_address_tax_id in ["",
 																			   None] else customer_info.company_address_tax_id,
@@ -257,11 +257,14 @@ def generated_xml_file(tax_data, company_doc, doc):
 	:param doc: Object
 	"""
 
-	env = Environment(loader = FileSystemLoader("/workspace/frappe-bench/apps/indonesia_taxes_and_charges/indonesia_taxes_and_charges/templates"))
+	template_dir = frappe.get_app_path('indonesia_taxes_and_charges', "templates")
+	env = Environment(loader = FileSystemLoader(template_dir))
+
 	template = env.get_template('tax_invoice_bulk.jinja')
 	output = template.render(customer_sales_invoice_docs=tax_data)
+
 	file_name = f"Exporter {company_doc.company_name} {doc.start_invoice_date} to {doc.end_invoice_date}.xml"
-	file_path = f"/workspace/frappe-bench/sites/{frappe.local.site}/private/files/{file_name}"
+	file_path = frappe.get_site_path('private', 'files', file_name)
 
 	with open(file_path, "w", encoding="utf-8") as file:
 		file.write(output)
