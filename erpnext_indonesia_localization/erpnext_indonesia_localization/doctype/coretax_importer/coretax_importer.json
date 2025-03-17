@@ -9,10 +9,10 @@
  "engine": "InnoDB",
  "field_order": [
   "import_file",
-  "start_import",
   "importer_status",
   "section_break_6iasj",
-  "coretax_invoice"
+  "coretax_invoice",
+  "start_import"
  ],
  "fields": [
   {
@@ -46,7 +46,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-24 15:00:55.263736",
+ "modified": "2025-03-17 14:24:01.509075",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
