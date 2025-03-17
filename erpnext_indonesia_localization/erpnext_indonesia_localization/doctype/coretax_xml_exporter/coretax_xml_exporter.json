@@ -104,7 +104,7 @@
  "links": [],
  "modified": "2025-02-26 19:25:22.925296",
  "modified_by": "Administrator",
- "module": "Indonesia Taxes and Charges",
+ "module": "Erpnext Indonesia Localization",
  "name": "Coretax XML Exporter",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",

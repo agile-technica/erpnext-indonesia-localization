@@ -257,7 +257,7 @@ def generated_xml_file(tax_data, company_doc, doc):
 	:param doc: Object
 	"""
 
-	template_dir = frappe.get_app_path('indonesia_taxes_and_charges', "templates")
+	template_dir = frappe.get_app_path('erpnext_indonesia_localization', "templates")
 	env = Environment(loader = FileSystemLoader(template_dir))
 
 	template = env.get_template('tax_invoice_bulk.jinja')
