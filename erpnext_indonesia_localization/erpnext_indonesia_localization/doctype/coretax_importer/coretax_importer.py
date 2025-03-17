@@ -13,6 +13,7 @@ class CoreTaxImporter(Document):
 	def generate_preview(self, file):
 		data = read_xlsx_file_from_attached_file(file_url=file)
 		table_content = ""
+		total_rows = len(data) - 1
 
 		for idx, row in enumerate(data):
 			row_content = ""
@@ -26,7 +27,7 @@ class CoreTaxImporter(Document):
 				</tr>
 			"""
 
-			if idx == 9:
+			if idx == 10:
 				break
 
 		data_preview = """
@@ -36,17 +37,21 @@ class CoreTaxImporter(Document):
 				<meta charset="UTF-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			</head>
-			
+
 			<body>
 				<h3>Preview</h3>
 				<table class="table table-bordered text-nowrap table-responsive">
-					%s
+					{content}
 				</table>
-				
-				<h5>Showing 10 row of total %d rows.</h5>
+
+				<h5>Showing {displayed_rows} row(s) of total {row_count} row(s).</h5>
 			</body>
 			</html>
-		""" % (table_content, len(data))
+		""".format(
+			content=table_content,
+			row_count=total_rows,
+			displayed_rows=min(10, total_rows)
+			)
 
 		return data_preview
 
