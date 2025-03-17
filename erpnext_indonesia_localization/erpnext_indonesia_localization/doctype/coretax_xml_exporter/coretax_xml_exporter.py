@@ -73,7 +73,7 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 		"taxes_and_charges": ["!=", ""]
 	}
 
-	if frappe.get_meta("Sales Invoice").has_field("branch") and branch:
+	if branch:
 		filters["branch"] = branch
 
 	invoices = frappe.get_all(
@@ -104,11 +104,6 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 		company_name = frappe.get_value("Customer", row.customer, "customer_name")
 		idx += 1
 		if idx > 10:
-			html += f"""
-				<tr>
-					<td colspan="7">Showing only first {idx - 1} rows out {len(invoices)}</td>
-				</tr>
-			"""
 			break
 
 		html += f"""
@@ -123,7 +118,10 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 			</tr>
 		"""
 
-	html += f"""</table>"""
+	html += f"""
+		</table>
+		<h5>Showing {min(10, len(invoices))} out of {len(invoices)} row(s).</h5>
+	"""
 
 	return html
 
