@@ -65,22 +65,6 @@
  },
  {
   "default_value": null,
-  "doc_type": "Sales Taxes and Charges Template",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocType",
-  "field_name": null,
-  "is_system_generated": 0,
-  "modified": "2025-02-03 10:36:57.698968",
-  "module": null,
-  "name": "Sales Taxes and Charges Template-main-field_order",
-  "property": "field_order",
-  "property_type": "Data",
-  "row_name": null,
-  "value": "[\"title\", \"is_default\", \"disabled\", \"custom_transaction_code\", \"column_break_3\", \"company\", \"tax_category\", \"section_break_5\", \"taxes\"]"
- },
- {
-  "default_value": null,
   "doc_type": "Sales Invoice",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -174,5 +158,21 @@
   "property_type": "Text",
   "row_name": null,
   "value": "0000000000000000"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Sales Taxes and Charges Template",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2025-03-19 15:28:07.896199",
+  "module": null,
+  "name": "Sales Taxes and Charges Template-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"title\", \"is_default\", \"disabled\", \"column_break_3\", \"company\", \"tax_category\", \"custom_coretax\", \"transaction_code\", \"tax_additional_info\", \"tax_facility_stamp\", \"section_break_5\", \"taxes\"]"
  }
 ]
