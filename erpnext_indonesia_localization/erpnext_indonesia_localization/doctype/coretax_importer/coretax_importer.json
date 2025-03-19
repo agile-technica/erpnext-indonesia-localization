@@ -9,10 +9,13 @@
  "engine": "InnoDB",
  "field_order": [
   "import_file",
-  "start_import",
   "importer_status",
   "section_break_6iasj",
-  "coretax_invoice"
+  "coretax_invoice",
+  "start_import",
+  "section_break_qkon",
+  "import_log",
+  "html"
  ],
  "fields": [
   {
@@ -31,7 +34,7 @@
    "fieldname": "importer_status",
    "fieldtype": "Select",
    "label": "Importer Status",
-   "options": "\nUpdate Failed\nIn Process\nSucceed",
+   "options": "\nUpdate Failed\nIn Process\nUpdate Succeed",
    "read_only": 1
   },
   {
@@ -42,11 +45,26 @@
    "fieldname": "coretax_invoice",
    "fieldtype": "HTML",
    "label": "CoreTax Invoice"
+  },
+  {
+   "fieldname": "section_break_qkon",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html",
+   "fieldtype": "Code",
+   "hidden": 1,
+   "label": "Html"
+  },
+  {
+   "fieldname": "import_log",
+   "fieldtype": "HTML",
+   "label": "Import Log"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-24 15:00:55.263736",
+ "modified": "2025-03-18 10:35:01.509075",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
