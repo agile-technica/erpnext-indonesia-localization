@@ -309,7 +309,10 @@ fixtures = [
 					"Purchase Invoice-custom_tanggal_faktur_pajak",
 					"Purchase Invoice-custom_no_bukti_potong",
 					"Purchase Invoice-custom_nomor_faktur_pajak",
-					"Purchase Invoice-custom_kode_objek_pajak"
+					"Purchase Invoice-custom_kode_objek_pajak",
+					"Sales Taxes and Charges Template-custom_tax_facility_stamp",
+					"Sales Taxes and Charges Template-custom_tax_additional_info",
+					"Sales Taxes and Charges Template-custom_coretax"
 				]
 			]
 		]
