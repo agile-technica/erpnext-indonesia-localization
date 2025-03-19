@@ -65,19 +65,19 @@
  },
  {
   "default_value": null,
-  "doc_type": "Customer",
+  "doc_type": "Sales Taxes and Charges Template",
   "docstatus": 0,
   "doctype": "Property Setter",
   "doctype_or_field": "DocType",
   "field_name": null,
   "is_system_generated": 0,
-  "modified": "2025-02-03 10:27:49.105966",
+  "modified": "2025-02-03 10:36:57.698968",
   "module": null,
-  "name": "Customer-main-field_order",
+  "name": "Sales Taxes and Charges Template-main-field_order",
   "property": "field_order",
   "property_type": "Data",
   "row_name": null,
-  "value": "[\"basic_info\", \"naming_series\", \"salutation\", \"customer_name\", \"customer_type\", \"customer_group\", \"column_break0\", \"territory\", \"gender\", \"lead_name\", \"opportunity_name\", \"account_manager\", \"image\", \"defaults_tab\", \"default_currency\", \"default_bank_account\", \"column_break_14\", \"default_price_list\", \"internal_customer_section\", \"is_internal_customer\", \"represents_company\", \"column_break_70\", \"companies\", \"more_info\", \"market_segment\", \"industry\", \"customer_pos_id\", \"website\", \"language\", \"column_break_45\", \"customer_details\", \"dashboard_tab\", \"contact_and_address_tab\", \"address_contacts\", \"address_html\", \"custom_country\", \"column_break1\", \"contact_html\", \"primary_address_and_contact_detail\", \"column_break_26\", \"customer_primary_address\", \"primary_address\", \"column_break_nwor\", \"customer_primary_contact\", \"mobile_no\", \"email_id\", \"tax_tab\", \"taxation_section\", \"nik\", \"tax_id\", \"company_name_tax_id\", \"company_address_tax_id\", \"custom_buyeridtku\", \"custom_customer_country_code\", \"custom_customer_email_per_tax_id\", \"column_break_21\", \"tax_category\", \"tax_withholding_category\", \"customer_pkp\", \"custom_coretax\", \"custom_customer_id_type\", \"custom_passport_number\", \"custom_customer_email_as_per_tax_id\", \"custom_customers_nitku\", \"custom_tax_country_code\", \"accounting_tab\", \"credit_limit_section\", \"payment_terms\", \"credit_limits\", \"default_receivable_accounts\", \"accounts\", \"loyalty_points_tab\", \"loyalty_program\", \"column_break_54\", \"loyalty_program_tier\", \"sales_team_tab\", \"sales_team\", \"sales_team_section\", \"default_sales_partner\", \"column_break_66\", \"default_commission_rate\", \"settings_tab\", \"so_required\", \"dn_required\", \"exempt_from_sales_tax\", \"column_break_53\", \"is_frozen\", \"disabled\", \"portal_users_tab\", \"portal_users\"]"
+  "value": "[\"title\", \"is_default\", \"disabled\", \"custom_transaction_code\", \"column_break_3\", \"company\", \"tax_category\", \"section_break_5\", \"taxes\"]"
  },
  {
   "default_value": null,
@@ -145,18 +145,34 @@
  },
  {
   "default_value": null,
-  "doc_type": "Sales Taxes and Charges Template",
+  "doc_type": "Customer",
   "docstatus": 0,
   "doctype": "Property Setter",
   "doctype_or_field": "DocType",
   "field_name": null,
   "is_system_generated": 0,
-  "modified": "2025-03-19 14:18:23.355489",
+  "modified": "2025-03-18 22:15:06.868361",
   "module": null,
-  "name": "Sales Taxes and Charges Template-main-field_order",
+  "name": "Customer-main-field_order",
   "property": "field_order",
   "property_type": "Data",
   "row_name": null,
-  "value": "[\"title\", \"is_default\", \"disabled\", \"column_break_3\", \"company\", \"tax_category\", \"custom_coretax\", \"transaction_code\", \"custom_tax_additional_info\", \"custom_tax_facility_stamp\", \"section_break_5\", \"taxes\"]"
+  "value": "[\"basic_info\", \"naming_series\", \"salutation\", \"customer_name\", \"customer_type\", \"customer_group\", \"column_break0\", \"territory\", \"gender\", \"lead_name\", \"opportunity_name\", \"prospect_name\", \"account_manager\", \"image\", \"defaults_tab\", \"default_currency\", \"default_bank_account\", \"column_break_14\", \"default_price_list\", \"internal_customer_section\", \"is_internal_customer\", \"represents_company\", \"column_break_70\", \"companies\", \"more_info\", \"market_segment\", \"industry\", \"customer_pos_id\", \"website\", \"language\", \"column_break_45\", \"customer_details\", \"dashboard_tab\", \"contact_and_address_tab\", \"address_contacts\", \"address_html\", \"column_break1\", \"contact_html\", \"primary_address_and_contact_detail\", \"column_break_26\", \"customer_primary_address\", \"primary_address\", \"column_break_nwor\", \"customer_primary_contact\", \"mobile_no\", \"email_id\", \"tax_tab\", \"taxation_section\", \"nik\", \"tax_id\", \"company_name_tax_id\", \"company_address_tax_id\", \"column_break_21\", \"tax_category\", \"tax_withholding_category\", \"customer_pkp\", \"section_break_coretax\", \"customer_id_type\", \"customer_id_number\", \"customer_email_as_per_tax_id\", \"column_break_p0q5j\", \"customers_nitku\", \"coretax_country\", \"tax_country_code\", \"accounting_tab\", \"credit_limit_section\", \"payment_terms\", \"credit_limits\", \"default_receivable_accounts\", \"accounts\", \"loyalty_points_tab\", \"loyalty_program\", \"column_break_54\", \"loyalty_program_tier\", \"sales_team_tab\", \"sales_team\", \"sales_team_section\", \"default_sales_partner\", \"column_break_66\", \"default_commission_rate\", \"settings_tab\", \"so_required\", \"dn_required\", \"column_break_53\", \"is_frozen\", \"disabled\", \"portal_users_tab\", \"portal_users\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Customer",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "tax_id",
+  "is_system_generated": 0,
+  "modified": "2025-03-18 22:16:50.285238",
+  "module": null,
+  "name": "Customer-tax_id-default",
+  "property": "default",
+  "property_type": "Text",
+  "row_name": null,
+  "value": "0000000000000000"
  }
 ]

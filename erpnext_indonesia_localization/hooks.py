@@ -266,15 +266,13 @@ fixtures = [
 					"Customer-customer_pkp",
 					"Customer-custom_nik",
 					"Customer-custom_country",
-					"Customer-custom_buyeridtku",
-					"Customer-custom_customer_country_code",
-					"Customer-custom_customer_email_per_tax_id",
+					"Customer-custom_tax_country_code",
 					"Customer-custom_coretax",
 					"Customer-custom_customer_id_type",
 					"Customer-custom_passport_number",
 					"Customer-custom_customer_email_as_per_tax_id",
 					"Customer-custom_customers_nitku",
-					"Customer-custom_tax_country_code",
+					"Customer-custom_column_break_p0q5j"
 					"Sales Invoice-custom_tax_invoice_number",
 					"Sales Invoice-custom_si_had_tin_before",
 					"Sales Invoice-tax_additional_description",
@@ -331,6 +329,7 @@ fixtures = [
 					"Item-main-field_order",
 					"UOM-main-field_order",
 					"Customer-main-field_order",
+					"Customer-tax_id-default",
 					"Sales Taxes and Charges Template-main-field_order",
 					"Sales Invoice Item-main-field_order"
 				]
