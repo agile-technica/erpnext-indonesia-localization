@@ -46,7 +46,8 @@ doctype_js = {
 	"Sales Invoice": "public/js/sales_invoice.js",
 	"Customer Group": "public/js/customer_group.js",
 	"Customer": "public/js/customer.js",
-	"Item": "public/js/item.js"
+	"Item": "public/js/item.js",
+	"Company": "public/js/company.js"
 }
 
 # include js in doctype views
@@ -324,7 +325,9 @@ fixtures = [
 					"Sales Taxes and Charges-custom_temporary_rate",
 					"Sales Taxes and Charges Template-custom_tax_facility_stamp",
 					"Sales Taxes and Charges Template-custom_tax_additional_info",
-					"Sales Taxes and Charges Template-custom_coretax"
+					"Sales Taxes and Charges Template-custom_coretax",
+					"Company-custom_use_company_nitku",
+					"Company-custom_companys_nitku"
 				]
 			]
 		]
@@ -345,7 +348,8 @@ fixtures = [
 					"Customer-main-field_order",
 					"Customer-tax_id-default",
 					"Sales Taxes and Charges Template-main-field_order",
-					"Sales Invoice Item-main-field_order"
+					"Sales Invoice Item-main-field_order",
+					"Company-main-field_order"
 				]
 			]
 		]
