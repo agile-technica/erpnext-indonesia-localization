@@ -11,6 +11,10 @@ frappe.ui.form.on('CoreTax Importer', {
         set_import_file_as_read_only_based_on_importer_status(frm);
 	},
 
+	refresh: function(frm) {
+		show_start_import_button(frm);
+	},
+
 	import_file: function(frm) {
 		generate_preview(frm);
 		frm.set_value("importer_status", "");
@@ -51,3 +55,10 @@ function update_sales_invoice_from_xlsx(frm){
         "file": frm.doc.import_file
     });
 };
+
+
+function show_start_import_button(frm){
+	if(frm.doc.import_file){
+	    frm.set_df_property("start_import", "hidden", "0");
+    }
+}

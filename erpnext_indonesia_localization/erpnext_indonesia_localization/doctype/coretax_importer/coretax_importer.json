@@ -25,6 +25,7 @@
   {
    "fieldname": "start_import",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Start Import"
   },
   {
@@ -46,7 +47,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-17 14:24:01.509075",
+ "modified": "2025-03-20 14:00:53.568189",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
@@ -54,38 +55,36 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "role": "System Manager",
-   "select": 1,
-   "read": 1,
-   "write": 1,
    "create": 1,
    "delete": 1,
-   "report": 1,
+   "email": 1,
    "export": 1,
-   "import": 1,
-   "share": 1,
    "print": 1,
-   "email": 1
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
   },
   {
+   "create": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
    "role": "Accounts User",
    "select": 1,
-   "read": 1,
-   "write": 1,
-   "create": 1,
-   "report": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1
+   "write": 1
   },
   {
+   "create": 1,
+   "export": 1,
+   "read": 1,
+   "report": 1,
    "role": "Sales User",
    "select": 1,
-   "read": 1,
-   "write": 1,
-   "create": 1,
-   "report": 1,
-   "export": 1
+   "write": 1
   }
  ],
  "sort_field": "modified",
