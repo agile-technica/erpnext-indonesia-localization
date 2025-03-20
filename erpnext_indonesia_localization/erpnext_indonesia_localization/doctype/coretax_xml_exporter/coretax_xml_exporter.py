@@ -206,7 +206,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"docstatus": 1
 			},
 			fields=["item_name", "item_code", "qty", "uom", "rate", "discount_amount", "net_amount",
-					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount"]
+					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref"]
 		)
 
 		for item in si_items:
@@ -229,13 +229,13 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"total_discount": item["discount_amount"] * item["qty"],
 				"tax_base": item["net_amount"],
 				"other_tax_base": item["other_tax_base_amount"],
-				"vat": float(item["vat_amount"]),
+				"vat": item["vat_amount"],
 				"vatrate": int(
 					template_tax.temporary_rate if template_tax.use_temporary_rate else template_tax.rate),
-				"stlg_rate": 0.00 if item["luxury_goods_tax_rate"] in ["", None] else float(
-					item["luxury_goods_tax_rate"]),
-				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else float(
-					item["luxury_goods_tax_amount"])
+				"stlg_rate": 0.00 if item["luxury_goods_tax_rate"] in ["", None] else
+					item["luxury_goods_tax_rate"],
+				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else
+					item["luxury_goods_tax_amount"]
 			})
 
 			tax_data["sales_invoices"].append(invoice_entry)
