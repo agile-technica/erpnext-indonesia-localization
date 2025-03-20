@@ -310,6 +310,8 @@ fixtures = [
 					"Sales Invoice Item-custom_other_tax_base_amount",
 					"Sales Invoice Item-custom_luxury_goods_tax_rate",
 					"Sales Invoice Item-custom_luxury_goods_tax_amount",
+					"Sales Invoice Item-custom_unit_ref",
+					"Sales Invoice Item-custom_kode_barang_jasa_ref",
 					"UOM-custom_coretax",
 					"UOM-custom_coretax_unit_ref",
 					"Purchase Invoice-custom_invoice_received_date",
