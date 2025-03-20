@@ -44,7 +44,7 @@ class CoreTaxImporter(Document):
 					{content}
 				</table>
 
-				<h5>Showing {displayed_rows} row(s) of total {row_count} row(s).</h5>
+				<h5>Showing {displayed_rows} out of {row_count} row(s).</h5>
 			</body>
 			</html>
 		""".format(
@@ -67,31 +67,85 @@ class CoreTaxImporter(Document):
 
 def update_sales_invoice_from_xlsx(file, doc_name):
 	datas = read_xlsx_file_from_attached_file(file_url=file)
-	error = []
+	import_logs = []
 
 	for idx, row in enumerate(datas[1:]):
 		try:
-			frappe.db.set_value(
+			is_invoice_exsist = frappe.db.exists(
 				"Sales Invoice",
-				row[datas[0].index("Referensi")],
-				{
-					"tanggal_faktur_pajak": getdate(row[datas[0].index("Tanggal Faktur Pajak")]),
-					"nomor_faktur_pajak": row[datas[0].index("Nomor Faktur Pajak")],
-					"coretax_status": row[datas[0].index("Status Faktur")]
-				}
+				{"name": row[datas[0].index("Referensi")]}
 			)
+
+			if is_invoice_exsist:
+				check_empty_value({
+					"Tanggal Faktur Pajak": row[datas[0].index("Tanggal Faktur Pajak")],
+					"Nomor Faktur Pajak": row[datas[0].index("Nomor Faktur Pajak")],
+					"Status Faktur": row[datas[0].index("Status Faktur")]
+				})
+
+				frappe.db.set_value(
+					"Sales Invoice",
+					row[datas[0].index("Referensi")],
+					{
+						"tanggal_faktur_pajak": getdate(row[datas[0].index("Tanggal Faktur Pajak")]),
+						"nomor_faktur_pajak": row[datas[0].index("Nomor Faktur Pajak")],
+						"coretax_status": row[datas[0].index("Status Faktur")]
+					}
+				)
+			else:
+				raise frappe.exceptions.DoesNotExistError("Invoice with reference number not found")
+
 		except Exception as e:
-			error.append({
+			import_logs.append({
 				"row": idx + 2,
-				"referensi": row[datas[0].index("Referensi")],
-				"error_message": str(e)
+				"status": "Failure",
+				"message": str(e)
 			})
 
-	if error:
-		frappe.log_error(
-			title="Failed to Import Faktur Pajak",
-			message=str(error)
+	if import_logs:
+		frappe.db.rollback()
+		import_logs_preview = "".join(
+			f"<tr><td>{log['row']}</td><td>{log['status']}</td><td>{log['message']}</td></tr>"
+			for log in import_logs
 		)
 
-	status = "Succeed" if not error else "Update Failed"
-	frappe.db.set_value("CoreTax Importer", doc_name, "importer_status", status)
+		html = """
+		<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			</head>
+
+			<body>
+				<h3>Import Log</h3>
+				<table class="table table-bordered text-nowrap">
+					<tr>
+						<th>Row</th>
+						<th>Status</th>
+						<th>Message</th>
+					</tr>
+					%s
+				</table>
+			</body>
+		</html>
+		""" % import_logs_preview
+
+		frappe.set_value("CoreTax Importer", doc_name, {
+			"importer_status": "Update Failed",
+			"html": html
+		})
+	else:
+		frappe.set_value("CoreTax Importer", doc_name, {
+			"importer_status": "Update Succeed",
+			"html": ""
+		})
+
+
+def check_empty_value(values):
+	empty_fields = [field for field, value in values.items() if not value]
+
+	if empty_fields:
+		raise frappe.exceptions.ValidationError(
+			f"{', '.join(empty_fields)} is empty"
+		)

@@ -158,7 +158,8 @@ doc_events = {
 		"before_cancel": [
 			"erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_tin_status_before_cancel_si",
 			"erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_si_had_tin_before"
-		]
+		],
+		"before_save": "erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.calculate_other_tax_base_amount_and_total"
 	}
 }
 
@@ -266,16 +267,23 @@ fixtures = [
 					"Customer-customer_pkp",
 					"Customer-custom_nik",
 					"Customer-custom_country",
-					"Customer-custom_buyeridtku",
-					"Customer-custom_customer_country_code",
-					"Customer-custom_customer_email_per_tax_id",
+					"Customer-custom_tax_country_code",
 					"Customer-custom_coretax",
 					"Customer-custom_customer_id_type",
 					"Customer-custom_passport_number",
 					"Customer-custom_customer_email_as_per_tax_id",
 					"Customer-custom_customers_nitku",
-					"Customer-custom_tax_country_code",
+					"Customer-custom_column_break_cd8gi",
 					"Sales Invoice-custom_tax_invoice_number",
+					"Sales Invoice-custom_nomor_faktur_pajak",
+					"Sales Invoice-custom_tanggal_faktur_pajak",
+					"Sales Invoice-custom_coretax_status",
+					"Sales Invoice-custom_transaction_code",
+					"Sales Invoice-custom_column_break_acrkf",
+					"Sales Invoice-custom_is_xml_generated",
+					"Sales Invoice-custom_coretax_xml_exporter",
+					"Sales Invoice-custom_total_luxury_goods_tax",
+					"Sales Invoice-custom_total_other_tax_base",
 					"Sales Invoice-custom_si_had_tin_before",
 					"Sales Invoice-tax_additional_description",
 					"Sales Invoice-tax_additional_reference",
@@ -289,7 +297,6 @@ fixtures = [
 					"Sales Invoice-custom_tax_custom_document",
 					"UOM Conversion Detail-custom_tax_uom_conversion_rate",
 					"UOM Conversion Detail-custom_tax_uom_description",
-					"UOM Conversion Detail-custom_tax_uom_code",
 					"Country-custom_coretax",
 					"Country-custom_coretax_countryref",
 					"Branch-custom_branchs_nitku",
@@ -309,7 +316,13 @@ fixtures = [
 					"Purchase Invoice-custom_tanggal_faktur_pajak",
 					"Purchase Invoice-custom_no_bukti_potong",
 					"Purchase Invoice-custom_nomor_faktur_pajak",
-					"Purchase Invoice-custom_kode_objek_pajak"
+					"Purchase Invoice-custom_kode_objek_pajak",
+					"Sales Taxes and Charges-custom_column_break_kla2o",
+					"Sales Taxes and Charges-custom_use_temporary_rate",
+					"Sales Taxes and Charges-custom_temporary_rate",
+					"Sales Taxes and Charges Template-custom_tax_facility_stamp",
+					"Sales Taxes and Charges Template-custom_tax_additional_info",
+					"Sales Taxes and Charges Template-custom_coretax"
 				]
 			]
 		]
@@ -328,6 +341,7 @@ fixtures = [
 					"Item-main-field_order",
 					"UOM-main-field_order",
 					"Customer-main-field_order",
+					"Customer-tax_id-default",
 					"Sales Taxes and Charges Template-main-field_order",
 					"Sales Invoice Item-main-field_order"
 				]

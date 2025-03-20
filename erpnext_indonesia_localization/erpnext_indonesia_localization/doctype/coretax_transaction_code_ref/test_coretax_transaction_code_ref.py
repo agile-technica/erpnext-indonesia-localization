@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestCoreTaxUnitRef(FrappeTestCase):
+class TestCoreTaxTransactionCodeRef(FrappeTestCase):
 	pass

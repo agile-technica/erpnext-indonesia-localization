@@ -216,14 +216,14 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 										 as_dict=True)
 			template_tax = frappe.get_value("Sales Taxes and Charges",
 											{"parent": invoice["name"], "idx": 1},
-											["custom_use_temporary_rate", "rate", "custom_temporary_rate"],
+											["use_temporary_rate", "rate", "temporary_rate"],
 											as_dict=True)
 
 			invoice_entry["items"].append({
 				"opt": item_info.barang_jasa_opt,
 				"code": item_info.barang_jasa_ref,
 				"name": item["item_name"],
-				"unit": frappe.get_value("UOM", item["uom"], "unit_ref"),
+				"unit": item["unit_ref"],
 				"price": item["rate"],
 				"qty": item["qty"],
 				"total_discount": item["discount_amount"] * item["qty"],
@@ -231,7 +231,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"other_tax_base": item["other_tax_base_amount"],
 				"vat": float(item["vat_amount"]),
 				"vatrate": int(
-					template_tax.custom_temporary_rate if template_tax.custom_use_temporary_rate else template_tax.rate),
+					template_tax.temporary_rate if template_tax.use_temporary_rate else template_tax.rate),
 				"stlg_rate": 0.00 if item["luxury_goods_tax_rate"] in ["", None] else float(
 					item["luxury_goods_tax_rate"]),
 				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else float(

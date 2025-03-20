@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class CoreTaxUnitRef(Document):
+class CoreTaxTransactionCodeRef(Document):
 	pass
