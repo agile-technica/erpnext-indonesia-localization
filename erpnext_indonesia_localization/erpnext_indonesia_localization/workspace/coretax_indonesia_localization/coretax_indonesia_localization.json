@@ -1,0 +1,183 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"d5K0dYJ3QX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">ERPNext Untuk Indonesia</span>\",\"col\":12}},{\"id\":\"fG06GaBOgq\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pintasan</span>\",\"col\":12}},{\"id\":\"ge-3Y98RUu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ekspor Data XML\",\"col\":3}},{\"id\":\"Cwsy5gjN7s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Perbarui Nomor Faktur Pajak\",\"col\":3}},{\"id\":\"R8xuOXwhcq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Panduan Penggunaan (IDN)\",\"col\":3}},{\"id\":\"t84m2y-Hqu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Manual (ENG)\",\"col\":3}},{\"id\":\"e4pbQq0l99\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Terkait Pajak</b></span>\",\"col\":12}},{\"id\":\"vi9Bhtgx0W\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Customer\",\"col\":3}},{\"id\":\"b0pUJTCkG6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Invoice\",\"col\":3}},{\"id\":\"U-yoWxcFv5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daftar Ekspor Data XML\",\"col\":3}},{\"id\":\"i9oftYDEuC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daftar Faktur Pajak Perbaruan\",\"col\":3}},{\"id\":\"YevsLc-7U2\",\"type\":\"card\",\"data\":{\"card_name\":\"Master Data\",\"col\":4}},{\"id\":\"AmGYT0BYvp\",\"type\":\"card\",\"data\":{\"card_name\":\"Dokumen Perpajakan\",\"col\":4}}]",
+ "creation": "2025-03-20 11:37:25.525378",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "permission",
+ "idx": 1,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "CoreTax Indonesia Localization",
+ "links": [
+  {
+   "description": "Daftar dokumen yang dapat digunakan untuk mengurus perpajakan di Indonesia",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dokumen Perpajakan",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CoreTax XML Exporter",
+   "link_count": 0,
+   "link_to": "Coretax XML Exporter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CoreTax Importer",
+   "link_count": 0,
+   "link_to": "CoreTax Importer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Master Data",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Kode Transaksi",
+   "link_count": 0,
+   "link_to": "CoreTax Transaction Code Ref",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Informasi Tambahan",
+   "link_count": 0,
+   "link_to": "CoreTax Additional Info Ref",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Facility Stamp",
+   "link_count": 0,
+   "link_to": "CoreTax Facility Stamp Ref",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Referensi Unit",
+   "link_count": 0,
+   "link_to": "CoreTax Unit Ref",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Referensi Barang atau Jasa",
+   "link_count": 0,
+   "link_to": "CoreTax Barang Jasa Ref",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-03-20 15:46:09.683617",
+ "modified_by": "Administrator",
+ "module": "Erpnext Indonesia Localization",
+ "name": "CoreTax Indonesia Localization",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 28.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Lihat Invoice",
+   "link_to": "Sales Invoice",
+   "stats_filter": "[[\"Sales Invoice\",\"tax_id\",\"is\",\"set\",false],[\"Sales Invoice\",\"tax_invoice_number\",\"is\",\"not set\",false],[\"Sales Invoice\",\"docstatus\",\"=\",\"1\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Panduan Penggunaan (IDN)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Ekspor Data XML",
+   "link_to": "Coretax XML Exporter",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Perbarui Nomor Faktur Pajak",
+   "link_to": "CoreTax Importer",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User Manual (ENG)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/erpnext-indonesia-localization?tab=readme-ov-file"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Daftar Ekspor Data XML",
+   "link_to": "Coretax XML Exporter",
+   "stats_filter": "[[\"Coretax XML Exporter\",\"docstatus\",\"=\",\"0\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{} tanpa NPWP",
+   "label": "Lihat Customer",
+   "link_to": "Customer",
+   "stats_filter": "[[\"Customer\",\"tax_id\",\"is\",\"not set\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Daftar Faktur Pajak Perbaruan",
+   "link_to": "CoreTax Importer",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "CoreTax Indonesia Localization"
+}
