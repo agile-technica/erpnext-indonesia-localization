@@ -12,7 +12,10 @@
   "importer_status",
   "section_break_6iasj",
   "coretax_invoice",
-  "start_import"
+  "start_import",
+  "section_break_fdzb",
+  "import_log",
+  "html"
  ],
  "fields": [
   {
@@ -43,11 +46,26 @@
    "fieldname": "coretax_invoice",
    "fieldtype": "HTML",
    "label": "CoreTax Invoice"
+  },
+  {
+   "fieldname": "section_break_fdzb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "import_log",
+   "fieldtype": "HTML",
+   "label": "Import Log"
+  },
+  {
+   "fieldname": "html",
+   "fieldtype": "Code",
+   "hidden": 1,
+   "label": "Html"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-20 14:00:53.568189",
+ "modified": "2025-03-21 11:34:35.187671",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
