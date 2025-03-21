@@ -44,6 +44,8 @@ function generate_preview(frm){
                 frm.set_df_property("coretax_invoice", "options", response.message);
             }
         });
+	} else {
+		frm.set_df_property("coretax_invoice", "hidden", true);
 	}
 };
 
