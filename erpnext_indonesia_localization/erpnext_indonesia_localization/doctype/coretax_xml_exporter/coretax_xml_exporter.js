@@ -5,7 +5,9 @@ frappe.ui.form.on('Coretax XML Exporter', {
     onload: function(frm) {
         if(frm.doc.html) {
             frm.set_df_property("sales_invoice_list", "options", frm.doc.html);
-        }
+        } else {
+			frm.set_df_property("sales_invoice_list", "hidden", true);
+		}
     },
 
     refresh: function(frm) {
@@ -25,6 +27,7 @@ frappe.ui.form.on('Coretax XML Exporter', {
                     branch: frm.doc.branch
                 }
             ).then(r => {
+                frm.set_df_property("sales_invoice_list", "hidden", false);
                 frm.set_df_property("sales_invoice_list", "options", r.message);
                 frm.set_value("html", r.message);
             });
