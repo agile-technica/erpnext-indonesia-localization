@@ -27,7 +27,9 @@ class CoretaxXMLExporter(Document):
 	@frappe.whitelist()
 	def export_xml(self):
 		invoice_docs, company_doc = fetch_sales_invoices(doc=self)
-		if len(invoice_docs) <= 500:
+		if len(invoice_docs) <= 0:
+			frappe.throw(msg="Sales Invoices is Not Found. Please fetch the latest data")
+		elif len(invoice_docs) <= 500:
 			result =  export_xml(invoice_docs, company_doc, doc=self)
 			if result == "Failed":
 				self.status = result
