@@ -105,7 +105,7 @@ def update_sales_invoice_from_xlsx(file, doc_name):
 	if import_logs:
 		frappe.db.rollback()
 		import_logs_preview = "".join(
-			f"<tr><td>{log['row']}</td><td>{log['status']}</td><td>{log['message']}</td></tr>"
+			f"""<tr><td>{log['row']}</td><td><div class="indicator red">{log['status']}</div></td><td>{log['message']}</td></tr>"""
 			for log in import_logs
 		)
 
@@ -118,7 +118,7 @@ def update_sales_invoice_from_xlsx(file, doc_name):
 			</head>
 
 			<body>
-				<h3>Import Log</h3>
+				<h3>Import Error Log</h3>
 				<table class="table table-bordered text-nowrap">
 					<tr>
 						<th>Row</th>
