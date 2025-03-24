@@ -3,11 +3,7 @@
 
 frappe.ui.form.on('Coretax XML Exporter', {
     onload: function(frm) {
-        if(frm.doc.html) {
-            frm.set_df_property("sales_invoice_list", "options", frm.doc.html);
-        } else {
-			frm.set_df_property("sales_invoice_list", "hidden", true);
-		}
+        update_sales_invoice_list(frm);
     },
 
     refresh: function(frm) {
@@ -47,4 +43,12 @@ function toggle_retry_button(frm){
             }
         });
     }).css({"color":"black", "background-color": "#e2e2e2"});
+}
+
+function update_sales_invoice_list(frm) {
+	if(frm.doc.html) {
+		frm.set_df_property("sales_invoice_list", "options", frm.doc.html);
+	} else {
+		frm.set_df_property("sales_invoice_list", "hidden", true);
+	}
 }
