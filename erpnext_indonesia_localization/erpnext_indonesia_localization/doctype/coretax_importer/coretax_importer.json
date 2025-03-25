@@ -8,7 +8,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "instruction_text",
   "import_file",
   "importer_status",
   "section_break_6iasj",
@@ -62,16 +61,11 @@
    "fieldtype": "Code",
    "hidden": 1,
    "label": "Html"
-  },
-  {
-   "fieldname": "instruction_text",
-   "fieldtype": "HTML",
-   "options": "<h5> Please upload an Excel file that has been obtained from DJP to proceed with the import process. </h5> <br>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 14:00:00.094902",
+ "modified": "2025-03-21 11:34:35.187671",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
