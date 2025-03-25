@@ -17,13 +17,12 @@ frappe.ui.form.on('CoreTax Importer', {
 	},
 
 	import_file: function(frm) {
+		update_importer_status(frm);
 		generate_preview(frm);
-		frm.set_value("importer_status", "");
 	},
 
 	start_import: function(frm) {
-	    if (frm.doc.importer_status == "" && frm.doc.import_file){
-    	    frm.set_value("importer_status", "In Process");
+	    if (frm.doc.importer_status == "Draft" && frm.doc.import_file){
     	    update_sales_invoice_from_xlsx(frm);
 	    }
 	}
@@ -37,6 +36,7 @@ function set_import_file_as_read_only_based_on_importer_status(frm){
 
 function generate_preview(frm){
 	if (frm.doc.import_file){
+		frm.set_df_property("coretax_invoice", "hidden", false);
 		frm.call("generate_preview", {
             "file": frm.doc.import_file
         }).then(response => {
@@ -71,4 +71,12 @@ function show_start_import_button(frm){
 	if(frm.doc.import_file){
 	    frm.set_df_property("start_import", "hidden", "0");
     }
+}
+
+function update_importer_status(frm) {
+	if (frm.doc.import_file) {
+		frm.set_value("importer_status", "Draft");
+	} else {
+		frm.set_value("importer_status", "");
+	}
 }
