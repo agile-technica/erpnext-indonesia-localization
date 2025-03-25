@@ -327,7 +327,8 @@ fixtures = [
 					"Sales Taxes and Charges Template-custom_tax_additional_info",
 					"Sales Taxes and Charges Template-custom_coretax",
 					"Company-custom_use_company_nitku",
-					"Company-custom_companys_nitku"
+					"Company-custom_companys_nitku",
+					"Sales Invoice-custom_coretax_tab"
 				]
 			]
 		]
