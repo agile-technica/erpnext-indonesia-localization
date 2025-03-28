@@ -329,7 +329,9 @@ fixtures = [
 					"Company-custom_use_company_nitku",
 					"Company-custom_companys_nitku",
 					"Sales Invoice-custom_coretax_tab",
-					"Sales Invoice-custom_tax_custom_document_period"
+					"Sales Invoice-custom_tax_custom_document_period" ,
+					"Sales Invoice Item-custom_column_break_tuznn",
+					"Sales Invoice Item-custom_kode_barang_jasa_opt"
 				]
 			]
 		]
