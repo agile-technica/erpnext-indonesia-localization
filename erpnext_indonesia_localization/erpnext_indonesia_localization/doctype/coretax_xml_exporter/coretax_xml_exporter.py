@@ -148,7 +148,8 @@ def fetch_sales_invoices(doc):
 	invoice_docs = frappe.get_all(
 		"Sales Invoice",
 		filters=filters,
-		fields=["name", "posting_date", "tax_invoice_type", "transaction_code", "tax_additional_info", "tax_custom_document", "tax_facility_stamp", "customer"],
+		fields=["name", "posting_date", "tax_invoice_type", "transaction_code", "tax_additional_info",
+				"tax_custom_document", "tax_facility_stamp", "customer", "tax_custom_document_period"],
 		order_by='posting_date'
 	)
 
@@ -184,6 +185,8 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			"kode_transaksi": invoice["transaction_code"],
 			"additional_info": "" if invoice["tax_additional_info"] in ["", None] else invoice["tax_additional_info"],
 			"custom_document": "" if invoice["tax_custom_document"] in ["", None] else invoice["tax_custom_document"],
+			"tax_custom_document_period": "" if invoice["tax_custom_document_period"] in ["", None] else invoice[
+				"tax_custom_document_period"].strftime("%m%Y"),
 			"name": invoice["name"],
 			"facility_stamp": "" if invoice["tax_facility_stamp"] in ["", None] else invoice["tax_facility_stamp"],
 			"seller_id_ntku": str(company_doc.tax_id) + str(company_doc.companys_nitku),

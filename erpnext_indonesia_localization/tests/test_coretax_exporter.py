@@ -141,7 +141,7 @@ def test_export_xml_no_invoices(mock_fetch_sales_invoice, mock_frappe_throw):
 	result = CoretaxXMLExporter.export_xml.__wrapped__(doc)
 
 	# Assert
-	mock_frappe_throw.assert_called_once_with(msg="Sales Invoices is Not Found. Please fetch the latest data.")
+	mock_frappe_throw.assert_called_once_with("Sales Invoices is Not Found. Please fetch the latest data.")
 
 
 @patch("frappe.enqueue")
@@ -197,4 +197,4 @@ def test_export_xml_with_failed_export(mock_fetch_sales_invoice, mock_export_xml
 
 	# Assert
 	assert doc.status == "Failed"
-	mock_frappe_throw.assert_called_once_with(msg="Exporting XML Failed")
+	mock_frappe_throw.assert_called_once_with("Exporting XML Failed")
