@@ -28,6 +28,20 @@ frappe.ui.form.on('CoreTax Importer', {
 	}
 });
 
+frappe.listview_settings['CoreTax Importer'] = {
+	add_fields: ["importer_status"],
+	get_indicator: function(doc) {
+		if (doc.importer_status == "Update Succeed") {
+			return [__("Update Succeed"), "green", "importer_status,=,Succeed"];
+		} else if (doc.importer_status == "Update Failed") {
+			return [__("Update Failed"), "red", "importer_status,=,Failed"];
+		} else if (doc.importer_status == "In Process") {
+			return [__("In Process"), "orange", "importer_status,=,In Process"];
+		} else {
+			return [__("Draft"), "blue", "importer_status,=,Draft"];
+		}
+	}
+}
 
 function set_import_file_as_read_only_based_on_importer_status(frm){
     frm.set_df_property("import_file", "read_only", (frm.doc.importer_status == "In Process" || frm.doc.importer_status == "Succeed") ? 1 : 0);
