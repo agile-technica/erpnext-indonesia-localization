@@ -208,22 +208,19 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"docstatus": 1
 			},
 			fields=["item_name", "item_code", "qty", "uom", "rate", "discount_amount", "net_amount",
-					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref"]
+					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref",
+					"kode_barang_jasa_ref", "kode_barang_jasa_opt"]
 		)
 
 		for item in si_items:
-			item_info = frappe.get_value("Item",
-										 item["item_code"],
-										 ["barang_jasa_opt", "barang_jasa_ref"],
-										 as_dict=True)
 			template_tax = frappe.get_value("Sales Taxes and Charges",
 											{"parent": invoice["name"], "idx": 1},
 											["use_temporary_rate", "rate", "temporary_rate"],
 											as_dict=True)
 
 			invoice_entry["items"].append({
-				"opt": item_info.barang_jasa_opt,
-				"code": item_info.barang_jasa_ref,
+				"opt": item["barang_jasa_opt"],
+				"code": item["barang_jasa_ref"],
 				"name": item["item_name"],
 				"unit": item["unit_ref"],
 				"price": item["rate"],
