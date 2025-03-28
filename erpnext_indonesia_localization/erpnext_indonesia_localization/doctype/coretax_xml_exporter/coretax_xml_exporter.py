@@ -115,8 +115,8 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 				<td>{row.posting_date}</td>
 				<td>{row.customer}</td>
 				<td>{company_name}</td>
-				<td>{"{:,.2f}".format(row.grand_total)}</td>
-				<td>{"{:,.2f}".format(row.total_taxes_and_charges)}</td>
+				<td style="text-align: right;"= right">{"{:,.2f}".format(row.grand_total)}</td>
+				<td style="text-align: right;">{"{:,.2f}".format(row.total_taxes_and_charges)}</td>
 			</tr>
 		"""
 
