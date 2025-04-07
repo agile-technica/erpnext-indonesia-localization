@@ -285,9 +285,12 @@ def unlink_sales_invoices(doc_name):
 	:param doc_name: String
 	"""
 
-	frappe.set_value("Sales Invoice", {"coretax_xml_exporter": doc_name}, {
-		"is_xml_generated": 0,
-		"coretax_xml_exporter": ""
-	})
+	sales_invoices = frappe.get_all("Sales Invoice", {"coretax_xml_exporter": doc_name}, pluck="name");
+
+	for sales_invoice in sales_invoices:
+		frappe.set_value("Sales Invoice", sales_invoice, {
+			"is_xml_generated": 0,
+			"coretax_xml_exporter": ""
+		})
 
 	frappe.delete_doc("File", frappe.get_value("File", {"attached_to_doctype": "Coretax XML Exporter", "attached_to_name": doc_name}, "name"))
