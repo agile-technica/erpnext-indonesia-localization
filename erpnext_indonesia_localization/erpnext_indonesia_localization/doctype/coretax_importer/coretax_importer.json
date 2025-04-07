@@ -8,15 +8,11 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "instruction_text",
   "import_file",
   "importer_status",
   "section_break_6iasj",
   "coretax_invoice",
-  "start_import",
-  "section_break_fdzb",
-  "import_log",
-  "html"
+  "start_import"
  ],
  "fields": [
   {
@@ -29,14 +25,13 @@
   {
    "fieldname": "start_import",
    "fieldtype": "Button",
-   "hidden": 1,
    "label": "Start Import"
   },
   {
    "fieldname": "importer_status",
    "fieldtype": "Select",
    "label": "Importer Status",
-   "options": "\nDraft\nUpdate Failed\nIn Process\nUpdate Succeed",
+   "options": "\nUpdate Failed\nIn Process\nSucceed",
    "read_only": 1
   },
   {
@@ -47,31 +42,11 @@
    "fieldname": "coretax_invoice",
    "fieldtype": "HTML",
    "label": "CoreTax Invoice"
-  },
-  {
-   "fieldname": "section_break_fdzb",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "import_log",
-   "fieldtype": "HTML",
-   "label": "Import Log"
-  },
-  {
-   "fieldname": "html",
-   "fieldtype": "Code",
-   "hidden": 1,
-   "label": "Html"
-  },
-  {
-   "fieldname": "instruction_text",
-   "fieldtype": "HTML",
-   "options": "<h5> Please upload an Excel file that has been obtained from DJP to proceed with the import process. </h5> <br>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-27 16:29:17.141335",
+ "modified": "2025-04-07 09:43:58.601677",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
