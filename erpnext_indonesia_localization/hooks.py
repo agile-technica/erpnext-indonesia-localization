@@ -296,8 +296,6 @@ fixtures = [
 					"Sales Invoice-custom_tax_additional_info",
 					"Sales Invoice-custom_tax_facility_stamp",
 					"Sales Invoice-custom_tax_custom_document",
-					"UOM Conversion Detail-custom_tax_uom_conversion_rate",
-					"UOM Conversion Detail-custom_tax_uom_description",
 					"Country-custom_coretax",
 					"Country-custom_coretax_countryref",
 					"Branch-custom_branchs_nitku",
