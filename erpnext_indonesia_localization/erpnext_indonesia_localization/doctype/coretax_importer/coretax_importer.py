@@ -71,29 +71,35 @@ def update_sales_invoice_from_xlsx(file, doc_name):
 
 	for idx, row in enumerate(datas[1:]):
 		try:
+			referensi = row[datas[0].index("Referensi")]
+			tanggal_faktur_pajak = row[datas[0].index("Tanggal Faktur Pajak")]
+			nomor_faktur_pajak = row[datas[0].index("Nomor Faktur Pajak")]
+			status_faktur = row[datas[0].index("Status Faktur")]
+
 			is_invoice_exsist = frappe.db.exists(
 				"Sales Invoice",
-				{"name": row[datas[0].index("Referensi")]}
+				{"name": referensi}
 			)
 
 			if is_invoice_exsist:
 				check_empty_value({
-					"Tanggal Faktur Pajak": row[datas[0].index("Tanggal Faktur Pajak")],
-					"Nomor Faktur Pajak": row[datas[0].index("Nomor Faktur Pajak")],
-					"Status Faktur": row[datas[0].index("Status Faktur")]
+					"Tanggal Faktur Pajak": tanggal_faktur_pajak,
+					"Status Faktur": status_faktur
 				})
+
+				validation_coretax_status(status_faktur, nomor_faktur_pajak)
 
 				frappe.db.set_value(
 					"Sales Invoice",
 					row[datas[0].index("Referensi")],
 					{
-						"tanggal_faktur_pajak": getdate(row[datas[0].index("Tanggal Faktur Pajak")]),
-						"nomor_faktur_pajak": row[datas[0].index("Nomor Faktur Pajak")],
-						"coretax_status": row[datas[0].index("Status Faktur")]
+						"tanggal_faktur_pajak": getdate(tanggal_faktur_pajak),
+						"nomor_faktur_pajak": nomor_faktur_pajak,
+						"coretax_status": status_faktur
 					}
 				)
 			else:
-				raise frappe.exceptions.DoesNotExistError("Invoice with reference number not found")
+				raise frappe.exceptions.DoesNotExistError("Invoice with reference number not found.")
 
 		except Exception as e:
 			import_logs.append({
@@ -147,5 +153,17 @@ def check_empty_value(values):
 
 	if empty_fields:
 		raise frappe.exceptions.ValidationError(
-			f"{', '.join(empty_fields)} is empty"
+			f"{', '.join(empty_fields)} is empty."
 		)
+
+
+def validation_coretax_status(coretax_status, nomor_faktur_pajak):
+	if coretax_status not in ["APPROVED", "AMENDED", "REJECTED"]:
+		raise frappe.exceptions.ValidationError(
+			f"Status Faktur {coretax_status} is not valid. It should be APPROVED, AMENDED, or REJECTED."
+		)
+	elif coretax_status == "APPROVED":
+		if not nomor_faktur_pajak:
+			raise frappe.exceptions.ValidationError(
+				"Nomor Faktur Pajak is required when Status Faktur is APPROVED."
+			)
