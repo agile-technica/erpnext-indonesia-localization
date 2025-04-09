@@ -222,8 +222,8 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 											as_dict=True)
 
 			invoice_entry["items"].append({
-				"opt": item["barang_jasa_opt"],
-				"code": item["barang_jasa_ref"],
+				"opt": item["kode_barang_jasa_opt"],
+				"code": item["kode_barang_jasa_ref"],
 				"name": item["item_name"],
 				"unit": item["unit_ref"],
 				"price": item["rate"],
