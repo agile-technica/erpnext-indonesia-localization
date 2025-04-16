@@ -138,12 +138,12 @@ def update_sales_invoice_from_xlsx(file, doc_name):
 		""" % import_logs_preview
 
 		frappe.set_value("CoreTax Importer", doc_name, {
-			"importer_status": "Update Failed",
+			"importer_status": "Failed",
 			"html": html
 		})
 	else:
 		frappe.set_value("CoreTax Importer", doc_name, {
-			"importer_status": "Update Succeed",
+			"importer_status": "Succeed",
 			"html": ""
 		})
 
