@@ -102,7 +102,7 @@ def test_update_sales_invoice_success(mock_read_xlsx, mock_frappe, mock_getdate)
 	assert mock_frappe.db.set_value.call_count == len(mock_preview_data) - 1
 
 	mock_frappe.set_value.assert_called_once_with("CoreTax Importer", "IMPORT-001", {
-		"importer_status": "Update Succeed",
+		"importer_status": "Succeed",
 		"html": ""
 	})
 
@@ -119,7 +119,7 @@ def test_update_sales_invoice_failed(mock_read_xlsx, mock_frappe):
 
 	mock_frappe.db.rollback.assert_called_once()
 	mock_frappe.set_value.assert_called_once_with("CoreTax Importer", "IMPORT-001",{
-		"importer_status": "Update Failed",
+		"importer_status": "Failed",
 		"html":  ANY
 	})
 
@@ -158,7 +158,7 @@ def test_update_sales_invoice_validation_error(mock_read_xlsx, mock_frappe, mock
 
 	mock_frappe.db.rollback.assert_called_once()
 	mock_frappe.set_value.assert_called_once_with("CoreTax Importer", "IMPORT-001", {
-		"importer_status": "Update Failed",
+		"importer_status": "Failed",
 		"html": ANY
 	})
 

@@ -35,7 +35,7 @@
    "fieldname": "importer_status",
    "fieldtype": "Select",
    "label": "Importer Status",
-   "options": "\nDraft\nUpdate Failed\nIn Process\nUpdate Succeed",
+   "options": "\nDraft\nFailed\nIn Process\nSucceed",
    "read_only": 1
   },
   {
@@ -70,7 +70,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-14 10:29:05.568225",
+ "modified": "2025-04-16 13:47:15.199085",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Importer",
