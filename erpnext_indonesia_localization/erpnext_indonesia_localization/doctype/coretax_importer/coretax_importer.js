@@ -85,7 +85,9 @@ function update_sales_invoice_from_xlsx(frm){
 function hide_start_import_button_based_on_importer_status(frm){
 	frm.set_df_property("start_import", "hidden", !frm.doc.import_file ? 1 : 0);
 
-	if (frm.doc.importer_status == "In Process" || frm.doc.importer_status == "Succeed"){
+	if (frm.doc.importer_status == "In Process" ||
+		frm.doc.importer_status == "Succeed" ||
+		frm.doc.importer_status == "Failed"){
 		frm.set_df_property("start_import", "hidden", 1);
 	}
 }
