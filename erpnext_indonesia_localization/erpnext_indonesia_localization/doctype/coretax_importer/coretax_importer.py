@@ -89,7 +89,7 @@ def update_sales_invoice_from_xlsx(file, doc_name):
 
 				validation_coretax_status(status_faktur, nomor_faktur_pajak)
 
-				frappe.db.set_value(
+				frappe.set_value(
 					"Sales Invoice",
 					row[datas[0].index("Referensi")],
 					{
