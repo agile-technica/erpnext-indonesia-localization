@@ -242,7 +242,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 
 			tax_data["sales_invoices"].append(invoice_entry)
 
-			frappe.db.set_value("Sales Invoice", invoice["name"], {
+			frappe.set_value("Sales Invoice", invoice["name"], {
 				"is_xml_generated": 1,
 				"coretax_xml_exporter": doc.name
 			})
