@@ -190,11 +190,12 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			"name": invoice["name"],
 			"facility_stamp": "" if invoice["tax_facility_stamp"] in ["", None] else invoice["tax_facility_stamp"],
 			"seller_id_ntku": str(company_doc.tax_id) + str(company_doc.companys_nitku),
-			"buyer_tin": customer_info.nik if customer_info.customer_id_type == "National ID" else customer_info.tax_id,
+			"buyer_tin": customer_info.tax_id,
 			"buyer_document": "" if customer_info.customer_id_type in ["", None] else customer_info.customer_id_type,
 			"buyer_country_code": customer_info.tax_country_code,
-			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN",
-																			  None] else customer_info.customer_id_number,
+			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN", None]
+									else customer_info.nik if customer_info.customer_id_type == "National ID"
+									else customer_info.customer_id_number,
 			"customer_name": customer_info.customer_name,
 			"customer_address": "" if customer_info.company_address_tax_id in ["",
 																			   None] else customer_info.company_address_tax_id,
