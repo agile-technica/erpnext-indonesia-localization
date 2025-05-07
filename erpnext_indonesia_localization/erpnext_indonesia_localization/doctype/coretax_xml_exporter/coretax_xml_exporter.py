@@ -176,7 +176,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 										 invoice["customer"],
 										 ["customer_name", "customer_id_type", "customer_id_number", "tax_id",
 										  "tax_country_code", "company_address_tax_id", "customer_email_as_per_tax_id",
-										  "customers_nitku"],
+										  "customers_nitku", "nik"],
 										 as_dict=True)
 
 		invoice_entry = {
@@ -193,8 +193,9 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			"buyer_tin": customer_info.tax_id,
 			"buyer_document": "" if customer_info.customer_id_type in ["", None] else customer_info.customer_id_type,
 			"buyer_country_code": customer_info.tax_country_code,
-			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN",
-																			  None] else customer_info.customer_id_number,
+			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN", None]
+									else customer_info.nik if customer_info.customer_id_type == "National ID"
+									else customer_info.customer_id_number,
 			"customer_name": customer_info.customer_name,
 			"customer_address": "" if customer_info.company_address_tax_id in ["",
 																			   None] else customer_info.company_address_tax_id,

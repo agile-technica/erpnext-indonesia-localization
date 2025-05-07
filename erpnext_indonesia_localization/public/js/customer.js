@@ -22,7 +22,7 @@ function auto_fill_tax_country_code_when_setup(frm) {
 }
 
 function set_customer_id_number_visibility(frm) {
-	if (frm.doc.customer_id_type == "TIN") {
+	if (frm.doc.customer_id_type == "TIN" || frm.doc.customer_id_type == "National ID") {
 		frm.set_df_property("customer_id_number", "hidden", 1);
 	} else {
 		frm.set_df_property("customer_id_number", "hidden", 0);
