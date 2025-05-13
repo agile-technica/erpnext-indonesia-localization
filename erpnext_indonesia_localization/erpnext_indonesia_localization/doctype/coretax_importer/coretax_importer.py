@@ -44,7 +44,7 @@ class CoreTaxImporter(Document):
 					{content}
 				</table>
 
-				<h5>Showing {displayed_rows} out of {row_count} row(s).</h5>
+				<h5>Showing only first {displayed_rows} rows out of {row_count} </h5>
 			</body>
 			</html>
 		""".format(
@@ -125,6 +125,7 @@ def update_sales_invoice_from_xlsx(file, doc_name):
 
 			<body>
 				<h3>Import Error Log</h3>
+				<h5>Please check your original Excel file</h5>
 				<table class="table table-bordered text-nowrap">
 					<tr>
 						<th>Row</th>
