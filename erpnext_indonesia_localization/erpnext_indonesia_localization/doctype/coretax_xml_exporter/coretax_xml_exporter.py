@@ -122,7 +122,7 @@ def get_preview_sales_invoice(company, start_invoice_date, end_invoice_date, bra
 
 	html += f"""
 		</table>
-		<h5>Showing {min(10, len(invoices))} out of {len(invoices)} row(s).</h5>
+		<h5>Showing only first {min(10, len(invoices))} rows out of {len(invoices)} </h5>
 	"""
 
 	return html
