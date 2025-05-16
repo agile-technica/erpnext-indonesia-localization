@@ -11,7 +11,7 @@
  "idx": 2,
  "indicator_color": "",
  "is_hidden": 0,
- "label": "CoreTax Indonesia Localization",
+ "label": "Indonesia CoreTax",
  "links": [
   {
    "description": "Daftar dokumen yang dapat digunakan untuk mengurus perpajakan di Indonesia",
@@ -103,10 +103,10 @@
    "type": "Link"
   }
  ],
- "modified": "2025-05-16 16:08:49.953431",
+ "modified": "2025-05-16 18:57:59.491505",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
- "name": "CoreTax Indonesia Localization",
+ "name": "Indonesia CoreTax",
  "number_cards": [
   {
    "label": "Belum Dilaporkan",
@@ -128,14 +128,6 @@
  "roles": [],
  "sequence_id": 28.0,
  "shortcuts": [
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Lihat Invoice",
-   "link_to": "Sales Invoice",
-   "stats_filter": "[[\"Sales Invoice\",\"tax_id\",\"is\",\"set\",false],[\"Sales Invoice\",\"tax_invoice_number\",\"is\",\"not set\",false],[\"Sales Invoice\",\"docstatus\",\"=\",\"1\",false]]",
-   "type": "DocType"
-  },
   {
    "color": "Grey",
    "doc_view": "New",
@@ -160,21 +152,30 @@
    "url": "https://github.com/agile-technica/erpnext-indonesia-localization/blob/develop/User%20Manual%20Coretax%20EIL%20-%20ID.pdf"
   },
   {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "User Manual (ENG)",
-   "type": "URL",
-   "url": "https://github.com/agile-technica/erpnext-indonesia-localization/blob/develop/User%20Manual%20Coretax%20EIL%20-%20ENG.pdf"
-  },
-  {
-   "color": "Grey",
+   "color": "Pink",
    "doc_view": "List",
    "format": "{} tanpa NPWP",
    "label": "Lihat Customer",
    "link_to": "Customer",
    "stats_filter": "[[\"Customer\",\"tax_id\",\"is\",\"not set\",false]]",
    "type": "DocType"
+  },
+  {
+   "color": "Pink",
+   "doc_view": "List",
+   "format": "{} tanpa Faktur Pajak",
+   "label": "Lihat Invoice",
+   "link_to": "Sales Invoice",
+   "stats_filter": "[[\"Sales Invoice\",\"tax_id\",\"is\",\"set\",false],[\"Sales Invoice\",\"tax_invoice_number\",\"is\",\"not set\",false],[\"Sales Invoice\",\"docstatus\",\"=\",\"1\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User Manual (ENG)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/erpnext-indonesia-localization/blob/develop/User%20Manual%20Coretax%20EIL%20-%20ENG.pdf"
   }
  ],
- "title": "CoreTax Indonesia Localization"
+ "title": "Indonesia CoreTax"
 }
