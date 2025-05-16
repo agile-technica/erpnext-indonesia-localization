@@ -34,7 +34,7 @@ The **Coretax XML Exporter** allows users to generate tax-compliant XML files fr
 
 The **Coretax Importer** enables users to import VAT Output data from DJP (in Excel format) back into ERPNext. Once uploaded, the system validates the data and updates the corresponding Sales Invoices with official tax information such as approval numbers and verification status.
 
-[Coretax XML Exporter](.github/Coretax%20XML%20Exporter.mp4)
+<https://github.com/user-attachments/assets/b975549a-d754-47bc-8e2c-3d8d9868ad1d>
 
 <br />
 
