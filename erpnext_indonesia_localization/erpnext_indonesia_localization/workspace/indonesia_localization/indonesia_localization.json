@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"p1vsl7dYkx\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\"><b>ERPNext untuk Indonesia</b></span>\",\"col\":12}},{\"id\":\"BjBjUGMx60\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pintasan&nbsp;</span>\",\"col\":12}},{\"id\":\"67uSojvgXv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unggah Nomor Faktur\",\"col\":3}},{\"id\":\"H97keoWKqc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Buat Faktur Pajak\",\"col\":3}},{\"id\":\"fRgTOVK3pK\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Terkait Pajak</span>\",\"col\":12}},{\"id\":\"-F-zHlFhPs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Customer\",\"col\":3}},{\"id\":\"nKaK5QWldY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Invoice\",\"col\":3}},{\"id\":\"rrYcd4PNXS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nomor Faktur\",\"col\":3}},{\"id\":\"t_hNmoEQtm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unduh Faktur Pajak\",\"col\":3}},{\"id\":\"HoZOYwrMT0\",\"type\":\"card\",\"data\":{\"card_name\":\"Dokumen Perpajakan\",\"col\":4}}]",
+ "content": "[{\"id\":\"p1vsl7dYkx\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\"><b>ERPNext untuk Indonesia</b></span>\",\"col\":12}},{\"id\":\"BjBjUGMx60\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pintasan&nbsp;</span>\",\"col\":12}},{\"id\":\"67uSojvgXv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unggah Nomor Faktur\",\"col\":3}},{\"id\":\"H97keoWKqc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Buat Faktur Pajak\",\"col\":3}},{\"id\":\"mL2hbQLWyE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Panduan Penggunaan (IDN)\",\"col\":3}},{\"id\":\"d4o7wDid_n\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Manual (ENG)\",\"col\":3}},{\"id\":\"fRgTOVK3pK\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Terkait Pajak</span>\",\"col\":12}},{\"id\":\"-F-zHlFhPs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Customer\",\"col\":3}},{\"id\":\"nKaK5QWldY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Invoice\",\"col\":3}},{\"id\":\"rrYcd4PNXS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nomor Faktur\",\"col\":3}},{\"id\":\"t_hNmoEQtm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unduh Faktur Pajak\",\"col\":3}},{\"id\":\"HoZOYwrMT0\",\"type\":\"card\",\"data\":{\"card_name\":\"Dokumen Perpajakan\",\"col\":4}}]",
  "creation": "2024-11-21 11:15:06.205243",
  "custom_blocks": [],
  "docstatus": 0,
@@ -46,7 +46,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Dafter Faktur Pajak",
+   "label": "Daftar Faktur Pajak",
    "link_count": 0,
    "link_to": "Tax Invoice Exporter",
    "link_type": "DocType",
@@ -64,7 +64,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-11-21 16:55:32.218706",
+ "modified": "2024-12-20 17:50:04.768182",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "Indonesia Localization",
@@ -80,9 +80,23 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Panduan Penggunaan (IDN)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Unggah Nomor Faktur",
    "link_to": "Tax Invoice Number Importer",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User Manual (ENG)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/erpnext-indonesia-localization?tab=readme-ov-file"
   },
   {
    "color": "Yellow",
