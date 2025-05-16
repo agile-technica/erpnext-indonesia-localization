@@ -28,13 +28,13 @@ It's built on [ERPNext](https://github.com/frappe/erpnext) and the [Frappe Frame
 
 The **Coretax XML Exporter** allows users to generate tax-compliant XML files from Sales Invoices in ERPNext. These XML files follow DJP (Indonesia's tax authority) standards and can be uploaded to the Coretax system for e-Faktur approval. The feature supports batch processing and intelligently handles large datasets in the background.
 
-[Coretax Importer](.github/Coretax%20Importer.mp4)
+<https://github.com/user-attachments/assets/4d619612-a160-4c3c-b25b-934a7c85af5e>
 
 ### Coretax Importer
 
 The **Coretax Importer** enables users to import VAT Output data from DJP (in Excel format) back into ERPNext. Once uploaded, the system validates the data and updates the corresponding Sales Invoices with official tax information such as approval numbers and verification status.
 
-<https://github.com/user-attachments/assets/b975549a-d754-47bc-8e2c-3d8d9868ad1d>
+<https://github.com/user-attachments/assets/dafae3d7-7f08-4584-9032-25edf23f3e39>
 
 <br />
 
