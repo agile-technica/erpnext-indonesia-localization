@@ -1,12 +1,13 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:code",
  "creation": "2025-03-19 10:55:09.904996",
- "doctype": "DocType",
  "default_view": "List",
- "engine": "InnoDB",
+ "doctype": "DocType",
  "editable_grid": 1,
+ "engine": "InnoDB",
  "field_order": [
   "code",
   "group",
@@ -43,41 +44,41 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-19 10:55:09.904996",
+ "modified": "2025-05-16 18:24:49.774008",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "CoreTax Transaction Code Ref",
  "owner": "Administrator",
  "permissions": [
   {
-   "role": "System Manager",
-   "select": 1,
-   "read": 1,
-   "write": 1,
    "create": 1,
    "delete": 1,
-   "report": 1,
+   "email": 1,
    "export": 1,
    "import": 1,
-   "share": 1,
    "print": 1,
-   "email": 1
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
   },
   {
-   "role": "Accounts User",
-   "select": 1,
-   "read": 1,
-   "write": 1,
    "create": 1,
    "delete": 1,
-   "report": 1,
    "export": 1,
-   "import": 1
+   "import": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "write": 1
   },
   {
+   "read": 1,
    "role": "Sales User",
-   "select": 1,
-   "read": 1
+   "select": 1
   }
  ],
  "search_fields": "description",
