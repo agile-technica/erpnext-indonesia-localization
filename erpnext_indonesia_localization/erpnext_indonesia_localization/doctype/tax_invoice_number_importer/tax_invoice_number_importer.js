@@ -5,13 +5,6 @@ frappe.ui.form.on('Tax Invoice Number Importer', {
     refresh: function (frm) {
         frm.disable_save();
     },
-    onload: function(frm) {
-        frappe.db.get_single_value('Global Defaults', 'default_company').then((default_company) => {
-            if (!frm.doc.company) {
-                frm.set_value('company', default_company);
-            }
-        });
-    },
     create_tax_invoice_number: function (frm) {
         frappe.call({
             doc: frm.doc,

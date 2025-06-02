@@ -11,6 +11,10 @@ def create_sales_taxes_and_charges_templates():
 	"""
 
 	default_company = frappe.db.get_single_value("Global Defaults", "default_company")
+
+	if not default_company:
+		return
+
 	company = frappe.get_value("Company", default_company, ["name", "abbr"], as_dict=True)
 
 	tax_tamplate_json = [
