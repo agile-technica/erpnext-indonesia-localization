@@ -85,6 +85,26 @@ Before starting the eFaktur process, make sure the [following reference data](co
 |               | `Tax Custom Document Period:`  | Date of the additional document                                         |
 |               | `Luxury Goods Tax Rate`        | Rate for luxury item taxation                                         |
 
+
+
+### 4. Sales Taxes and Charges Template Setup:
+| **Template Title**    | **Field**                      | **Value**                                                       |
+| --------------------  | ------------------------------ | ----------------------------------------------------------------|
+| **PPN Penjualan 11%** | `Company`                      | Select company name                                             |
+|                       | `Type`                         | Select "On Net Total"                                           |
+|                       | `Account Head`                 | Select Account head for VAT (PPN)                               |
+|                       | `Cost Center`                  | Select Cost Center head for VAT (PPN)                           |
+|                       | `Tax Rate`                     | 12                                                              |
+|                       | `Use Temporary Rate`           | uncheck                                                         |
+| **PPN Penjualan 12%** | `Company`                      | Select company name                                             |
+|                       | `Type`                         | Select "On Net Total"                                           |
+|                       | `Account Head`                 | Select Account head for VAT (PPN)                               |
+|                       | `Cost Center`                  | Select Cost Center head for VAT (PPN)                           |
+|                       | `Tax Rate`                     | 11                                                              |
+|                       | `Use Temporary Rate`           | check                                                           |
+|                       | `Temporary Rate`               | 12                                                              |
+
+
 #### Need assistance? Get in [touch with us.](mailto:info@agiletechnica.com)
 
 <br />
