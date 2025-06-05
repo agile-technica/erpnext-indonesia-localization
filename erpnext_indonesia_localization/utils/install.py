@@ -1,8 +1,14 @@
 import frappe
+import os.path
+import shutil
 from frappe.utils import now
+from frappe.core.doctype.data_import.data_import import start_import
+
 
 def init_setup_eil():
 	create_sales_taxes_and_charges_templates()
+	import_coretax_master_data()
+
 
 def create_sales_taxes_and_charges_templates():
 	"""
@@ -102,3 +108,61 @@ def create_sales_taxes_and_charges_templates():
 			print(f"Sales Taxes and Charges Template '{item['name']}' created successfully.")
 		else:
 			print(f"Sales Taxes and Charges Template '{item['name']}' already exists!!!")
+
+
+def import_coretax_master_data():
+	source_path = frappe.get_app_path("erpnext_indonesia_localization", "..", "coretax_reference_master_data")
+	public_path = frappe.get_site_path("public", "files")
+	master_data_files = {
+		"CoreTax Additional Info Ref": "CoreTax Additional Info Ref.xlsx",
+		"CoreTax Barang Jasa Ref": "CoreTax Barang Jasa Ref.xlsx",
+		"CoreTax Facility Stamp Ref": "CoreTax Facility Stamp Ref.xlsx",
+		"CoreTax Transaction Code Ref": "CoreTax Transaction Code Ref.xlsx",
+		"CoreTax Unit Ref": "CoreTax Unit Ref.xlsx"
+	}
+
+	for doctype, filename in master_data_files.items():
+		source_file = os.path.join(source_path, filename)
+		destination_file = os.path.join(public_path, filename)
+
+		if not os.path.exists(source_file):
+			frappe.log_error(f"Missing source file: {source_file}", "CoreTax Master Data")
+			continue
+
+		shutil.copy(source_file, destination_file)
+
+		try:
+			file_url = create_file_doc(filename)
+
+			create_run_doc_data_import(doctype, file_url)
+
+			frappe.logger().info(f"Imported {doctype} from copied file: {filename}")
+		except Exception as e:
+			frappe.log_error(f"Failed to import {doctype} from copied file: {filename}. Error: {str(e)}", "CoreTax Master Data")
+			continue
+
+
+def create_file_doc(filename):
+	file_doc = frappe.get_doc({
+		"doctype": "File",
+		"file_url": f"/files/{filename}",
+		"file_name": filename
+	})
+
+	file_doc.insert()
+
+	return file_doc.file_url
+
+
+def create_run_doc_data_import(doctype, file_url):
+	data_import = frappe.get_doc({
+		"doctype": "Data Import",
+		"reference_doctype": doctype,
+		"import_type": "Insert New Records",
+		"submit_after_import": 0,
+		"import_file": file_url
+	})
+
+	data_import.insert(ignore_permissions=True)
+
+	start_import(data_import.name)
