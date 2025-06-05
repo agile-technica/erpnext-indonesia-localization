@@ -112,9 +112,7 @@ def create_sales_taxes_and_charges_templates():
 
 def import_coretax_master_data():
 	source_path = frappe.get_app_path("erpnext_indonesia_localization", "..", "coretax_reference_master_data")
-
 	public_path = frappe.get_site_path("public", "files")
-
 	master_data_files = {
 		"CoreTax Additional Info Ref": "CoreTax Additional Info Ref.xlsx",
 		"CoreTax Barang Jasa Ref": "CoreTax Barang Jasa Ref.xlsx",
