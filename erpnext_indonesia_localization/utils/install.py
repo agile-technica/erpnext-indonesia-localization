@@ -2,7 +2,7 @@ import frappe
 import os.path
 import shutil
 from frappe.utils import now
-from frappe.core.doctype.data_import.data_import import import_file, start_import
+from frappe.core.doctype.data_import.data_import import start_import
 
 
 def init_setup_eil():
@@ -132,27 +132,37 @@ def import_coretax_master_data():
 		shutil.copy(source_file, destination_file)
 
 		try:
-			file_doc = frappe.get_doc({
-				"doctype": "File",
-				"file_url": f"/files/{filename}",
-				"file_name": filename
-			})
+			file_url = create_file_doc(filename)
 
-			file_doc.insert()
-
-			data_import = frappe.get_doc({
-				"doctype": "Data Import",
-				"reference_doctype": doctype,
-				"import_type": "Insert New Records",
-				"submit_after_import": 0,
-				"import_file": file_doc.file_url
-			})
-
-			data_import.insert(ignore_permissions=True)
-
-			start_import(data_import.name)
+			create_run_doc_data_import(doctype, file_url)
 
 			frappe.logger().info(f"Imported {doctype} from copied file: {filename}")
 		except Exception as e:
 			frappe.log_error(f"Failed to import {doctype} from copied file: {filename}. Error: {str(e)}", "CoreTax Master Data")
 			continue
+
+
+def create_file_doc(filename):
+	file_doc = frappe.get_doc({
+		"doctype": "File",
+		"file_url": f"/files/{filename}",
+		"file_name": filename
+	})
+
+	file_doc.insert()
+
+	return file_doc.file_url
+
+
+def create_run_doc_data_import(doctype, file_url):
+	data_import = frappe.get_doc({
+		"doctype": "Data Import",
+		"reference_doctype": doctype,
+		"import_type": "Insert New Records",
+		"submit_after_import": 0,
+		"import_file": file_url
+	})
+
+	data_import.insert(ignore_permissions=True)
+
+	start_import(data_import.name)
