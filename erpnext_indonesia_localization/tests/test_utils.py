@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 import sys
 
 frappe_mock = MagicMock()
@@ -32,3 +32,25 @@ def test_create_indonesia_localization_tax_template():
 	assert mock_db.exists.call_count == 2
 	assert mock_get_doc.call_count == 2
 	assert mock_doc.insert.call_count == 2
+
+
+@patch("erpnext_indonesia_localization.utils.template_tax.frappe")
+def test_create_indonesia_localization_tax_template_when_templates_exist(mock_frappe):
+	mock_db = frappe_mock.db
+	mock_get_doc = MagicMock()
+	frappe_mock.get_doc = mock_get_doc
+	frappe_mock.utils.now.return_value = "2025-06-12 17:46:06.065257"
+
+	company_name = "PT Test Company"
+	abbr = "PTTC"
+
+	mock_db.get_value.return_value = abbr
+
+	mock_frappe.db.exists.side_effect = [True, True]
+
+	result = create_indonesia_localization_tax_template(company_name)
+
+	assert result is None
+	assert mock_frappe.db.exists.call_count == 2
+	assert mock_get_doc.call_count == 0
+	assert mock_get_doc.return_value.insert.call_count == 0
