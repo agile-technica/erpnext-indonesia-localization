@@ -56,7 +56,7 @@ def create_indonesia_localization_tax_template(company):
 				"taxes": [
 					{
 						"account_currency": "IDR",
-						"account_head": f"2141.000 - Hutang Pajak - {abbr}",
+						"account_head": f"VAT - {abbr}",
 						"base_tax_amount": 0.0,
 						"base_tax_amount_after_discount_amount": 0.0,
 						"base_total": 0.0,
