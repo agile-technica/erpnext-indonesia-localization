@@ -16,6 +16,9 @@ def create_indonesia_localization_tax_template(company):
 
 
 def create_tax_template(company, abbr, rate):
+	if not company or not abbr or not rate:
+		frappe.throw("Please provide company, abbreviation, and rate.")
+
 	template_tax = frappe.get_doc({
 		"doctype": "Sales Taxes and Charges Template",
 		"company": company,
@@ -44,7 +47,7 @@ def create_tax_template(company, abbr, rate):
                 "parentfield": "taxes",
                 "parenttype": "Sales Taxes and Charges Template",
                 "use_temporary_rate": True if rate == 12 else False,
-                "rate": rate,
+                "rate": 11,
                 "temporary_rate": 12 if rate == 12 else 0,
                 "row_id": None,
                 "tax_amount": 0.0,
