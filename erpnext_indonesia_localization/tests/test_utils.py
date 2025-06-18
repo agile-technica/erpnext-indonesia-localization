@@ -95,7 +95,7 @@ def test_create_indonesia_localization_tax_template_when_one_of_template_missing
 
 @patch("erpnext_indonesia_localization.utils.template_tax.now")
 @patch("erpnext_indonesia_localization.utils.template_tax.frappe")
-def test_create_tax_template_when_succes(mock_frappe, mock_now):
+def test_create_tax_template_when_success(mock_frappe, mock_now):
 	mock_get_doc = MagicMock()
 	mock_frappe.get_doc = mock_get_doc
 	mock_now.return_value = "2025-06-12 17:46:06.065257"
@@ -158,7 +158,7 @@ def test_create_tax_template_when_succes(mock_frappe, mock_now):
 
 
 @patch("erpnext_indonesia_localization.utils.template_tax.frappe")
-def test_create_tax_template_when_succes(mock_frappe):
+def test_create_tax_template_when_parameter_missing(mock_frappe):
 	mock_get_doc = MagicMock()
 	mock_frappe.get_doc = mock_get_doc
 
