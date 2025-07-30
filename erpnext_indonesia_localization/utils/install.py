@@ -6,7 +6,6 @@ from frappe.core.doctype.data_import.data_import import start_import
 
 
 def init_setup_eil():
-	create_sales_taxes_and_charges_templates()
 	import_coretax_master_data()
 
 
