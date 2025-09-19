@@ -238,12 +238,11 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else item["luxury_goods_tax_amount"]
 			})
 
-			tax_data["sales_invoices"].append(invoice_entry)
-
-			frappe.set_value("Sales Invoice", invoice["name"], {
-				"is_xml_generated": 1,
-				"coretax_xml_exporter": doc.name
-			})
+		tax_data["sales_invoices"].append(invoice_entry)
+		frappe.set_value("Sales Invoice", invoice["name"], {
+			"is_xml_generated": 1,
+			"coretax_xml_exporter": doc.name
+		})
 
 	return tax_data
 
