@@ -2,9 +2,10 @@
 # For license information, please see license.txt
 
 import frappe
-from datetime import datetime
+
 from frappe.model.document import Document
 from jinja2 import Environment, FileSystemLoader
+
 
 class CoretaxXMLExporter(Document):
 	def before_submit(self):
@@ -30,11 +31,11 @@ class CoretaxXMLExporter(Document):
 		if len(invoice_docs) <= 0:
 			frappe.throw("Sales Invoices is Not Found. Please fetch the latest data")
 		elif len(invoice_docs) <= 500:
-			result =  export_xml(invoice_docs, company_doc, doc=self)
+			result = export_xml(invoice_docs, company_doc, doc=self)
 			if result == "Failed":
 				self.status = result
 				frappe.throw("Exporting XML Failed")
-			else :
+			else:
 				self.status = result
 
 				return result
@@ -56,7 +57,6 @@ def export_xml(invoice_docs, company_doc, doc):
 		frappe.set_value("Coretax XML Exporter", doc.name, "status", "Succeed")
 
 		return "Succeed"
-
 	except Exception:
 		frappe.set_value("Coretax XML Exporter", doc.name, "status", "Failed")
 		frappe.log_error(title=f"CoreTax XML Exporter Error on {doc.name}", message=frappe.get_traceback())
@@ -194,8 +194,8 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			"buyer_document": "" if customer_info.customer_id_type in ["", None] else customer_info.customer_id_type,
 			"buyer_country_code": customer_info.tax_country_code,
 			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN", None]
-									else customer_info.nik if customer_info.customer_id_type == "National ID"
-									else customer_info.customer_id_number,
+			else customer_info.nik if customer_info.customer_id_type == "National ID"
+			else customer_info.customer_id_number,
 			"customer_name": customer_info.customer_name,
 			"customer_address": "" if customer_info.company_address_tax_id in ["",
 																			   None] else customer_info.company_address_tax_id,
@@ -233,12 +233,9 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"tax_base": item["net_amount"],
 				"other_tax_base": item["other_tax_base_amount"],
 				"vat": item["vat_amount"],
-				"vatrate": int(
-					template_tax.temporary_rate if template_tax.use_temporary_rate else template_tax.rate),
-				"stlg_rate": 0.00 if item["luxury_goods_tax_rate"] in ["", None] else
-					item["luxury_goods_tax_rate"],
-				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else
-					item["luxury_goods_tax_amount"]
+				"vatrate": int(template_tax.temporary_rate if template_tax.use_temporary_rate else template_tax.rate),
+				"stlg_rate": 0.00 if item["luxury_goods_tax_rate"] in ["", None] else item["luxury_goods_tax_rate"],
+				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else item["luxury_goods_tax_amount"]
 			})
 
 			tax_data["sales_invoices"].append(invoice_entry)
@@ -259,7 +256,7 @@ def generated_xml_file(tax_data, company_doc, doc):
 	"""
 
 	template_dir = frappe.get_app_path('erpnext_indonesia_localization', "templates")
-	env = Environment(loader = FileSystemLoader(template_dir))
+	env = Environment(loader=FileSystemLoader(template_dir))
 
 	template = env.get_template('tax_invoice_bulk.jinja')
 	output = template.render(customer_sales_invoice_docs=tax_data)
