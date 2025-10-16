@@ -16,8 +16,20 @@ frappe.ui.form.on('Sales Invoice', {
         if (frm.doc.docstatus != 1) {
             set_sales_taxes_template_values(frm, {company: frm.doc.company, is_default: 1});
         }
+
+        clear_coretax_related_fields(frm);
     }
 })
+
+function clear_coretax_related_fields(frm) {
+	if (frm.doc.amended_from) {
+        frm.set_value('is_xml_generated', 0);
+        frm.set_value('nomor_faktur_pajak', null);
+        frm.set_value('tanggal_faktur_pajak', null);
+        frm.set_value('coretax_status', null);
+        frm.set_value('coretax_xml_exporter', null);
+    }
+}
 
 function set_sales_taxes_template_values(frm, filters) {
     frappe.db.get_value('Sales Taxes and Charges Template',
