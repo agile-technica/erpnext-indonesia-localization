@@ -267,3 +267,30 @@ def calculate_other_tax_base_amount_and_total(doc, method):
 				item.vat_amount = item.net_amount * tax_template_doc.rate / 100
 				doc.total_other_tax_base += item.net_amount
 				doc.total_luxury_goods_tax += item.luxury_goods_tax_amount
+
+
+def set_sales_taxes_template_values(doc, method):
+	fields_to_sync = ['transaction_code', 'tax_additional_info', 'tax_facility_stamp']
+
+	if doc.taxes_and_charges:
+		taxes_template = frappe.db.get_value(
+			"Sales Taxes and Charges Template",
+			doc.taxes_and_charges,
+			['transaction_code', 'tax_additional_info', 'tax_facility_stamp'],
+			as_dict=True
+		)
+	else:
+		taxes_template = frappe.db.get_value(
+			"Sales Taxes and Charges Template",
+			{
+				"company": doc.company,
+				"is_default": True
+			},
+			fields_to_sync,
+			as_dict=True
+		)
+
+	if taxes_template:
+		for field in fields_to_sync:
+			if not doc.get(field):
+				doc.set(field, taxes_template.get(field))
