@@ -294,9 +294,3 @@ def set_sales_taxes_template_values(doc, method):
 		for field in fields_to_sync:
 			if not doc.get(field):
 				doc.set(field, taxes_template.get(field))
-
-
-def set_default_code_reference_service_goods(doc, method):
-	for item in doc.items:
-		if item.kode_barang_jasa_ref in ["", None]:
-			item.kode_barang_jasa_ref = "000000"
