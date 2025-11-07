@@ -161,7 +161,8 @@ doc_events = {
 			"erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_si_had_tin_before"
 		],
 		"before_save": "erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.calculate_other_tax_base_amount_and_total",
-		"validate": "erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_sales_taxes_template_values"
+		"validate": "erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_sales_taxes_template_values",
+		"before_submit": "erpnext_indonesia_localization.erpnext_indonesia_localization.doc_events.sales_invoice.set_default_code_reference_service_goods"
 	}
 }
 
