@@ -179,6 +179,13 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 										  "customers_nitku", "nik"],
 										 as_dict=True)
 
+		customer_id_type = {
+			"TIN": customer_info.tax_id,
+			"National ID": customer_info.nik,
+			"Passport": customer_info.customer_id_number,
+			"Other ID": customer_info.customer_id_number
+		}
+
 		invoice_entry = {
 			"posting_date": str(invoice["posting_date"]),
 			"opt": invoice["tax_invoice_type"],
@@ -201,7 +208,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 																			   None] else customer_info.company_address_tax_id,
 			"customer_email_as_per_tax_id": "" if customer_info.customer_email_as_per_tax_id in ["",
 																								 None] else customer_info.customer_email_as_per_tax_id,
-			"customers_nitku": customer_info.customers_nitku,
+			"customers_nitku": int(str(customer_id_type[customer_info.customer_id_type]) + str(customer_info.customers_nitku)),
 			"items": []
 		}
 
