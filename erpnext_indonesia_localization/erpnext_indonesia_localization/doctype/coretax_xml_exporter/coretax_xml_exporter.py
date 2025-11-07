@@ -218,7 +218,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"parent": invoice["name"],
 				"docstatus": 1
 			},
-			fields=["item_name", "item_code", "qty", "uom", "rate", "discount_amount", "net_amount",
+			fields=["item_name", "item_code", "qty", "uom", "discount_amount", "net_amount",
 					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref",
 					"kode_barang_jasa_ref", "kode_barang_jasa_opt", "net_rate"]
 		)
