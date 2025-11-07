@@ -208,7 +208,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 																			   None] else customer_info.company_address_tax_id,
 			"customer_email_as_per_tax_id": "" if customer_info.customer_email_as_per_tax_id in ["",
 																								 None] else customer_info.customer_email_as_per_tax_id,
-			"customers_nitku": int(str(customer_id_type[customer_info.customer_id_type]) + str(customer_info.customers_nitku)),
+			"customers_nitku": str(customer_id_type[customer_info.customer_id_type]) + str(customer_info.customers_nitku),
 			"items": []
 		}
 
