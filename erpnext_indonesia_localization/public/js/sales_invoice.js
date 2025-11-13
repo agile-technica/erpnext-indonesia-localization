@@ -13,7 +13,7 @@ frappe.ui.form.on('Sales Invoice', {
         };
     },
     onload: function (frm) {
-        if (frm.doc.docstatus != 1) {
+        if (frm.is_new()) {
             set_sales_taxes_template_values(frm, {company: frm.doc.company, is_default: 1});
         }
 

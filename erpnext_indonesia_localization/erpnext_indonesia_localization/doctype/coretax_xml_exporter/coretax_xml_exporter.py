@@ -179,6 +179,13 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 										  "customers_nitku", "nik"],
 										 as_dict=True)
 
+		customer_id_type = {
+			"TIN": customer_info.tax_id,
+			"National ID": customer_info.nik,
+			"Passport": customer_info.customer_id_number,
+			"Other ID": customer_info.customer_id_number
+		}
+
 		invoice_entry = {
 			"posting_date": str(invoice["posting_date"]),
 			"opt": invoice["tax_invoice_type"],
@@ -201,7 +208,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 																			   None] else customer_info.company_address_tax_id,
 			"customer_email_as_per_tax_id": "" if customer_info.customer_email_as_per_tax_id in ["",
 																								 None] else customer_info.customer_email_as_per_tax_id,
-			"customers_nitku": customer_info.customers_nitku,
+			"customers_nitku": str(customer_id_type[customer_info.customer_id_type]) + str(customer_info.customers_nitku),
 			"items": []
 		}
 
@@ -211,9 +218,9 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"parent": invoice["name"],
 				"docstatus": 1
 			},
-			fields=["item_name", "item_code", "qty", "uom", "rate", "discount_amount", "net_amount",
+			fields=["item_name", "item_code", "qty", "uom", "discount_amount", "net_amount",
 					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref",
-					"kode_barang_jasa_ref", "kode_barang_jasa_opt"]
+					"kode_barang_jasa_ref", "kode_barang_jasa_opt", "net_rate"]
 		)
 
 		for item in si_items:
@@ -224,10 +231,10 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 
 			invoice_entry["items"].append({
 				"opt": item["kode_barang_jasa_opt"],
-				"code": frappe.get_value("CoreTax Barang Jasa Ref", item["kode_barang_jasa_ref"], "code"),
+				"code": frappe.get_value("CoreTax Barang Jasa Ref", item["kode_barang_jasa_ref"], "code") or "000000",
 				"name": item["item_name"],
 				"unit": item["unit_ref"],
-				"price": item["rate"],
+				"price": item["net_rate"],
 				"qty": item["qty"],
 				"total_discount": item["discount_amount"] * item["qty"],
 				"tax_base": item["net_amount"],
