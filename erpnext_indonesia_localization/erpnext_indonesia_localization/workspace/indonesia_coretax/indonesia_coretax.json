@@ -1,6 +1,7 @@
 {
+ "app": "erpnext_indonesia_localization",
  "charts": [],
- "content": "[{\"id\":\"d5K0dYJ3QX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">ERPNext Untuk Indonesia</span>\",\"col\":12}},{\"id\":\"e4pbQq0l99\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Terkait Pajak</b></span>\",\"col\":12}},{\"id\":\"r6Yu6TIfkt\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Belum Dilaporkan\",\"col\":4}},{\"id\":\"eshZt2j2tY\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Menunggu Persetujuan\",\"col\":4}},{\"id\":\"86ajpp2WXh\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Sudah Disetujui\",\"col\":4}},{\"id\":\"fG06GaBOgq\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pintasan</span>\",\"col\":12}},{\"id\":\"ge-3Y98RUu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ekspor Data XML\",\"col\":3}},{\"id\":\"Cwsy5gjN7s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Perbarui Nomor Faktur Pajak\",\"col\":3}},{\"id\":\"R8xuOXwhcq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Panduan Penggunaan (IDN)\",\"col\":3}},{\"id\":\"t84m2y-Hqu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Manual (ENG)\",\"col\":3}},{\"id\":\"vi9Bhtgx0W\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Customer\",\"col\":5}},{\"id\":\"b0pUJTCkG6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Invoice\",\"col\":5}},{\"id\":\"YevsLc-7U2\",\"type\":\"card\",\"data\":{\"card_name\":\"Master Data\",\"col\":4}},{\"id\":\"AmGYT0BYvp\",\"type\":\"card\",\"data\":{\"card_name\":\"Dokumen Perpajakan\",\"col\":4}}]",
+ "content": "[{\"id\":\"d5K0dYJ3QX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\">ERPNext Untuk Indonesia</span>\",\"col\":12}},{\"id\":\"e4pbQq0l99\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Terkait Pajak</b></span>\",\"col\":12}},{\"id\":\"r6Yu6TIfkt\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Belum Dilaporkan\",\"col\":4}},{\"id\":\"eshZt2j2tY\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Menunggu Persetujuan\",\"col\":4}},{\"id\":\"86ajpp2WXh\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Sudah Disetujui\",\"col\":4}},{\"id\":\"fG06GaBOgq\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pintasan</span>\",\"col\":12}},{\"id\":\"ge-3Y98RUu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ekspor Data XML\",\"col\":3}},{\"id\":\"Cwsy5gjN7s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Perbarui Nomor Faktur Pajak\",\"col\":3}},{\"id\":\"R8xuOXwhcq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Panduan Penggunaan (IDN)\",\"col\":3}},{\"id\":\"t84m2y-Hqu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Manual (ENG)\",\"col\":3}},{\"id\":\"vi9Bhtgx0W\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Customer\",\"col\":6}},{\"id\":\"572z0vA7kJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Invoice\",\"col\":6}},{\"id\":\"YevsLc-7U2\",\"type\":\"card\",\"data\":{\"card_name\":\"Master Data\",\"col\":6}},{\"id\":\"AmGYT0BYvp\",\"type\":\"card\",\"data\":{\"card_name\":\"Dokumen Perpajakan\",\"col\":6}}]",
  "creation": "2025-03-20 11:37:25.525378",
  "custom_blocks": [],
  "docstatus": 0,
@@ -103,7 +104,7 @@
    "type": "Link"
   }
  ],
- "modified": "2025-05-16 18:57:59.491505",
+ "modified": "2026-01-26 14:35:40.539251",
  "modified_by": "Administrator",
  "module": "Erpnext Indonesia Localization",
  "name": "Indonesia CoreTax",
@@ -137,6 +138,15 @@
    "type": "DocType"
   },
   {
+   "color": "Pink",
+   "doc_view": "List",
+   "format": "{} tanpa Faktur Pajak",
+   "label": "Lihat Invoice",
+   "link_to": "Sales Invoice",
+   "stats_filter": "[[\"Sales Invoice\",\"tax_id\",\"is\",\"set\"],[\"Sales Invoice\",\"tax_invoice_number\",\"is\",\"not set\"],[\"Sales Invoice\",\"docstatus\",\"=\",\"1\"]]",
+   "type": "DocType"
+  },
+  {
    "color": "Grey",
    "doc_view": "New",
    "label": "Perbarui Nomor Faktur Pajak",
@@ -161,15 +171,6 @@
    "type": "DocType"
   },
   {
-   "color": "Pink",
-   "doc_view": "List",
-   "format": "{} tanpa Faktur Pajak",
-   "label": "Lihat Invoice",
-   "link_to": "Sales Invoice",
-   "stats_filter": "[[\"Sales Invoice\",\"tax_id\",\"is\",\"set\",false],[\"Sales Invoice\",\"tax_invoice_number\",\"is\",\"not set\",false],[\"Sales Invoice\",\"docstatus\",\"=\",\"1\",false]]",
-   "type": "DocType"
-  },
-  {
    "color": "Grey",
    "doc_view": "List",
    "label": "User Manual (ENG)",
@@ -177,5 +178,6 @@
    "url": "https://github.com/agile-technica/erpnext-indonesia-localization/blob/develop/User%20Manual%20Coretax%20EIL%20-%20ENG.pdf"
   }
  ],
- "title": "Indonesia CoreTax"
+ "title": "Indonesia CoreTax",
+ "type": "Workspace"
 }
