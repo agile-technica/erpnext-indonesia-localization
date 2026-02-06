@@ -1,0 +1,22 @@
+{
+ "app": "erpnext_indonesia_localisation",
+ "creation": "2026-01-26 10:26:50.917123",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon": "",
+ "icon_image": "",
+ "icon_type": "Link",
+ "idx": 0,
+ "label": "Indonesia Localisation",
+ "link_to": "Indonesia Localisation",
+ "link_type": "Workspace Sidebar",
+ "logo_url": "/assets/erpnext_indonesia_localisation/images/itc_logo.png",
+ "modified": "2026-01-26 13:56:27.353575",
+ "modified_by": "Administrator",
+ "name": "Indonesia Localisation",
+ "owner": "Administrator",
+ "restrict_removal": 0,
+ "roles": [],
+ "standard": 1
+}

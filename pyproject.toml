@@ -1,9 +1,9 @@
 [project]
-name = "erpnext_indonesia_localization"
+name = "erpnext_indonesia_localisation"
 authors = [
     { name = "Agile Technica", email = "info@agiletechnica.com"}
 ]
-description = "Localization of ERPNext for Indonesia region, including Indonesia Tax and Charges feature"
+description = "Localisation of ERPNext for Indonesia region, including Indonesia Tax and Charges feature"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]

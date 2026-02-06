@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CoreTax Importer Created on {creation}",
+ "creation": "2025-02-17 14:14:25.935503",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "instruction_text",
+  "import_file",
+  "importer_status",
+  "section_break_6iasj",
+  "coretax_invoice",
+  "start_import",
+  "section_break_qkon",
+  "import_log",
+  "html"
+ ],
+ "fields": [
+  {
+   "fieldname": "import_file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Import File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_import",
+   "fieldtype": "Button",
+   "label": "Start Import"
+  },
+  {
+   "fieldname": "importer_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Importer Status",
+   "options": "\nDraft\nFailed\nIn Process\nSucceed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_6iasj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "coretax_invoice",
+   "fieldtype": "HTML",
+   "label": "CoreTax Invoice"
+  },
+  {
+   "fieldname": "instruction_text",
+   "fieldtype": "HTML",
+   "options": "<h5> Please upload an Excel file that has been obtained from DJP to proceed with the import process. </h5> <br>"
+  },
+  {
+   "fieldname": "section_break_qkon",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "import_log",
+   "fieldtype": "HTML",
+   "label": "Import Log"
+  },
+  {
+   "fieldname": "html",
+   "fieldtype": "Code",
+   "hidden": 1,
+   "label": "Html"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-17 11:38:31.713793",
+ "modified_by": "Administrator",
+ "module": "ERPNext Indonesia Localisation",
+ "name": "CoreTax Importer",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "export": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "select": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

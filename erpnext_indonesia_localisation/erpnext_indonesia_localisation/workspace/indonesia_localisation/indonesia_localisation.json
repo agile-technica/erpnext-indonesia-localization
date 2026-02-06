@@ -1,0 +1,150 @@
+{
+ "app": "erpnext_indonesia_localisation",
+ "charts": [],
+ "content": "[{\"id\":\"p1vsl7dYkx\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\"><b>ERPNext untuk Indonesia</b></span>\",\"col\":12}},{\"id\":\"fRgTOVK3pK\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Terkait Pajak</span>\",\"col\":12}},{\"id\":\"67uSojvgXv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unggah Nomor Faktur\",\"col\":3}},{\"id\":\"H97keoWKqc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Buat Faktur Pajak\",\"col\":3}},{\"id\":\"mL2hbQLWyE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Panduan Penggunaan (IDN)\",\"col\":3}},{\"id\":\"d4o7wDid_n\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Manual (ENG)\",\"col\":3}},{\"id\":\"BjBjUGMx60\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pintasan&nbsp;</span>\",\"col\":12}},{\"id\":\"-F-zHlFhPs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Customer\",\"col\":3}},{\"id\":\"nKaK5QWldY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lihat Invoice\",\"col\":3}},{\"id\":\"rrYcd4PNXS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nomor Faktur\",\"col\":3}},{\"id\":\"t_hNmoEQtm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unduh Faktur Pajak\",\"col\":3}},{\"id\":\"HoZOYwrMT0\",\"type\":\"card\",\"data\":{\"card_name\":\"Dokumen Perpajakan\",\"col\":4}}]",
+ "creation": "2024-11-21 11:15:06.205243",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "permission",
+ "idx": 1,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Indonesia Localisation",
+ "links": [
+  {
+   "description": "Daftar dokumen yang dapat digunakan untuk mengurus perpajakan di Indonesia",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dokumen Perpajakan",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pengunggah Nomor Faktur",
+   "link_count": 0,
+   "link_to": "Tax Invoice Number Importer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daftar Nomor Faktur",
+   "link_count": 0,
+   "link_to": "Tax Invoice Number",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daftar Faktur Pajak",
+   "link_count": 0,
+   "link_to": "Tax Invoice Exporter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pengaturan Faktur Pajak",
+   "link_count": 0,
+   "link_to": "Indonesia Localisation Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-01-26 14:01:31.400039",
+ "modified_by": "Administrator",
+ "module": "ERPNext Indonesia Localisation",
+ "name": "Indonesia Localisation",
+ "number_cards": [],
+ "owner": "m.hafiz@agiletechnica.com",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 28.1,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Panduan Penggunaan (IDN)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Unggah Nomor Faktur",
+   "link_to": "Tax Invoice Number Importer",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User Manual (ENG)",
+   "type": "URL",
+   "url": "https://github.com/agile-technica/erpnext-indonesia-localisation?tab=readme-ov-file"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "List",
+   "format": "{} tertunda",
+   "label": "Unduh Faktur Pajak",
+   "link_to": "Tax Invoice Exporter",
+   "stats_filter": "[[\"Tax Invoice Exporter\",\"docstatus\",\"=\",\"0\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{} tanpa NPWP",
+   "label": "Lihat Customer",
+   "link_to": "Customer",
+   "stats_filter": "[[\"Customer\",\"tax_id\",\"is\",\"not set\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} tanpa Nofa",
+   "label": "Lihat Invoice",
+   "link_to": "Sales Invoice",
+   "stats_filter": "[[\"Sales Invoice\",\"tax_id\",\"is\",\"set\",false],[\"Sales Invoice\",\"tax_invoice_number\",\"is\",\"not set\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "format": "baru",
+   "label": "Buat Faktur Pajak",
+   "link_to": "Tax Invoice Exporter",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{} masih tersedia",
+   "label": "Nomor Faktur",
+   "link_to": "Tax Invoice Number",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Indonesia Localisation",
+ "type": "Workspace"
+}

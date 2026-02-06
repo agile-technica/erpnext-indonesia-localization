@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>ERPNext Indonesia Localization</h1>
+<h1>ERPNext Indonesia Localisation</h1>
 
 ![logopng](.github/logo.png)
 
@@ -16,7 +16,7 @@
 ## Introduction
 
 
-ERPNext Indonesia Localization is a custom application that helps businesses comply with Indonesian tax regulations through ERPNext.
+ERPNext Indonesia Localisation is a custom application that helps businesses comply with Indonesian tax regulations through ERPNext.
 
 It's built on [ERPNext](https://github.com/frappe/erpnext) and the [Frappe Framework](https://github.com/frappe/frappe). Check them out!
 

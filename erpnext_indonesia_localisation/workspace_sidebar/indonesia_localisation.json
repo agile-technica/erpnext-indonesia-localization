@@ -1,0 +1,28 @@
+{
+ "app": "erpnext_indonesia_localisation",
+ "creation": "2026-01-26 14:05:58.717694",
+ "docstatus": 0,
+ "doctype": "Workspace Sidebar",
+ "header_icon": "file-text",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Home",
+   "link_to": "Indonesia CoreTax",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-01-26 14:11:39.327550",
+ "modified_by": "Administrator",
+ "module": "ERPNext Indonesia Localisation",
+ "name": "Indonesia Localisation",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "Indonesia Localisation"
+}

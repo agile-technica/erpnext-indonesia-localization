@@ -1,0 +1,31 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-11-22 15:25:15.090713",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2024-11-22 15:40:27.064529",
+ "modified_by": "Administrator",
+ "module": "ERPNext Indonesia Localisation",
+ "name": "PPN Keluaran",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    si.customer AS \"Customer:Link/Customer:150\",\r\n    c.tax_id AS \"Tax ID::100\",\r\n    si.name AS \"Invoice Name:Link/Sales Invoice:150\",\r\n    si.tax_invoice_number AS \"Tax Invoice Number::150\",\r\n    si.posting_date AS \"Posting Date:Date:100\",\r\n    si.total_taxes_and_charges AS \"Total Taxes and Charges:Currency:150\"\r\nFROM\r\n    `tabSales Invoice` si\r\nLEFT JOIN\r\n    `tabCustomer` c ON si.customer = c.name\r\nWHERE\r\n    si.docstatus = 1\r\nORDER BY\r\n    si.posting_date DESC\r\n",
+ "ref_doctype": "Sales Invoice",
+ "report_name": "PPN Keluaran",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
+  }
+ ],
+ "timeout": 0
+}

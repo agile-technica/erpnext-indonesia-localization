@@ -1,0 +1,48 @@
+[
+ {
+  "auto_call_pajakios_api": 0,
+  "auto_create_vat_output_metadata": 0,
+  "autouploaddjp": 0,
+  "create_vat_output": 0,
+  "docstatus": 0,
+  "doctype": "Indonesia Localisation Settings",
+  "exclude_opening_entry": 0,
+  "exclude_sales_invoice_type_return": 0,
+  "get_details_vat_output": 0,
+  "get_pdf_vat_output": 0,
+  "invoice_name_in_efaktur_template": null,
+  "min_grand_total_for_wapu": 0.0,
+  "minimum_tin_threshold": 0,
+  "modified": "2025-01-06 15:20:08.133827",
+  "name": "Indonesia Localisation Settings",
+  "no_faktur_format": 0,
+  "pajakio_api_key": null,
+  "tax_invoice_number_source": "Pajak.io",
+  "tax_prefix_codes": [
+   {
+    "parent": "Indonesia Localisation Settings",
+    "parentfield": "tax_prefix_codes",
+    "parenttype": "Indonesia Localisation Settings",
+    "sales_taxes_and_charges_template": "PPN Penjualan 11%",
+    "tax_prefix_code": "010"
+   },
+   {
+    "parent": "Indonesia Localisation Settings",
+    "parentfield": "tax_prefix_codes",
+    "parenttype": "Indonesia Localisation Settings",
+    "sales_taxes_and_charges_template": "PPN Penjualan 12%",
+    "tax_prefix_code": "010"
+   }
+  ],
+  "tin_length": 13,
+  "tin_revision_if_only_si_had_tin_before": 0,
+  "url_create_vat": null,
+  "url_get_pdf_vat": null,
+  "url_get_vat": null,
+  "url_upload_vat": null,
+  "use_amended_from_as_tin_revision_flag": 1,
+  "use_min_grand_total_for_wapu": 0,
+  "worker_for_link_tax_invoice_number_background_job": null,
+  "worker_for_renaming_tax_invoice_number": null
+ }
+]
