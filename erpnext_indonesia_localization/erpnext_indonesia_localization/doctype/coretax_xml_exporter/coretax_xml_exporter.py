@@ -53,7 +53,7 @@ class CoretaxXMLExporter(Document):
 def export_xml(invoice_docs, company_doc, doc):
 	try:
 		tax_data = mapping_sales_invoices(invoice_docs, company_doc, doc)
-		generated_xml_file(tax_data, company_doc, doc)
+		generate_xml_file(tax_data, company_doc, doc)
 		frappe.set_value("Coretax XML Exporter", doc.name, "status", "Succeed")
 
 		return "Succeed"
@@ -203,12 +203,13 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			"buyer_document_number": "" if customer_info.customer_id_type in ["TIN", None]
 			else customer_info.nik if customer_info.customer_id_type == "National ID"
 			else customer_info.customer_id_number,
-			"customer_name": customer_info.customer_name,
-			"customer_address": "" if customer_info.company_address_tax_id in ["",
-																			   None] else customer_info.company_address_tax_id,
-			"customer_email_as_per_tax_id": "" if customer_info.customer_email_as_per_tax_id in ["",
-																								 None] else customer_info.customer_email_as_per_tax_id,
-			"customers_nitku": str(customer_id_type[customer_info.customer_id_type]) + str(customer_info.customers_nitku),
+			"customer_name": escape_xml_fast(customer_info.customer_name),
+			"customer_address": "" if customer_info.company_address_tax_id in ["", None] else escape_xml_fast(
+				customer_info.company_address_tax_id),
+			"customer_email_as_per_tax_id": "" if customer_info.customer_email_as_per_tax_id in ["", None]
+			else customer_info.customer_email_as_per_tax_id,
+			"customers_nitku": str(customer_id_type[customer_info.customer_id_type]) + str(
+				customer_info.customers_nitku),
 			"items": []
 		}
 
@@ -232,7 +233,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			invoice_entry["items"].append({
 				"opt": item["kode_barang_jasa_opt"],
 				"code": frappe.get_value("CoreTax Barang Jasa Ref", item["kode_barang_jasa_ref"], "code") or "000000",
-				"name": item["item_name"],
+				"name": escape_xml_fast(item["item_name"]),
 				"unit": item["unit_ref"],
 				"price": item["net_rate"],
 				"qty": item["qty"],
@@ -254,7 +255,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 	return tax_data
 
 
-def generated_xml_file(tax_data, company_doc, doc):
+def generate_xml_file(tax_data, company_doc, doc):
 	"""
 	:param tax_data: List of Dictionary
 	:param company_doc: Dictionary
@@ -298,3 +299,15 @@ def unlink_sales_invoices(doc_name):
 		})
 
 	frappe.delete_doc("File", frappe.get_value("File", {"attached_to_doctype": "Coretax XML Exporter", "attached_to_name": doc_name}, "name"))
+
+
+def escape_xml_fast(text):
+	translation_table = str.maketrans({
+		"&": "&amp;",
+		"<": "&lt;",
+		">": "&gt;",
+		'"': "&quot;",
+		"'": "&apos;"
+	})
+
+	return text.translate(translation_table)
