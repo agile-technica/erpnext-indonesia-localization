@@ -1,5 +1,5 @@
 app_name = "erpnext_indonesia_localization"
-app_title = "Erpnext Indonesia Localization"
+app_title = "ERPNext Indonesia Localization"
 app_publisher = "Agile Technica"
 app_description = "Localization of ERPNext for Indonesia region, including Indonesia Tax and Charges feature"
 app_email = "info@agiletechnica.com"
@@ -15,7 +15,7 @@ app_license = "agpl-3.0"
 # 	{
 # 		"name": "erpnext_indonesia_localization",
 # 		"logo": "/assets/erpnext_indonesia_localization/logo.png",
-# 		"title": "Erpnext Indonesia Localization",
+# 		"title": "ERPNext Indonesia Localization",
 # 		"route": "/erpnext_indonesia_localization",
 # 		"has_permission": "erpnext_indonesia_localization.api.permission.has_app_permission"
 # 	}
