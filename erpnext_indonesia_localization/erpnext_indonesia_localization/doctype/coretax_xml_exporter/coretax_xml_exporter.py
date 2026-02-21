@@ -221,7 +221,8 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			},
 			fields=["item_name", "item_code", "qty", "uom", "discount_amount", "net_amount",
 					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref",
-					"kode_barang_jasa_ref", "kode_barang_jasa_opt", "net_rate"]
+					"kode_barang_jasa_ref", "kode_barang_jasa_opt", "net_rate"],
+   			order_by="idx asc"    
 		)
 
 		for item in si_items:
