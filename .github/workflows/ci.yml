@@ -1,11 +1,11 @@
 
 name: CI
 
-on:
-  push:
-    branches:
-      - develop
-  pull_request:
+#on:
+#  push:
+#    branches:
+#      - develop
+#  pull_request:
 
 concurrency:
   group: develop-erpnext_indonesia_localization-${{ github.event.number }}
