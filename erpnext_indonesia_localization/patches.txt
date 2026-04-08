@@ -1,6 +1,5 @@
 [pre_model_sync]
-# Patches added in this section will be executed before doctypes are migrated
-# Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
+erpnext_indonesia_localization.patches.v1_3.remove_old_desktop_icon
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
