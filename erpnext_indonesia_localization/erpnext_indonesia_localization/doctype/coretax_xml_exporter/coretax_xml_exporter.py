@@ -222,7 +222,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			fields=["item_name", "item_code", "qty", "uom", "discount_amount", "net_amount",
 					"other_tax_base_amount", "vat_amount", "luxury_goods_tax_rate", "luxury_goods_tax_amount", "unit_ref",
 					"kode_barang_jasa_ref", "kode_barang_jasa_opt", "net_rate"],
-   			order_by="idx asc"    
+			order_by="idx asc"
 		)
 
 		for item in si_items:
@@ -242,7 +242,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 				"tax_base": item["net_amount"],
 				"other_tax_base": item["other_tax_base_amount"],
 				"vat": item["vat_amount"],
-				"vatrate": int(template_tax.temporary_rate if template_tax.use_temporary_rate else template_tax.rate),
+				"vatrate": template_tax.temporary_rate if template_tax.use_temporary_rate else template_tax.rate,
 				"stlg_rate": 0.00 if item["luxury_goods_tax_rate"] in ["", None] else item["luxury_goods_tax_rate"],
 				"stlg": 0.00 if item["luxury_goods_tax_amount"] in ["", None] else item["luxury_goods_tax_amount"]
 			})
