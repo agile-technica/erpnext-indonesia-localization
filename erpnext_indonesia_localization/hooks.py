@@ -325,6 +325,7 @@ fixtures = [
 					"Sales Taxes and Charges Template-custom_tax_facility_stamp",
 					"Sales Taxes and Charges Template-custom_tax_additional_info",
 					"Sales Taxes and Charges Template-custom_coretax",
+					"Sales Taxes and Charges-custom_temporary_rate_float",
 					"Company-custom_use_company_nitku",
 					"Company-custom_companys_nitku",
 					"Sales Invoice-custom_coretax_tab",

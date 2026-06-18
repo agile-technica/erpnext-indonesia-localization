@@ -2,4 +2,4 @@
 erpnext_indonesia_localization.patches.v1_3.remove_old_desktop_icon
 
 [post_model_sync]
-# Patches added in this section will be executed after doctypes are migrated
+erpnext_indonesia_localization.patches.v1_3.migrate_temporary_rate
