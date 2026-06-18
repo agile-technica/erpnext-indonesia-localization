@@ -22,7 +22,7 @@ frappe.ui.form.on('Sales Invoice', {
 })
 
 function clear_coretax_related_fields(frm) {
-	if (frm.doc.amended_from) {
+	if (frm.doc.amended_from && frm.doc.docstatus === 0) {
         frm.set_value('is_xml_generated', 0);
         frm.set_value('nomor_faktur_pajak', null);
         frm.set_value('tanggal_faktur_pajak', null);
