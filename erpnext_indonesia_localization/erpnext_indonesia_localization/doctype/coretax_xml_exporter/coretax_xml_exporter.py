@@ -228,7 +228,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 		for item in si_items:
 			template_tax = frappe.get_value("Sales Taxes and Charges",
 											{"parent": invoice["name"], "idx": 1},
-											["use_temporary_rate", "rate", "temporary_rate"],
+											["use_temporary_rate", "rate", "temporary_rate", "included_in_print_rate"],
 											as_dict=True)
 
 			discount_amount_ex_tax = (
@@ -240,7 +240,7 @@ def mapping_sales_invoices(invoice_docs, company_doc, doc):
 			invoice_entry["items"].append({
 				"opt": item["kode_barang_jasa_opt"],
 				"code": frappe.get_value("CoreTax Barang Jasa Ref", item["kode_barang_jasa_ref"], "code") or "000000",
-				"name": escape_xml_fast(item["item_name"]),
+				"name": item["item_name"],
 				"unit": item["unit_ref"],
 				"price": item["net_rate"] + discount_amount_ex_tax,
 				"qty": item["qty"],
