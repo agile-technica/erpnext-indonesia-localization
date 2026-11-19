@@ -24,18 +24,18 @@
   },
   {
    "fieldname": "description",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "label": "Description"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-20 15:36:08.414304",
+ "modified": "2026-11-19 16:00:21.998972",
  "modified_by": "Administrator",
  "module": "ERPNext Indonesia Localization",
  "name": "CoreTax Barang Jasa Ref",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
