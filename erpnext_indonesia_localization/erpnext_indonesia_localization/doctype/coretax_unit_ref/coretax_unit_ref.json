@@ -19,13 +19,13 @@
   },
   {
    "fieldname": "description",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-16 18:41:23.698518",
+ "modified": "2026-11-19 15:54:17.404158",
  "modified_by": "Administrator",
  "module": "ERPNext Indonesia Localization",
  "name": "CoreTax Unit Ref",
@@ -66,6 +66,8 @@
    "select": 1
   }
  ],
+ "row_format": "Dynamic",
+ "search_fields": "description",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
