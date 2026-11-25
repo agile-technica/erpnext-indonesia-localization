@@ -20,18 +20,22 @@
   {
    "fieldname": "group",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Group"
   },
   {
    "fieldname": "description",
    "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Description"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-19 16:00:21.998972",
+ "modified": "2026-11-20 16:19:00.485361",
  "modified_by": "Administrator",
  "module": "ERPNext Indonesia Localization",
  "name": "CoreTax Barang Jasa Ref",
