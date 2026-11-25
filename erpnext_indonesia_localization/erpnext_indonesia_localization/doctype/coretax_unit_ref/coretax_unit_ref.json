@@ -20,12 +20,14 @@
   {
    "fieldname": "description",
    "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-11-19 15:54:17.404158",
+ "modified": "2026-11-20 16:19:27.798681",
  "modified_by": "Administrator",
  "module": "ERPNext Indonesia Localization",
  "name": "CoreTax Unit Ref",
